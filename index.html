@@ -9,6 +9,112 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ============================================================
+   ORDUNUZ.GAMES - MAVİ / BEYAZ NEON TEMA OVERRIDE (EKSİKSİZ)
+   ============================================================ */
+
+/* 1. Tüm CSS Değişkenlerini Maviya Çevir */
+:root {
+  --primary-color: #00d2ff !important;
+  --primary: #00d2ff !important;
+  --primary-hover: #0088ff !important;
+  --accent-color: #ffffff !important;
+  --bg-dark: #070a12 !important;
+  --card-bg: rgba(15, 23, 42, 0.7) !important;
+  --glow-color: rgba(0, 210, 255, 0.4) !important;
+  --red: #00d2ff !important;
+  --red-glow: rgba(0, 210, 255, 0.4) !important;
+}
+
+/* 2. Arka Plan Kırmızı Işıklarını Mavi Yap */
+body::before, 
+.hero::before, 
+.hero-glow {
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(0, 210, 255, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 85% 60%, rgba(0, 100, 255, 0.2) 0%, transparent 40%) !important;
+}
+
+/* 3. Logo Yazısındaki (ORDUNUZ) Kırmızı Alanı Mavi Yap */
+.logo, 
+.logo span, 
+.logo-text span, 
+header .logo,
+header .logo span {
+  color: #00d2ff !important;
+  text-shadow: 0 0 15px rgba(0, 210, 255, 0.5) !important;
+}
+
+/* 4. Sağ Üstteki Giriş Yap Butonu ve Tüm Butonlar */
+.btn-primary, 
+.nav-btn, 
+.login-btn, 
+header .btn, 
+header a[href*="login"],
+button, 
+a.btn {
+  background: linear-gradient(135deg, #00d2ff 0%, #0066ff 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.5) !important;
+  border: none !important;
+}
+
+.btn-primary:hover, 
+.nav-btn:hover, 
+button:hover {
+  background: linear-gradient(135deg, #0066ff 0%, #00d2ff 100%) !important;
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.8) !important;
+}
+
+/* 5. Kartların İçindeki Kırmızı İkon Kutuları (Nasıl Çalışır / Özellikler) */
+.step-icon, 
+.feature-icon, 
+.icon-box, 
+.card-icon,
+.step-card .icon,
+div[class*="icon"] {
+  background: rgba(0, 210, 255, 0.12) !important;
+  color: #00d2ff !important;
+  border: 1px solid rgba(0, 210, 255, 0.3) !important;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2) !important;
+}
+
+.step-icon i, 
+.feature-icon i, 
+.icon-box i,
+.card-icon i,
+svg {
+  color: #00d2ff !important;
+  fill: #00d2ff !important;
+}
+
+/* 6. Rozetler, İstatistikler ve Kırmızı Metinler */
+.badge, 
+.badge-dot, 
+.stat-number, 
+.section-subtitle, 
+h1 span, h2 span, h3 span {
+  color: #00d2ff !important;
+}
+
+.badge-dot {
+  background-color: #00d2ff !important;
+  box-shadow: 0 0 10px #00d2ff !important;
+}
+
+.badge {
+  background: rgba(0, 210, 255, 0.1) !important;
+  border: 1px solid rgba(0, 210, 255, 0.3) !important;
+}
+
+/* 7. Alt Bilgi (Footer) Kırmızı Link ve Yazıları */
+footer a, 
+.footer-link, 
+footer span,
+footer a[href*="itemsatis"] {
+  color: #00d2ff !important;
+  text-shadow: 0 0 8px rgba(0, 210, 255, 0.4) !important;
+}
         /* Logo Yazısındaki Kırmızı Alan */
 .logo span, 
 .logo-text span, 
