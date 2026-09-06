@@ -9,6 +9,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Discord Yüzen Widget */
+.discord-widget {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #5865F2 0%, #00d2ff 100%);
+  color: #ffffff !important;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.discord-widget i {
+  font-size: 22px;
+}
+
+.discord-widget:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.8);
+  background: linear-gradient(135deg, #00d2ff 0%, #5865F2 100%);
+}
+
+/* Mobilde Sadece İkon Göster */
+@media (max-width: 768px) {
+  .discord-text {
+    display: none;
+  }
+  .discord-widget {
+    padding: 14px;
+    border-radius: 50%;
+    bottom: 15px;
+    right: 15px;
+  }
+}
         /* Logo Fare Hareket Efekti */
 .hero-image-wrapper img, 
 .hero-avatar img {
@@ -818,6 +861,11 @@ button:hover {
     </footer>
 
 </body>
+    <!-- Discord Yüzen Widget -->
+<a href="https://discord.gg/YOUR_DISCORD_LINK" target="_blank" class="discord-widget" title="Discord Sunucumuza Katılın">
+  <i class="fa-brands fa-discord"></i>
+  <span class="discord-text">Discord'a Katıl</span>
+</a>
     <script>
   const logo = document.querySelector('.hero-image-wrapper img') || document.querySelector('.hero-avatar img') || document.querySelector('img[src*="logo"]');
   
