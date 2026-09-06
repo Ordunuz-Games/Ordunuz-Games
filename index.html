@@ -9,6 +9,78 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Mavi-Beyaz Tüm Site Teması */
+:root {
+  --primary-color: #00d2ff !important;
+  --primary-hover: #0099ff !important;
+  --accent-color: #ffffff !important;
+  --bg-dark: #070a12 !important;
+  --glow-color: rgba(0, 210, 255, 0.4) !important;
+}
+
+/* Arka Plan Kırmızı Işıkları Mavi Yap */
+body::before {
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(0, 180, 255, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 85% 60%, rgba(0, 120, 255, 0.2) 0%, transparent 40%) !important;
+}
+
+/* Sitedeki Tüm Kırmızı Yazıları Mavi-Beyaz Yap */
+.logo-highlight, 
+.badge, 
+.badge-dot, 
+.stat-number, 
+.section-subtitle, 
+.feature-icon,
+h1 span, h2 span, h3 span {
+  color: #00d2ff !important;
+  background-color: transparent;
+}
+
+.badge-dot {
+  background-color: #00d2ff !important;
+  box-shadow: 0 0 10px #00d2ff !important;
+}
+
+.badge {
+  background: rgba(0, 210, 255, 0.1) !important;
+  border: 1px solid rgba(0, 210, 255, 0.3) !important;
+  color: #00d2ff !important;
+}
+
+/* Tüm Butonlar (Giriş Yap, Oyunlara Göz At vs.) */
+.btn-primary, 
+button, 
+.nav-btn, 
+a.btn-primary {
+  background: linear-gradient(135deg, #00d2ff 0%, #0066ff 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4) !important;
+  border: none !important;
+}
+
+.btn-primary:hover, 
+button:hover {
+  background: linear-gradient(135deg, #0066ff 0%, #00d2ff 100%) !important;
+  box-shadow: 0 6px 25px rgba(0, 210, 255, 0.7) !important;
+}
+
+/* İkincil Butonlar */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(0, 210, 255, 0.5) !important;
+}
+
+.btn-secondary:hover {
+  border-color: #ffffff !important;
+  background: rgba(0, 210, 255, 0.2) !important;
+}
+
+/* Kartların Mavi Parıldaması */
+.hero-glow {
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.3) 0%, transparent 70%) !important;
+}
         :root {
   --primary-color: #00d2ff;
   --primary-hover: #0099ff;
