@@ -9,6 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Logo Fare Hareket Efekti */
+.hero-image-wrapper img, 
+.hero-avatar img {
+  transition: transform 0.1s ease-out, filter 0.1s ease-out;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
         /* ============================================================
    ORDUNUZ.GAMES - MAVİ / BEYAZ NEON TEMA OVERRIDE (EKSİKSİZ)
    ============================================================ */
@@ -811,4 +818,27 @@ button:hover {
     </footer>
 
 </body>
+    <script>
+  const logo = document.querySelector('.hero-image-wrapper img') || document.querySelector('.hero-avatar img') || document.querySelector('img[src*="logo"]');
+  
+  if (logo) {
+    document.addEventListener('mousemove', (e) => {
+      const { innerWidth, innerHeight } = window;
+      
+      const x = (e.clientX - innerWidth / 2) / (innerWidth / 2);
+      const y = (e.clientY - innerHeight / 2) / (innerHeight / 2);
+      
+      const tiltX = y * -15; 
+      const tiltY = x * 15;
+      const moveX = x * 20;
+      const moveY = y * 20;
+
+      logo.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translate3d(${moveX}px, ${moveY}px, 0)`;
+    });
+
+    document.addEventListener('mouseleave', () => {
+      logo.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)';
+    });
+  }
+</script>
 </html>
