@@ -362,26 +362,6 @@
             gap: 8px;
         }
 
-        .card-title i {
-            font-size: 1.2rem;
-        }
-
-        .card-title .fa-instagram {
-            color: #e1306c;
-        }
-
-        .card-title .fa-tiktok {
-            color: #00f2fe;
-        }
-
-        .card-title .fa-gamepad {
-            color: var(--primary-blue);
-        }
-
-        .card-title .fa-steam {
-            color: #c7d5e0;
-        }
-
         .card-desc {
             font-size: 0.85rem;
             color: var(--text-muted);
@@ -415,6 +395,96 @@
         .btn-direct-buy:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(0, 210, 255, 0.6);
+        }
+
+        /* Announcement Modal (Pop-Up) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 1;
+            visibility: visible;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .modal-box {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--primary-blue);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.3);
+            transform: scale(1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.hidden .modal-box {
+            transform: scale(0.8);
+        }
+
+        .modal-header-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: #fff;
+            box-shadow: var(--neon-glow);
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .modal-body-text {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn-modal-close {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: var(--neon-glow);
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn-modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(0, 210, 255, 0.7);
         }
 
         /* Trust Badges */
@@ -582,6 +652,21 @@
 </head>
 <body>
 
+    <!-- Pop-Up Announcement Modal -->
+    <div class="modal-overlay" id="announcementModal">
+        <div class="modal-box">
+            <div class="modal-header-icon">
+                <i class="fa-solid fa-bullhorn"></i>
+            </div>
+            <h2 class="modal-title">🎉 ORDUNUZ SHOP'a Hoş Geldiniz!</h2>
+            <div class="modal-body-text">
+                Tüm TikTok / Instagram / CPM2 / Steam kategorilerimiz aktiftir!<br><br>
+                Toplu alımlarınız için <b>İtemSatış</b> / <b>Discord</b> üzerinden bize ulaşmayı unutmayın.
+            </div>
+            <button class="btn-modal-close" onclick="closeModal()">Anladım / Alışverişe Başla</button>
+        </div>
+    </div>
+
     <!-- Header Ticker Bar (White Neon Text) -->
     <div class="ticker-bar">
         <div class="ticker-left">
@@ -722,16 +807,22 @@
         <p>&copy; 2026 <b>ORDUNUZ STORE</b> - Tüm Hakları Saklıdır. Güvenli Dijital Hizmetler Platformu.</p>
     </footer>
 
+    <!-- JavaScript Data and Logic -->
     <script>
-        // STABLE HIGH QUALITY COVER IMAGES WITH FALLBACKS
-        const IMG_INSTAGRAM = "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80"; // Premium 3D Instagram Icon
-        const IMG_TIKTOK = "https://images.unsplash.com/photo-1596558450255-7c0b7be9d56a?auto=format&fit=crop&w=800&q=80";    // Premium TikTok Neon/3D Visual
-        const IMG_CPM2 = "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80";      // High Quality Sports Car Showcase (CPM2)
-        const IMG_STEAM = "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=800&q=80";     // Premium 3D Steam Logo
+        // MODAL KAPATMA FONKSİYONU
+        function closeModal() {
+            document.getElementById('announcementModal').classList.add('hidden');
+        }
 
-        // ALL PRODUCTS DATA
+        // TEK TİP KAPAK GÖRSELLERİ
+        const IMG_INSTAGRAM = "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80"; 
+        const IMG_TIKTOK = "https://i.ibb.co/6y45s1x/tiktok-cover.jpg";    
+        const IMG_CPM2 = "https://i.ibb.co/68vvhgV/cpm2-itemsatis.jpg";                                   
+        const IMG_STEAM = "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=600&q=80";   
+
+        // TÜM İLAN VERİSİ
         const allProducts = [
-            // INSTAGRAM
+            // INSTAGRAM İLANLARI
             {
                 category: "instagram",
                 name: "INSTAGRAM 1000 BEĞENİ",
@@ -769,7 +860,7 @@
                 desc: "Hesabınızın güvenilirliğini ve kitlesini büyütecek 1.000 adet yüksek kaliteli Instagram takipçi."
             },
 
-            // TIKTOK
+            // TIKTOK İLANLARI
             {
                 category: "tiktok",
                 name: "TIKTOK 1000 BEĞENİ",
@@ -798,7 +889,7 @@
                 desc: "Profilinizi büyütmeye başlamak için 250 adet güvenli ve hızlı teslim edilen TikTok takipçi."
             },
 
-            // CAR PARKING MULTIPLAYER 2 (CPM2)
+            // CAR PARKING MULTIPLAYER 2 (CPM2) İLANLARI
             {
                 category: "cpm",
                 name: "CPM2 AUDİ RS7 AİR+SİREN",
@@ -836,7 +927,7 @@
                 desc: "Efsanevi Ferdi Tayfur portre çizimli, özel süspansiyonlu ve yüksek motor gücüne sahip M5 F90."
             },
 
-            // STEAM
+            // STEAM OYUNLARI
             {
                 category: "steam",
                 name: "The Last of Us Part II Remastered",
@@ -893,7 +984,7 @@
             }
         ];
 
-        // RENDER PRODUCTS FUNCTION
+        // EKRANA RENDER ETME
         const productGrid = document.getElementById('productGrid');
 
         function renderProducts(products) {
@@ -903,7 +994,7 @@
                     <div class="card" data-category="${item.category}">
                         <span class="card-badge">${item.badge}</span>
                         <div class="card-img-wrapper">
-                            <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f172a/00d2ff?text=${encodeURIComponent(item.name)}';">
+                            <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=80'">
                         </div>
                         <div class="card-body">
                             <div class="card-title">
@@ -923,10 +1014,10 @@
             });
         }
 
-        // INITIAL RENDER
+        // Sayfa Yüklendiğinde Render Et
         renderProducts(allProducts);
 
-        // SEARCH FUNCTIONALITY
+        // ARAMA SİSTEMİ
         const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
@@ -941,7 +1032,7 @@
             renderProducts(filtered);
         });
 
-        // FILTER TABS FUNCTIONALITY
+        // FİLTRELEME SEKMELERİ
         const tabBtns = document.querySelectorAll('.tab-btn');
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
