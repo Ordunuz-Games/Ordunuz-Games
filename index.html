@@ -597,12 +597,12 @@
     <div class="controls-wrapper" id="products">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Ürün veya oyun ara... (örn: Forza, Call of Duty, Cyberpunk, TikTok)">
+            <input type="text" id="searchInput" placeholder="Ürün veya araç ara... (örn: Audi, Bugatti, BMW, Forza, TikTok)">
         </div>
         <div class="filter-tabs">
             <button class="tab-btn active" data-filter="all">Tüm Ürünler</button>
-            <button class="tab-btn" data-filter="steam">Steam Oyunları</button>
             <button class="tab-btn" data-filter="cpm">Car Parking</button>
+            <button class="tab-btn" data-filter="steam">Steam Oyunları</button>
             <button class="tab-btn" data-filter="discord">Discord</button>
             <button class="tab-btn" data-filter="social">Sosyal Medya</button>
         </div>
@@ -612,24 +612,7 @@
     <section class="products-section">
         <div class="grid" id="productGrid">
 
-            <!-- Dinamik Steam Oyun Kartları JavaScript Tarafından Buraya Eklenecek -->
-
-            <!-- Car Parking Card -->
-            <div class="card" data-category="cpm">
-                <span class="card-badge">ÖZEL STOK</span>
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80" alt="Car Parking Multiplayer">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Car Parking Özel Araçlar</div>
-                    <div class="card-desc">Çizimli, krom kaplamalı, 1699hp/2000hp motorlu ve özel tasarım Car Parking Multiplayer araçları.</div>
-                    <div class="card-footer">
-                        <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-direct-buy">
-                            <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <!-- Steam ve Car Parking İlanları Dinamik Olarak Buraya Yüklenecek -->
 
             <!-- Discord Card -->
             <div class="card" data-category="discord">
@@ -726,7 +709,7 @@
                     </div>
                     <div class="stars">★★★★★</div>
                 </div>
-                <div class="review-text">"Car Parking için özel çizimli araç aldım, 3 dakika geçmeden teslim ettiler. Araç performansı mükemmel, satıcı çok ilgili!"</div>
+                <div class="review-text">"CPM2 için Ferdi Tayfur çizimli M5 aldım, anında oyuna aktardılar. Çizim kalitesi muazzam!"</div>
             </div>
 
             <div class="review-card">
@@ -771,7 +754,39 @@
 
     <!-- JavaScript Interactivity -->
     <script>
-        // STEAM OYUNLARI LİSTESİ (Tüm kapak fotoğrafları ve İtemSatış ilan linkleri eklendi)
+        // 1. CAR PARKING MULTIPLAYER (CPM2) İLANLARI DİZİSİ
+        const cpmProducts = [
+            {
+                name: "CPM2 AUDİ RS7 AİR+SİREN",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-audi-rs7-air-siren-5847390.html",
+                image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=600&q=80",
+                badge: "AIR & SİREN",
+                desc: "Özel Air Süspansiyon sistemi ve Polis Sireni eklenmiş, ful donanımlı Audi RS7."
+            },
+            {
+                name: "CPM2 10K COİNLİ BUGATTİ SİREN BAYRAK",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-10k-coinli-bugatti-siren-bayrak-5847362.html",
+                image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=600&q=80",
+                badge: "10K COIN + BAYRAK",
+                desc: "10.000 Coin hediyeli, sirenli ve özel Türk bayrağı tasarımıyla yüksek hızlı Bugatti."
+            },
+            {
+                name: "CPM2 MERCEDES MAYBACH FUL LOGOLU SİRENLİ",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-mercedes-maybach-ful-logolu-sirenli-5847319.html",
+                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=80",
+                badge: "VIP LÜKS",
+                desc: "Orijinal Maybach logoları, siren sistemi ve Lüks VIP görünümüyle Car Parking 2'de fark yaratın."
+            },
+            {
+                name: "CPM2 BMW M5 F90 ÖZEL ÇİZİMLİ FERDİ TAYFUR",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-bmw-ozel-tasarim-ferdi-tayfur-5845777.html",
+                image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80",
+                badge: "ÖZEL ÇİZİM",
+                desc: "Efsanevi Ferdi Tayfur portre çizimli, özel süspansiyonlu ve yüksek motor gücüne sahip M5 F90."
+            }
+        ];
+
+        // 2. STEAM OYUNLARI DİZİSİ
         const steamGames = [
             {
                 name: "The Last of Us Part II Remastered",
@@ -817,9 +832,31 @@
             }
         ];
 
-        // Steam Oyun Kartlarını Grid'e Dinamik Ekleme
         const productGrid = document.getElementById('productGrid');
 
+        // Car Parking Kartlarını Dinamik Oluşturma
+        cpmProducts.forEach(item => {
+            const cardHTML = `
+                <div class="card" data-category="cpm">
+                    <span class="card-badge">${item.badge || 'CPM2 İLAN'}</span>
+                    <div class="card-img-wrapper">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">${item.name}</div>
+                        <div class="card-desc">${item.desc}</div>
+                        <div class="card-footer">
+                            <a href="${item.link}" target="_blank" class="btn-direct-buy">
+                                <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            productGrid.insertAdjacentHTML('afterbegin', cardHTML);
+        });
+
+        // Steam Oyun Kartlarını Dinamik Oluşturma
         steamGames.forEach(game => {
             const cardHTML = `
                 <div class="card" data-category="steam">
@@ -841,7 +878,7 @@
             productGrid.insertAdjacentHTML('afterbegin', cardHTML);
         });
 
-        // Countdown Timer Script
+        // Geri Sayım Zamanlayıcısı
         function startCountdown() {
             let totalSeconds = 15155;
             setInterval(() => {
@@ -858,7 +895,7 @@
         }
         startCountdown();
 
-        // Live Search Filter
+        // Canlı Arama Filtresi
         const searchInput = document.getElementById('searchInput');
 
         searchInput.addEventListener('input', (e) => {
@@ -876,7 +913,7 @@
             });
         });
 
-        // Category Filter Tabs
+        // Kategori Sekmeleri
         const tabBtns = document.querySelectorAll('.tab-btn');
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
