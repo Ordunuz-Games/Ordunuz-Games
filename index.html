@@ -722,17 +722,16 @@
         <p>&copy; 2026 <b>ORDUNUZ STORE</b> - Tüm Hakları Saklıdır. Güvenli Dijital Hizmetler Platformu.</p>
     </footer>
 
-    <!-- JavaScript Data and Logic -->
     <script>
-        // TEK TİP KAPAK GÖRSELLERİ CONSTANTS
-        const IMG_INSTAGRAM = "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80"; // 3D Instagram Logo
-        const IMG_TIKTOK = "https://images.unsplash.com/photo-1611605697805-88a46e077e2c?w=600&q=80";    // 3D TikTok Logo
-        const IMG_CPM2 = "https://i.ibb.co/68vvhgV/cpm2-itemsatis.jpg";                                   // CPM2 & İtemSatış Görseli
-        const IMG_STEAM = "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=600&q=80";   // 3D Steam Logo
+        // STABLE HIGH QUALITY COVER IMAGES WITH FALLBACKS
+        const IMG_INSTAGRAM = "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80"; // Premium 3D Instagram Icon
+        const IMG_TIKTOK = "https://images.unsplash.com/photo-1596558450255-7c0b7be9d56a?auto=format&fit=crop&w=800&q=80";    // Premium TikTok Neon/3D Visual
+        const IMG_CPM2 = "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80";      // High Quality Sports Car Showcase (CPM2)
+        const IMG_STEAM = "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=800&q=80";     // Premium 3D Steam Logo
 
-        // TÜM İLAN VERİSİ
+        // ALL PRODUCTS DATA
         const allProducts = [
-            // INSTAGRAM İLANLARI
+            // INSTAGRAM
             {
                 category: "instagram",
                 name: "INSTAGRAM 1000 BEĞENİ",
@@ -770,7 +769,7 @@
                 desc: "Hesabınızın güvenilirliğini ve kitlesini büyütecek 1.000 adet yüksek kaliteli Instagram takipçi."
             },
 
-            // TIKTOK İLANLARI
+            // TIKTOK
             {
                 category: "tiktok",
                 name: "TIKTOK 1000 BEĞENİ",
@@ -799,7 +798,7 @@
                 desc: "Profilinizi büyütmeye başlamak için 250 adet güvenli ve hızlı teslim edilen TikTok takipçi."
             },
 
-            // CAR PARKING MULTIPLAYER 2 (CPM2) İLANLARI
+            // CAR PARKING MULTIPLAYER 2 (CPM2)
             {
                 category: "cpm",
                 name: "CPM2 AUDİ RS7 AİR+SİREN",
@@ -837,7 +836,7 @@
                 desc: "Efsanevi Ferdi Tayfur portre çizimli, özel süspansiyonlu ve yüksek motor gücüne sahip M5 F90."
             },
 
-            // STEAM OYUNLARI
+            // STEAM
             {
                 category: "steam",
                 name: "The Last of Us Part II Remastered",
@@ -894,7 +893,7 @@
             }
         ];
 
-        // EKRANA RENDER ETME
+        // RENDER PRODUCTS FUNCTION
         const productGrid = document.getElementById('productGrid');
 
         function renderProducts(products) {
@@ -904,7 +903,7 @@
                     <div class="card" data-category="${item.category}">
                         <span class="card-badge">${item.badge}</span>
                         <div class="card-img-wrapper">
-                            <img src="${item.image}" alt="${item.name}">
+                            <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f172a/00d2ff?text=${encodeURIComponent(item.name)}';">
                         </div>
                         <div class="card-body">
                             <div class="card-title">
@@ -924,10 +923,10 @@
             });
         }
 
-        // Sayfa Yüklendiğinde Render Et
+        // INITIAL RENDER
         renderProducts(allProducts);
 
-        // ARAMA SİSTEMİ
+        // SEARCH FUNCTIONALITY
         const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
@@ -942,7 +941,7 @@
             renderProducts(filtered);
         });
 
-        // FİLTRELEME SEKMELERİ
+        // FILTER TABS FUNCTIONALITY
         const tabBtns = document.querySelectorAll('.tab-btn');
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
