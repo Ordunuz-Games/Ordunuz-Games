@@ -395,7 +395,10 @@
             width: 100%;
             height: 180px;
             overflow: hidden;
-            background: #000;
+            background: #030712;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .product-img-box img {
@@ -411,6 +414,34 @@
             opacity: 1;
         }
 
+        /* Custom SVG Vector Graphics Container for Blue/White Neon Logos */
+        .neon-logo-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, rgba(0, 210, 255, 0.25) 0%, rgba(7, 10, 18, 0.95) 75%);
+            transition: transform 0.5s ease;
+            position: relative;
+        }
+
+        .neon-logo-container svg {
+            width: 90px;
+            height: 90px;
+            filter: drop-shadow(0 0 18px rgba(0, 210, 255, 0.7));
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .product-card:hover .neon-logo-container {
+            transform: scale(1.05);
+        }
+
+        .product-card:hover .neon-logo-container svg {
+            transform: scale(1.12) rotate(3deg);
+            filter: drop-shadow(0 0 28px rgba(0, 210, 255, 1));
+        }
+
         .product-tag {
             position: absolute;
             top: 12px;
@@ -423,6 +454,7 @@
             padding: 4px 10px;
             border-radius: 20px;
             backdrop-filter: blur(5px);
+            z-index: 2;
         }
 
         .product-content {
@@ -795,26 +827,15 @@
             </div>
 
             <div class="products-grid">
-                <!-- CPM Car Parking Araç Satışı -->
+                <!-- Steam Paylaşımlı Oyun Hesapları (MAVİ & BEYAZ NEON STEAM LOGOSU) -->
                 <div class="product-card">
                     <div class="product-img-box">
-                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80" alt="Car Parking Multiplayer Araç Satışı">
-                        <span class="product-tag">ÖZEL ÇİZİM</span>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Car Parking Multiplayer Araç Satışı</h3>
-                        <p class="product-desc">Özel çizimli, krom kaplamalı, tasarımlı ve modlu CPM araçları anında hesabınıza teslim!</p>
-                        <div class="product-footer">
-                            <span class="product-price">Çizimli & Modlu</span>
-                            <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">İncele</a>
+                        <div class="neon-logo-container">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.979 2C6.47 2 2 6.47 2 11.979C2 13.563 2.373 15.06 3.037 16.39L7.498 18.23C7.698 17.18 8.423 16.3 9.42 15.918L10.992 11.428C10.835 11.002 10.75 10.537 10.75 10.052C10.75 7.818 12.563 6.005 14.797 6.005C17.031 6.005 18.844 7.818 18.844 10.052C18.844 12.286 17.031 14.1 14.797 14.1C14.331 14.1 13.886 14.021 13.472 13.875L9.043 15.485C8.891 16.634 8.087 17.575 7 17.892L3.109 16.286C4.843 19.689 8.147 22 11.979 22C17.51 22 22 17.51 22 11.979C22 6.47 17.51 2 11.979 2ZM14.797 8.026C13.679 8.026 12.771 8.934 12.771 10.052C12.771 11.17 13.679 12.078 14.797 12.078C15.915 12.078 16.823 11.17 16.823 10.052C16.823 8.934 15.915 8.026 14.797 8.026Z" fill="#FFFFFF"/>
+                                <path d="M14.797 11.065C15.3565 11.065 15.81 10.6115 15.81 10.052C15.81 9.49253 15.3565 9.03906 14.797 9.03906C14.2375 9.03906 13.784 9.49253 13.784 10.052C13.784 10.6115 14.2375 11.065 14.797 11.065Z" fill="#00D2FF"/>
+                            </svg>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Steam Oyunları -->
-                <div class="product-card">
-                    <div class="product-img-box">
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="Steam Oyunları">
                         <span class="product-tag">ÇOK SATAN</span>
                     </div>
                     <div class="product-content">
@@ -827,10 +848,16 @@
                     </div>
                 </div>
 
-                <!-- Discord Boost -->
+                <!-- Discord Sunucu Takviyesi (MAVİ & BEYAZ NEON DISCORD LOGOSU) -->
                 <div class="product-card">
                     <div class="product-img-box">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Discord Boost">
+                        <div class="neon-logo-container">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4C14.82 4.32 14.61 4.76 14.46 5.11C12.87 4.87 11.29 4.87 9.71 5.11C9.56 4.76 9.35 4.32 9.17 4C7.67 4.26 6.23 4.71 4.9 5.33C2.23 9.32 1.5 13.21 1.86 17.05C3.63 18.35 5.34 19.14 7.02 19.67C7.44 19.1 7.81 18.49 8.12 17.84C7.51 17.61 6.93 17.32 6.38 16.98C6.53 16.87 6.67 16.76 6.81 16.64C10.15 18.18 13.98 18.18 17.28 16.64C17.42 16.76 17.56 16.87 17.71 16.98C17.16 17.32 16.58 17.61 15.97 17.84C16.28 18.49 16.65 19.1 17.07 19.67C18.75 19.14 20.47 18.35 22.23 17.05C22.67 12.57 21.52 8.72 19.27 5.33ZM8.52 14.83C7.5 14.83 6.66 13.89 6.66 12.74C6.66 11.59 7.48 10.65 8.52 10.65 C9.57 10.65 10.4 11.59 10.38 12.74C10.38 13.89 9.56 14.83 8.52 14.83ZM15.58 14.83C14.56 14.83 13.72 13.89 13.72 12.74C13.72 11.59 14.54 10.65 15.58 10.65C16.63 10.65 17.46 11.59 17.44 12.74C17.44 13.89 16.63 14.83 15.58 14.83Z" fill="#FFFFFF"/>
+                                <circle cx="8.52" cy="12.74" r="1.1" fill="#00D2FF"/>
+                                <circle cx="15.58" cy="12.74" r="1.1" fill="#00D2FF"/>
+                            </svg>
+                        </div>
                         <span class="product-tag">ANINDA TESLİM</span>
                     </div>
                     <div class="product-content">
@@ -838,6 +865,22 @@
                         <p class="product-desc">Sunucunuzun seviyesini yükseltin! Özel URL, yüksek ses kalitesi ve rozetler kazanın.</p>
                         <div class="product-footer">
                             <span class="product-price">Avantajlı Paketler</span>
+                            <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">İncele</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CPM Car Parking Araç Satışı -->
+                <div class="product-card">
+                    <div class="product-img-box">
+                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80" alt="Car Parking Multiplayer Araç Satışı">
+                        <span class="product-tag">ÖZEL ÇİZİM</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Car Parking Multiplayer Araç Satışı</h3>
+                        <p class="product-desc">Özel çizimli, krom kaplamalı, tasarımlı ve modlu CPM araçları anında hesabınıza teslim!</p>
+                        <div class="product-footer">
+                            <span class="product-price">Çizimli & Modlu</span>
                             <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">İncele</a>
                         </div>
                     </div>
