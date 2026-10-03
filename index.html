@@ -1,531 +1,917 @@
 <!DOCTYPE html>
-<html lang="tr" class="dark">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORDUNUZ STORE - Dijital Ürün & Oyun Pazarı</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ORDUNUZ STORE | Dijital Hizmetler & Oyun İçi Eşyalar</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#070a12',
-                            card: '#0e1526',
-                            border: '#1e293b',
-                            accent: '#00d2ff',
-                            purple: '#7000ff',
-                            pink: '#ff007a',
-                            itemSatiss: '#0084ff'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'neon-blue': '0 0 20px rgba(0, 210, 255, 0.35)',
-                        'neon-purple': '0 0 20px rgba(112, 0, 255, 0.35)',
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
-        body {
-            background-color: #070a12;
-            color: #f1f5f9;
+        :root {
+            --bg-dark: #070913;
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-border: rgba(56, 189, 248, 0.2);
+            --primary-blue: #00d2ff;
+            --accent-cyan: #3a7bd5;
+            --neon-glow: 0 0 25px rgba(0, 210, 255, 0.4);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(0, 210, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(58, 123, 213, 0.08) 0%, transparent 40%);
         }
 
-        .glass-header {
-            background: rgba(7, 10, 18, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        /* Top Bar */
+        .ticker-bar {
+            background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc);
+            color: white;
+            padding: 10px 5%;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 15px rgba(0, 210, 255, 0.3);
+            position: relative;
+            z-index: 100;
         }
 
-        .product-card {
-            background: linear-gradient(145deg, #0e1628 0%, #0a0f1d 100%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .ticker-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .product-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(0, 210, 255, 0.4);
-            box-shadow: 0 12px 30px -10px rgba(0, 210, 255, 0.25);
+        .flash-tag {
+            background: #ff0055;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            animation: pulse 1.5s infinite;
         }
 
-        .btn-itemsatis {
-            background: linear-gradient(135deg, #0084ff 0%, #0052d4 100%);
-            transition: all 0.25s ease;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
-        .btn-itemsatis:hover {
-            background: linear-gradient(135deg, #0095ff 0%, #0062fe 100%);
-            box-shadow: 0 0 20px rgba(0, 132, 255, 0.5);
+        /* White Neon Banner Text */
+        .white-neon-text {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 5px #ffffff,
+                0 0 10px #ffffff,
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 30px rgba(255, 255, 255, 0.6);
         }
 
-        .badge-glow {
-            background: rgba(0, 210, 255, 0.15);
-            border: 1px solid rgba(0, 210, 255, 0.4);
-            color: #00d2ff;
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(7, 9, 19, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 90;
         }
 
-        /* Responsive image aspect container */
-        .card-img-wrapper {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .logo-box {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            box-shadow: var(--neon-glow);
+            transition: transform 0.5s ease;
+        }
+
+        .logo-container:hover .logo-box {
+            transform: rotateY(180deg);
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #fff, var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-blue);
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        .btn-store {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: var(--neon-glow);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-store:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(0, 210, 255, 0.7);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--primary-blue), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Search & Filter Controls */
+        .controls-wrapper {
+            max-width: 1100px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .search-box {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            max-width: 500px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--card-border);
+            border-radius: 30px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: var(--neon-glow);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: rgba(0, 210, 255, 0.15);
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+        }
+
+        /* Product Cards Grid */
+        .products-section {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
             overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.25);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 210, 255, 0.25);
+            border: 1px solid var(--primary-blue);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        .card-img-wrapper {
+            height: 220px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #090d16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .card-img-wrapper img {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .product-card:hover .card-img-wrapper img {
-            transform: scale(1.05);
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.08);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
-        ::-webkit-scrollbar-track {
-            background: #070a12;
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 4px;
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00d2ff;
+
+        .card-footer {
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-direct-buy {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: #fff;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-direct-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 210, 255, 0.6);
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            max-width: 1100px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .trust-card {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .trust-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        .trust-icon {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+        }
+
+        .trust-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .trust-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Testimonials Section */
+        .reviews-section {
+            max-width: 1100px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .review-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), #3a7bd5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .user-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .verified-badge {
+            font-size: 0.7rem;
+            color: #00ffcc;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 0.8rem;
+        }
+
+        .review-text {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        /* Floating Discord Button */
+        .discord-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            background: #5865F2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.5);
+            cursor: pointer;
+            z-index: 99;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .discord-float:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 30px rgba(88, 101, 242, 0.8);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 5%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: rgba(7, 9, 19, 0.95);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .ticker-bar { flex-direction: column; gap: 8px; text-align: center; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between antialiased">
+<body>
 
-    <header class="sticky top-0 z-50 glass-header">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <!-- Logo Section -->
-            <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 p-[2px] shadow-neon-blue">
-                    <div class="w-full h-full bg-[#070a12] rounded-[10px] flex items-center justify-center">
-                        <i class="fa-solid fa-gamepad text-cyan-400 text-xl"></i>
-                    </div>
-                </div>
-                <div>
-                    <h1 class="text-xl font-extrabold tracking-wider text-white flex items-center gap-1.5">
-                        ORDUNUZ <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">STORE</span>
-                    </h1>
-                    <p class="text-[10px] text-slate-400 font-medium tracking-widest uppercase">Dijital Ürün Pazarı</p>
-                </div>
-            </div>
-
-            <!-- Search Bar -->
-            <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                <input type="text" id="searchInput" onkeyup="filterProducts()" placeholder="İlanlarda veya ürünlerde ara..." 
-                       class="w-full bg-slate-900/80 border border-slate-700/60 rounded-full py-2.5 pl-11 pr-4 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all">
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="flex items-center gap-3">
-                <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                   class="btn-itemsatis text-white px-5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 shadow-lg">
-                    <i class="fa-solid fa-[#0084ff] fa-shield-halved"></i>
-                    <span>İtemSatış Mağazası</span>
-                </a>
-            </div>
+    <!-- Flash Sale Ticker Bar (Beyaz Neon Ordunuz Shop) -->
+    <div class="ticker-bar">
+        <div class="ticker-left">
+            <span class="flash-tag"><i class="fa-solid fa-bolt"></i> FIRSAT</span>
+            <span>İtemSatış Mağazamızda Tüm İlanlarda Otomatik Teslimat Aktif!</span>
         </div>
+        <div>
+            <span class="white-neon-text">ORDUNUZ SHOP</span>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-box">O</div>
+            <div class="logo-text">ORDUNUZ</div>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="nav-link active">Ana Sayfa</a>
+            <a href="#products" class="nav-link">İlanlar</a>
+            <a href="#reviews" class="nav-link">Yorumlar</a>
+            <a href="#trust" class="nav-link">Güvence</a>
+        </nav>
+        <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-store">
+            <i class="fa-solid fa-store"></i> İtemSatış Mağazası
+        </a>
     </header>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-900/40 via-slate-900 to-cyan-950/40 border border-slate-800 p-6 sm:p-10 mb-10">
-            <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -left-10 -top-10 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Dijital Oyun ve Sosyal Medya <span>Çözüm Merkeziniz</span></h1>
+        <p>En uygun fiyat garantisi, anında otomatik teslimat ve 7/24 kesintisiz canlı destek ile hizmetinizdeyiz.</p>
+    </section>
 
-            <div class="relative z-10 max-w-2xl">
-                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full badge-glow text-xs font-semibold mb-4">
-                    <i class="fa-solid fa-bolt text-yellow-400"></i> Hızlı & Güvenli Teslimat
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-3">
-                    En Uygun Fiyatlı Dijital Ürünler ve Oyun İçerikleri
-                </h2>
-                <p class="text-slate-300 text-sm sm:text-base mb-6 leading-relaxed">
-                    Car Parking Multiplayer 2 özel çizimli araçlar, Sosyal Medya Hizmetleri ve Premium Oyun Hesapları 7/24 anında teslimat seçeneğiyle sizleri bekliyor.
-                </p>
+    <!-- Controls: Search & Category Filter Tabs -->
+    <div class="controls-wrapper" id="products">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Ürün veya hizmet ara... (örn: Instagram, TikTok, Audi, Forza)">
+        </div>
+        <div class="filter-tabs">
+            <button class="tab-btn active" data-filter="all">Tüm İlanlar</button>
+            <button class="tab-btn" data-filter="instagram">Instagram</button>
+            <button class="tab-btn" data-filter="tiktok">TikTok</button>
+            <button class="tab-btn" data-filter="cpm">Car Parking</button>
+            <button class="tab-btn" data-filter="steam">Steam Oyunları</button>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="grid" id="productGrid">
+            <!-- Tüm İlanlar Script Tarafından Dinamik Olarak Yüklenecektir -->
+        </div>
+    </section>
+
+    <!-- Trust Badges Section -->
+    <section class="trust-section" id="trust">
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div class="trust-title">Anında Teslimat</div>
+                <div class="trust-desc">Siparişleriniz otomasyon sistemimiz ile dakikalar içinde teslim edilir.</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="trust-title">%100 Güvenli Alışveriş</div>
+                <div class="trust-desc">İtemSatış güvencesi ile tüm işlemleriniz koruma altındadır.</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-headset"></i></div>
+                <div class="trust-title">7/24 Kesintisiz Destek</div>
+                <div class="trust-desc">Discord ve WhatsApp ekibimiz sorularınız için sürekli aktif.</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-tag"></i></div>
+                <div class="trust-title">En Uygun Fiyat</div>
+                <div class="trust-desc">Piyasadaki en kaliteli hizmeti en avantajlı fiyatlarla sunuyoruz.</div>
             </div>
         </div>
+    </section>
 
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-            <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
-                <button onclick="filterCategory('all')" class="cat-btn active px-5 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-neon-blue">
-                    Tüm İlanlar
-                </button>
-                <button onclick="filterCategory('sosyal')" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white transition-all">
-                    <i class="fa-solid fa-hashtag mr-1 text-pink-500"></i> Sosyal Medya
-                </button>
-                <button onclick="filterCategory('cpm2')" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white transition-all">
-                    <i class="fa-solid fa-car mr-1 text-cyan-400"></i> Car Parking 2
-                </button>
-                <button onclick="filterCategory('oyun')" class="cat-btn px-5 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap bg-slate-900 border border-slate-800 text-slate-300 hover:border-slate-700 hover:text-white transition-all">
-                    <i class="fa-solid fa-gamepad mr-1 text-purple-400"></i> Oyun / Hesap
-                </button>
+    <!-- Customer Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <h2 class="section-title">Müşteri Yorumları</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="user-info">
+                        <div class="user-avatar">M</div>
+                        <div>
+                            <div class="user-name">Mustafa K.</div>
+                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <div class="review-text">"CPM2 için Ferdi Tayfur çizimli M5 aldım, anında oyuna aktardılar. Çizim kalitesi muazzam!"</div>
             </div>
 
-            <!-- Mobile Search Bar -->
-            <div class="md:hidden relative w-full">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                <input type="text" id="mobileSearchInput" onkeyup="filterProductsMobile()" placeholder="İlanlarda ara..." 
-                       class="w-full bg-slate-900 border border-slate-700 rounded-xl py-2.5 pl-11 pr-4 text-sm text-slate-200">
-            </div>
-        </div>
-
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-            <!-- Card 1: Instagram 25000 Izlenme -->
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="sosyal" data-title="instagram 25000 izlenme özel sipariş ordunuz">
-                <div>
-                    <div class="card-img-wrapper">
-                        <img src="instagram-25000-izlenme-23787703_2.webp" alt="Instagram 25.000 İzlenme" onerror="this.src='https://placehold.co/600x400/0f172a/00d2ff?text=Instagram+25000+Izlenme'">
-                        <span class="absolute top-3 right-3 badge-glow text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                            INSTAGRAM
-                        </span>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="user-info">
+                        <div class="user-avatar">E</div>
+                        <div>
+                            <div class="user-name">Eren T.</div>
+                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
+                        </div>
                     </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-1">Instagram 25.000 İzlenme</h3>
-                        <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            Gönderilerinize anında 25.000 Türk gerçek izlenme yüklemesi yapılır. Kesintisiz ve hızlı işlem.
-                        </p>
-                    </div>
+                    <div class="stars">★★★★★</div>
                 </div>
-                <div class="p-5 pt-0">
-                    <div class="pt-4 border-t border-slate-800/80">
-                        <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                           class="btn-itemsatis w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock text-xs"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
+                <div class="review-text">"Instagram takipçi ve beğeni siparişlerim saniyeler içinde tamamlandı. İşini son derece kaliteli yapan bir mağaza."</div>
             </div>
 
-            <!-- Card 2: Instagram 1000 Begeni -->
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="sosyal" data-title="instagram 1000 begeni özel sipariş ordunuz">
-                <div>
-                    <div class="card-img-wrapper">
-                        <img src="instagram-1000-begeni-68060262_2.webp" alt="Instagram 1000 Beğeni" onerror="this.src='https://placehold.co/600x400/0f172a/00d2ff?text=Instagram+1000+Begeni'">
-                        <span class="absolute top-3 right-3 badge-glow text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                            INSTAGRAM
-                        </span>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="user-info">
+                        <div class="user-avatar">B</div>
+                        <div>
+                            <div class="user-name">Burak S.</div>
+                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
+                        </div>
                     </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-1">Instagram 1.000 Beğeni</h3>
-                        <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            Instagram paylaşımlarınıza yüksek kaliteli ve aktif kullanıcı hesaplarından 1000 beğeni gönderilir.
-                        </p>
-                    </div>
+                    <div class="stars">★★★★★</div>
                 </div>
-                <div class="p-5 pt-0">
-                    <div class="pt-4 border-t border-slate-800/80">
-                        <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                           class="btn-itemsatis w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock text-xs"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3: Discord Çevrimdışı Üye 30 Gün Garantili -->
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="sosyal" data-title="discord çevrimdışı üye 30 gün garantili ordunuz">
-                <div>
-                    <div class="card-img-wrapper">
-                        <img src="garantili-500-adet-offline-uye-87689059_2.webp" alt="Discord Çevrimdışı Üye 30 Gün Garantili" onerror="this.src='https://placehold.co/600x400/0f172a/00d2ff?text=Discord+Uye+Hizmeti'">
-                        <span class="absolute top-3 right-3 badge-glow text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                            DISCORD
-                        </span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-1">Discord Çevrimdışı Üye (30 Gün Garantili)</h3>
-                        <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            Sunucunuza 30 Gün telafi garantili çevrimdışı üye aktarımı. Düşmeyen ve güvenli üye servisi.
-                        </p>
-                    </div>
-                </div>
-                <div class="p-5 pt-0">
-                    <div class="pt-4 border-t border-slate-800/80">
-                        <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                           class="btn-itemsatis w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock text-xs"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4: CPM2 BMW M5 F90 Ferdi Tayfur -->
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="cpm2" data-title="cpm2 bmw m5 f90 özel çizimli ferdi tayfur">
-                <div>
-                    <div class="card-img-wrapper">
-                        <img src="cpm2-bmw-m5-f90-ozel-cizimli-ferdi-tayfur-50814213.webp" alt="CPM2 BMW M5 F90 Özel Çizimli Ferdi Tayfur" onerror="this.src='https://placehold.co/600x400/0f172a/00d2ff?text=BMW+M5+F90+CPM2'">
-                        <span class="absolute top-3 right-3 badge-glow text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                            ÖZEL ÇİZİM
-                        </span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-1">CPM2 BMW M5 F90 Ferdi Tayfur Çizimli</h3>
-                        <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            Car Parking Multiplayer 2 kaput üzeri detaylı Ferdi Tayfur özel çizimli full donanımlı BMW M5 F90.
-                        </p>
-                    </div>
-                </div>
-                <div class="p-5 pt-0">
-                    <div class="pt-4 border-t border-slate-800/80">
-                        <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                           class="btn-itemsatis w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock text-xs"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 5: CPM2 Mercedes Maybach Ful Logolu Sirenli -->
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="cpm2" data-title="cpm2 mercedes maybach ful logolu sirenli">
-                <div>
-                    <div class="card-img-wrapper">
-                        <img src="cpm2-mercedes-maybach-ful-logolu-sirenli-63737660.webp" alt="CPM2 Mercedes Maybach Ful Logolu Sirenli" onerror="this.src='https://placehold.co/600x400/0f172a/00d2ff?text=Mercedes+Maybach+CPM2'">
-                        <span class="absolute top-3 right-3 badge-glow text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                            VIP & SİREN
-                        </span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-1">CPM2 Mercedes Maybach Logolu Sirenli</h3>
-                        <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            Nadir orijinal Maybach logoları giydirilmiş, özel Polis Sireni eklenmiş ultra lüks VIP araç.
-                        </p>
-                    </div>
-                </div>
-                <div class="p-5 pt-0">
-                    <div class="pt-4 border-t border-slate-800/80">
-                        <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                           class="btn-itemsatis w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock text-xs"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 6: CPM2 10k Coinli Bugatti Siren Bayrak -->
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="cpm2" data-title="cpm2 10k coinli bugatti siren bayrak">
-                <div>
-                    <div class="card-img-wrapper">
-                        <img src="cpm2-10k-coinli-bugatti-siren-bayrak-29212304.webp" alt="CPM2 10k Coinli Bugatti Siren Bayrak" onerror="this.src='https://placehold.co/600x400/0f172a/00d2ff?text=Bugatti+Siren+CPM2'">
-                        <span class="absolute top-3 right-3 badge-glow text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                            10K COIN + SİREN
-                        </span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-1">CPM2 Bugatti (10K Coin + Siren + Bayrak)</h3>
-                        <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            Hesap içerisinde 10.000 Altın Coin, siren donanımlı ve Türk bayraklı özel Bugatti Chiron.
-                        </p>
-                    </div>
-                </div>
-                <div class="p-5 pt-0">
-                    <div class="pt-4 border-t border-slate-800/80">
-                        <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                           class="btn-itemsatis w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock text-xs"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 7: CPM2 Audi RS7 Air+Siren -->
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="cpm2" data-title="cpm2 audi rs7 air siren polis donanım">
-                <div>
-                    <div class="card-img-wrapper">
-                        <img src="a876b91d-4b63-4ff3-89a0-7f119d32f582.jfif" alt="CPM2 Audi RS7 Air+Siren" onerror="this.src='https://placehold.co/600x400/0f172a/00d2ff?text=Audi+RS7+CPM2'">
-                        <span class="absolute top-3 right-3 badge-glow text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                            AIR & SİREN
-                        </span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-1">CPM2 Audi RS7 Air+Siren</h3>
-                        <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            Özel Air Süspansiyon sistemi ve Polis Sireni eklenmiş, ful donanımlı Audi RS7.
-                        </p>
-                    </div>
-                </div>
-                <div class="p-5 pt-0">
-                    <div class="pt-4 border-t border-slate-800/80">
-                        <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                           class="btn-itemsatis w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock text-xs"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 8: Cyberpunk 2077 -->
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="oyun" data-title="cyberpunk 2077 pc steam oyun hesabı">
-                <div>
-                    <div class="card-img-wrapper">
-                        <img src="cyberpunk-2077-91758044.webp" alt="Cyberpunk 2077" onerror="this.src='https://placehold.co/600x400/0f172a/00d2ff?text=Cyberpunk+2077'">
-                        <span class="absolute top-3 right-3 badge-glow text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                            STEAM / PC
-                        </span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-1">Cyberpunk 2077 PC Oyun Hesabı</h3>
-                        <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            Orijinal Steam lisanslı Cyberpunk 2077. Anında teslimat ve sorunsuz erişim garantisi.
-                        </p>
-                    </div>
-                </div>
-                <div class="p-5 pt-0">
-                    <div class="pt-4 border-t border-slate-800/80">
-                        <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                           class="btn-itemsatis w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock text-xs"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 9: Call of Duty Modern Warfare 2019 -->
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="oyun" data-title="call of duty modern warfare 2019 pc oyun hesabı">
-                <div>
-                    <div class="card-img-wrapper">
-                        <img src="call-of-duty-modern-warfare-2019-76247117.webp" alt="Call of Duty: Modern Warfare 2019" onerror="this.src='https://placehold.co/600x400/0f172a/00d2ff?text=COD+Modern+Warfare+2019'">
-                        <span class="absolute top-3 right-3 badge-glow text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                            FULL ERİŞİM
-                        </span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-1">Call of Duty: Modern Warfare (2019)</h3>
-                        <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            Anında teslimat garantili Call of Duty Modern Warfare 2019 tam sürüm oyun hesabı.
-                        </p>
-                    </div>
-                </div>
-                <div class="p-5 pt-0">
-                    <div class="pt-4 border-t border-slate-800/80">
-                        <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                           class="btn-itemsatis w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock text-xs"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 10: Call of Duty Modern Warfare II -->
-            <div class="product-card rounded-2xl overflow-hidden flex flex-col justify-between" data-category="oyun" data-title="call of duty modern warfare ii 2 pc oyun hesabı">
-                <div>
-                    <div class="card-img-wrapper">
-                        <img src="call-of-duty-modern-warfare-ii-24708119.webp" alt="Call of Duty: Modern Warfare II" onerror="this.src='https://placehold.co/600x400/0f172a/00d2ff?text=COD+Modern+Warfare+II'">
-                        <span class="absolute top-3 right-3 badge-glow text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md">
-                            STEAM / BNET
-                        </span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="text-lg font-bold text-white mb-2 line-clamp-1">Call of Duty: Modern Warfare II</h3>
-                        <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                            Efsanevi Modern Warfare II serisi. Güvenli teslimat, yüksek kaliteli oyuncu hesabı.
-                        </p>
-                    </div>
-                </div>
-                <div class="p-5 pt-0">
-                    <div class="pt-4 border-t border-slate-800/80">
-                        <a href="https://www.itemsatis.com" target="_blank" rel="noopener noreferrer" 
-                           class="btn-itemsatis w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-lock text-xs"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </main>
-
-    <footer class="mt-20 border-t border-slate-800/80 bg-slate-950/80 backdrop-blur-md py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-                    <i class="fa-solid fa-store text-sm"></i>
-                </div>
-                <span class="text-sm font-semibold text-slate-300">
-                    © 2026 ORDUNUZ STORE. Tüm Hakları Saklıdır.
-                </span>
-            </div>
-            
-            <div class="flex items-center gap-6 text-sm text-slate-400">
-                <span class="flex items-center gap-2"><i class="fa-solid fa-check text-green-400 text-xs"></i> 7/24 Otomatik İtemSatış Teslimatı</span>
-                <span class="flex items-center gap-2"><i class="fa-solid fa-shield text-cyan-400 text-xs"></i> Güvenilir Alışveriş</span>
+                <div class="review-text">"TikTok videolarım keşfete düştü sayesinde. Fiyatlar aşırı uygun, sürekli alışveriş yaptığım tek adres."</div>
             </div>
         </div>
+    </section>
+
+    <!-- Floating Discord Button -->
+    <a href="https://discord.gg" target="_blank" class="discord-float" title="Discord Sunucumuza Katılın">
+        <i class="fa-brands fa-discord"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <b>ORDUNUZ STORE</b> - Tüm Hakları Saklıdır. Güvenli Dijital Hizmetler Platformu.</p>
     </footer>
 
+    <!-- JavaScript Data and Interactivity -->
     <script>
-        // Category filtering logic
-        function filterCategory(category) {
-            const cards = document.querySelectorAll('.product-card');
-            const buttons = document.querySelectorAll('.cat-btn');
+        // TÜM İLAN VERİ TABANI
+        const allProducts = [
+            // INSTAGRAM İLANLARI
+            {
+                category: "instagram",
+                name: "INSTAGRAM 500 TÜRK BEĞENİ",
+                link: "https://www.itemsatis.com/instagram/instagram-500-turk-begeni-5768166.html",
+                image: "img/instagram-500-turk-begeni.jpg", // attığın görselin klasör yolu
+                badge: "%100 TÜRK",
+                desc: "Gerçek ve aktif Türk kullanıcılar tarafından gönderilen 500 adet organik görünümlü beğeni."
+            },
+            {
+                category: "instagram",
+                name: "INSTAGRAM 1000 BEĞENİ",
+                link: "https://www.itemsatis.com/instagram/instagram-1000-begeni-5768175.html",
+                image: "img/instagram-1000-begeni.jpg",
+                badge: "HIZLI GÖNDERİM",
+                desc: "Gönderilerinizi ön plana çıkaracak 1.000 adet kaliteli Instagram beğenisi. Düşüşsüz ve anında başlar."
+            },
+            {
+                category: "instagram",
+                name: "INSTAGRAM 25.000 İZLENME",
+                link: "https://www.itemsatis.com/instagram/instagram-25000-izlenme-5768169.html",
+                image: "img/instagram-25000-izlenme.jpg",
+                badge: "KEŞFET ETKİLİ",
+                desc: "Reels ve videolarınız için 25.000 adet yüksek etkileşimli izlenme paketi. Keşfete düşme oranını artırır."
+            },
+            {
+                category: "instagram",
+                name: "INSTAGRAM 1000 TAKİPÇİ",
+                link: "https://www.itemsatis.com/instagram/instagram-1000-takipci-5768156.html",
+                image: "img/instagram-1000-takipci.jpg",
+                badge: "PRESTİJ PAKETİ",
+                desc: "Hesabınızın güvenilirliğini ve kitlesini büyütecek 1.000 adet yüksek kaliteli Instagram takipçi."
+            },
 
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-gradient-to-r', 'from-cyan-500', 'to-blue-600', 'text-white', 'shadow-neon-blue');
-                btn.classList.add('bg-slate-900', 'border', 'border-slate-800', 'text-slate-300');
+            // TIKTOK İLANLARI
+            {
+                category: "tiktok",
+                name: "TIKTOK 1000 BEĞENİ",
+                link: "https://www.itemsatis.com/tiktok/tiktok-1000-begeni-5768150.html",
+                image: "img/tiktok-1000-begeni.jpg",
+                badge: "POPÜLER",
+                desc: "TikTok videolarınızı öne çıkaracak 1.000 adet yüksek kaliteli beğeni gönderimi."
+            },
+            {
+                category: "tiktok",
+                name: "TIKTOK 5000 İZLENME",
+                link: "https://www.itemsatis.com/tiktok/tiktok-5000-izlenme-aninda-teslimat-5768134.html",
+                image: "img/tiktok-5000-izlenme.jpg",
+                badge: "ANINDA TESLİM",
+                desc: "Videolarınız için anında teslimat avantajıyla 5.000 izlenme gönderimi. Keşfet algoritmaları için idealdir."
+            },
+            {
+                category: "tiktok",
+                name: "250 TIKTOK TAKİPÇİ",
+                link: "https://www.itemsatis.com/tiktok/250-tiktok-takipci-5768143.html",
+                image: "img/tiktok-250-takipci.jpg",
+                badge: "GÜVENLİ",
+                desc: "Profilinizi büyütmeye başlamak için 250 adet güvenli ve hızlı teslim edilen TikTok takipçi."
+            },
+
+            // CAR PARKING MULTIPLAYER 2 (CPM2) İLANLARI
+            {
+                category: "cpm",
+                name: "CPM2 AUDİ RS7 AİR+SİREN",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-audi-rs7-air-siren-5847390.html",
+                image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=600&q=80",
+                badge: "AIR & SİREN",
+                desc: "Özel Air Süspansiyon sistemi ve Polis Sireni eklenmiş, ful donanımlı Audi RS7."
+            },
+            {
+                category: "cpm",
+                name: "CPM2 10K COİNLİ BUGATTİ SİREN BAYRAK",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-10k-coinli-bugatti-siren-bayrak-5847362.html",
+                image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=600&q=80",
+                badge: "10K COIN + BAYRAK",
+                desc: "10.000 Coin hediyeli, sirenli ve özel Türk bayrağı tasarımıyla yüksek hızlı Bugatti."
+            },
+            {
+                category: "cpm",
+                name: "CPM2 MERCEDES MAYBACH FUL LOGOLU SİRENLİ",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-mercedes-maybach-ful-logolu-sirenli-5847319.html",
+                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=80",
+                badge: "VIP LÜKS",
+                desc: "Orijinal Maybach logoları, siren sistemi ve Lüks VIP görünümüyle Car Parking 2'de fark yaratın."
+            },
+            {
+                category: "cpm",
+                name: "CPM2 BMW M5 F90 ÖZEL ÇİZİMLİ FERDİ TAYFUR",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-bmw-ozel-tasarim-ferdi-tayfur-5845777.html",
+                image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80",
+                badge: "ÖZEL ÇİZİM",
+                desc: "Efsanevi Ferdi Tayfur portre çizimli, özel süspansiyonlu ve yüksek motor gücüne sahip M5 F90."
+            },
+
+            // STEAM OYUNLARI
+            {
+                category: "steam",
+                name: "The Last of Us Part II Remastered",
+                link: "https://www.itemsatis.com/steam/the-last-of-us-part-2-remastered-5759383.html",
+                image: "https://images.alphacoders.com/135/thumb-1920-1351187.jpeg",
+                badge: "EFSANE OYUN",
+                desc: "Ellie ve Abby'nin unutulmaz hikayesi. Yüksek grafik kalitesi ve Türkçe altyazı desteğiyle Steam garantili erişim."
+            },
+            {
+                category: "steam",
+                name: "Forza Horizon 4",
+                link: "https://www.itemsatis.com/steam/forza-horizon-4-5750195.html",
+                image: "https://images.alphacoders.com/925/thumb-1920-925828.jpg",
+                badge: "ÇOK SATAN",
+                desc: "Büyük Britanya'nın muhteşem açık dünyasında efsanevi yarış deneyimi. Yüzlerce araç seçeneğiyle."
+            },
+            {
+                category: "steam",
+                name: "Forza Horizon 5",
+                link: "https://www.itemsatis.com/steam/forza-horizon-5-5750166.html",
+                image: "https://images.alphacoders.com/115/thumb-1920-1153337.png",
+                badge: "POPÜLER",
+                desc: "Meksika'nın eşsiz coğrafyasında en büyük Forza macerası. Kesintisiz yarış keyfi ve hızlı teslimat."
+            },
+            {
+                category: "steam",
+                name: "Cyberpunk 2077",
+                link: "https://www.itemsatis.com/steam/cyberpunk-2077-5137455.html",
+                image: "https://images.alphacoders.com/111/thumb-1920-1115865.jpg",
+                badge: "GÜNCEL SÜRÜM",
+                desc: "Night City'nin büyüleyici atmosferinde kendi efsaneni yarat. Türkçe dil destekli ve kesintisiz."
+            },
+            {
+                category: "steam",
+                name: "Call of Duty: Modern Warfare (2019)",
+                link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-2019-5137365.html",
+                image: "https://images.alphacoders.com/101/thumb-1920-1018260.jpg",
+                badge: "AKSİYON",
+                desc: "Kaptan Price ile efsanevi hikaye moduna adım atın. En yüksek grafik ve aksiyon dolu operasyonlar."
+            },
+            {
+                category: "steam",
+                name: "Call of Duty: Modern Warfare II",
+                link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-ii-5137068.html",
+                image: "https://images.alphacoders.com/123/thumb-1920-1237937.jpg",
+                badge: "YENİ NESİL",
+                desc: "Task Force 141 geri dönüyor! Yüksek FPS optimizasyonlu, kaliteli hikaye modu Steam erişimi."
+            }
+        ];
+
+        // İLANLARI EKRANA RENDER ETME FONKSİYONU
+        const productGrid = document.getElementById('productGrid');
+
+        function renderProducts(products) {
+            productGrid.innerHTML = '';
+            products.forEach(item => {
+                const cardHTML = `
+                    <div class="card" data-category="${item.category}">
+                        <span class="card-badge">${item.badge}</span>
+                        <div class="card-img-wrapper">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">${item.name}</div>
+                            <div class="card-desc">${item.desc}</div>
+                            <div class="card-footer">
+                                <a href="${item.link}" target="_blank" class="btn-direct-buy">
+                                    <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productGrid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        // Sayfa Yüklendiğinde Tüm İlanları Yükle
+        renderProducts(allProducts);
+
+        // CANLI ARAMA FİLTRESİ
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-filter');
+
+            const filtered = allProducts.filter(item => {
+                const matchesCategory = (activeTab === 'all' || item.category === activeTab);
+                const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+                return matchesCategory && matchesQuery;
             });
 
-            event.currentTarget.classList.remove('bg-slate-900', 'border', 'border-slate-800', 'text-slate-300');
-            event.currentTarget.classList.add('bg-gradient-to-r', 'from-cyan-500', 'to-blue-600', 'text-white', 'shadow-neon-blue');
+            renderProducts(filtered);
+        });
 
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+        // KATEGORİ SEKMELERİ
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                const query = searchInput.value.toLowerCase().trim();
+
+                const filtered = allProducts.filter(item => {
+                    const matchesCategory = (filter === 'all' || item.category === filter);
+                    const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+                    return matchesCategory && matchesQuery;
+                });
+
+                renderProducts(filtered);
             });
-        }
-
-        // Search Filter logic for Desktop & Mobile
-        function filterProducts() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            applySearchFilter(query);
-        }
-
-        function filterProductsMobile() {
-            const query = document.getElementById('mobileSearchInput').value.toLowerCase();
-            applySearchFilter(query);
-        }
-
-        function applySearchFilter(query) {
-            const cards = document.querySelectorAll('.product-card');
-            cards.forEach(card => {
-                const title = card.getAttribute('data-title');
-                if (title.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
+        });
     </script>
 </body>
 </html>
