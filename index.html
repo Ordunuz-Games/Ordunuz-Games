@@ -1,917 +1,1001 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORDUNUZ STORE | Dijital Hizmetler & Oyun İçi Eşyalar</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
+    <title>ORDUNUZ STORE | Sosyal Medya & Oyun Hizmetleri</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#00d2ff',
+                            blue: '#0088ff',
+                            dark: '#080c14',
+                            card: 'rgba(15, 23, 42, 0.65)',
+                            glass: 'rgba(255, 255, 255, 0.03)',
+                            border: 'rgba(0, 210, 255, 0.15)',
+                            borderHover: 'rgba(0, 210, 255, 0.4)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s infinite ease-in-out',
+                        'float': 'float 4s infinite ease-in-out',
+                        'marquee': 'marquee 25s linear infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(0, 210, 255, 0.3)' },
+                            '50%': { boxShadow: '0 0 30px rgba(0, 210, 255, 0.7)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Styles -->
     <style>
-        :root {
-            --bg-dark: #070913;
-            --card-bg: rgba(15, 23, 42, 0.75);
-            --card-border: rgba(56, 189, 248, 0.2);
-            --primary-blue: #00d2ff;
-            --accent-cyan: #3a7bd5;
-            --neon-glow: 0 0 25px rgba(0, 210, 255, 0.4);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            user-select: none;
-        }
-
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            min-height: 100vh;
+            background-color: #060911;
+            color: #f1f5f9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 20%, rgba(0, 210, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(58, 123, 213, 0.08) 0%, transparent 40%);
         }
 
-        /* Top Bar */
-        .ticker-bar {
-            background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc);
-            color: white;
-            padding: 10px 5%;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 15px rgba(0, 210, 255, 0.3);
-            position: relative;
-            z-index: 100;
+        .glass-panel {
+            background: rgba(13, 19, 33, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 210, 255, 0.15);
         }
 
-        .ticker-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .glass-panel:hover {
+            border-color: rgba(0, 210, 255, 0.35);
         }
 
-        .flash-tag {
-            background: #ff0055;
-            padding: 3px 8px;
+        .glass-modal {
+            background: rgba(10, 15, 26, 0.92);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(0, 210, 255, 0.25);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
+        }
+
+        .btn-glow {
+            background: linear-gradient(135deg, #00d2ff 0%, #0088ff 100%);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.65);
+            transform: translateY(-2px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060911;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
             border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            animation: pulse 1.5s infinite;
+            border: 1px solid rgba(0,210,255,0.2);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0088ff;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        /* Toast animation */
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
-
-        /* White Neon Banner Text */
-        .white-neon-text {
-            color: #ffffff;
-            font-weight: 800;
-            font-size: 1rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-shadow: 
-                0 0 5px #ffffff,
-                0 0 10px #ffffff,
-                0 0 20px rgba(255, 255, 255, 0.8),
-                0 0 30px rgba(255, 255, 255, 0.6);
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
         }
-
-        /* Header / Navbar */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(7, 9, 19, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 90;
+        .toast-enter {
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            perspective: 1000px;
-        }
-
-        .logo-box {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #fff;
-            box-shadow: var(--neon-glow);
-            transition: transform 0.5s ease;
-        }
-
-        .logo-container:hover .logo-box {
-            transform: rotateY(180deg);
-        }
-
-        .logo-text {
-            font-size: 1.6rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, #fff, var(--primary-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--primary-blue);
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-        }
-
-        .btn-store {
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            box-shadow: var(--neon-glow);
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-store:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 35px rgba(0, 210, 255, 0.7);
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 60px 20px 40px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(90deg, var(--primary-blue), #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        /* Search & Filter Controls */
-        .controls-wrapper {
-            max-width: 1100px;
-            margin: 0 auto 40px;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .search-box {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 14px 20px 14px 45px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid var(--card-border);
-            border-radius: 30px;
-            color: white;
-            font-size: 0.95rem;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .search-box input:focus {
-            border-color: var(--primary-blue);
-            box-shadow: var(--neon-glow);
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
-
-        .filter-tabs {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .tab-btn {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: 0.3s;
-        }
-
-        .tab-btn:hover, .tab-btn.active {
-            background: rgba(0, 210, 255, 0.15);
-            border-color: var(--primary-blue);
-            color: var(--primary-blue);
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
-        }
-
-        /* Product Cards Grid */
-        .products-section {
-            max-width: 1200px;
-            margin: 0 auto 60px;
-            padding: 0 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-blue);
-            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.25);
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 210, 255, 0.25);
-            border: 1px solid var(--primary-blue);
-            color: #fff;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-            z-index: 2;
-            text-transform: uppercase;
-        }
-
-        .card-img-wrapper {
-            height: 200px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            background: #090d16;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .card:hover .card-img-wrapper img {
-            transform: scale(1.08);
-        }
-
-        .card-body {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .card-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .card-footer {
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .btn-direct-buy {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
-            color: #fff;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
-            transition: 0.3s;
-        }
-
-        .btn-direct-buy:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0, 210, 255, 0.6);
-        }
-
-        /* Trust Badges */
-        .trust-section {
-            max-width: 1100px;
-            margin: 40px auto 80px;
-            padding: 0 20px;
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .trust-card {
-            background: rgba(15, 23, 42, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .trust-card:hover {
-            border-color: var(--primary-blue);
-            transform: translateY(-3px);
-        }
-
-        .trust-icon {
-            font-size: 2rem;
-            color: var(--primary-blue);
-            margin-bottom: 12px;
-        }
-
-        .trust-title {
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-
-        .trust-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Testimonials Section */
-        .reviews-section {
-            max-width: 1100px;
-            margin: 0 auto 80px;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .review-card {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .review-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .user-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-blue), #3a7bd5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .user-name {
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .verified-badge {
-            font-size: 0.7rem;
-            color: #00ffcc;
-            display: flex;
-            align-items: center;
-            gap: 3px;
-        }
-
-        .stars {
-            color: #ffc107;
-            font-size: 0.8rem;
-        }
-
-        .review-text {
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            line-height: 1.5;
-        }
-
-        /* Floating Discord Button */
-        .discord-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 55px;
-            height: 55px;
-            background: #5865F2;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.6rem;
-            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.5);
-            cursor: pointer;
-            z-index: 99;
-            transition: 0.3s;
-            text-decoration: none;
-        }
-
-        .discord-float:hover {
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 0 8px 30px rgba(88, 101, 242, 0.8);
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 30px 5%;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            background: rgba(7, 9, 19, 0.95);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .ticker-bar { flex-direction: column; gap: 8px; text-align: center; }
-            .nav-links { display: none; }
+        .toast-exit {
+            animation: slideOut 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-cyan selection:text-black">
 
-    <!-- Flash Sale Ticker Bar (Beyaz Neon Ordunuz Shop) -->
-    <div class="ticker-bar">
-        <div class="ticker-left">
-            <span class="flash-tag"><i class="fa-solid fa-bolt"></i> FIRSAT</span>
-            <span>İtemSatış Mağazamızda Tüm İlanlarda Otomatik Teslimat Aktif!</span>
-        </div>
-        <div>
-            <span class="white-neon-text">ORDUNUZ SHOP</span>
-        </div>
+    <!-- Announcement Bar -->
+    <div class="bg-gradient-to-r from-brand-blue/30 via-brand-cyan/20 to-brand-blue/30 border-b border-brand-border text-xs py-2 px-4 text-center flex items-center justify-center gap-2">
+        <span class="bg-brand-cyan/20 text-brand-cyan px-2 py-0.5 rounded-full font-bold text-[10px] uppercase tracking-wider animate-pulse">İndirim</span>
+        <span>🔥 Tüm Discord Boost & TikTok Hizmetlerinde <b>%15 İndirim!</b> Kodu Kullan: <code class="bg-black/50 px-1.5 py-0.5 rounded text-brand-cyan font-mono font-bold">ORDUNUZ10</code></span>
     </div>
 
-    <!-- Header / Navbar -->
-    <header>
-        <div class="logo-container">
-            <div class="logo-box">O</div>
-            <div class="logo-text">ORDUNUZ</div>
+    <!-- Main Navigation Bar -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-cyan to-brand-blue flex items-center justify-center text-black font-extrabold text-xl shadow-[0_0_15px_rgba(0,210,255,0.5)] group-hover:scale-105 transition-transform">
+                    O
+                </div>
+                <div>
+                    <span class="text-xl sm:text-2xl font-black tracking-wider text-white group-hover:text-brand-cyan transition-colors">
+                        ORDUNUZ<span class="text-brand-cyan text-glow">.STORE</span>
+                    </span>
+                    <span class="block text-[10px] text-gray-400 font-medium tracking-widest -mt-1">DIJITAL TEDARIKCI</span>
+                </div>
+            </a>
+
+            <!-- Search Bar (Desktop) -->
+            <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Ürün veya paket ara (ör. TikTok, Boost, Takipçi)..." 
+                    class="w-full bg-slate-900/80 border border-brand-border rounded-full py-2.5 pl-11 pr-4 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan transition-all">
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-3">
+                <!-- Discord Status Badge -->
+                <a href="https://discord.gg" target="_blank" class="hidden sm:flex items-center gap-2 bg-indigo-950/60 hover:bg-indigo-900/60 border border-indigo-500/30 text-indigo-300 px-3 py-1.5 rounded-full text-xs font-semibold transition-all">
+                    <i class="fa-brands fa-discord text-base text-indigo-400"></i>
+                    <span>Discord</span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="text-white text-[11px] bg-indigo-900/80 px-1.5 py-0.5 rounded">1,420 Aktif</span>
+                </a>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCartModal()" class="relative bg-slate-900/90 hover:bg-slate-800 border border-brand-border p-2.5 sm:px-4 sm:py-2.5 rounded-xl flex items-center gap-2 text-sm font-semibold text-gray-200 hover:text-brand-cyan transition-all">
+                    <i class="fa-solid fa-shopping-bag text-brand-cyan text-lg"></i>
+                    <span class="hidden sm:inline">Sepetim</span>
+                    <span id="cartCount" class="bg-brand-cyan text-black font-extrabold text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(0,210,255,0.8)]">0</span>
+                </button>
+            </div>
         </div>
-        <nav class="nav-links">
-            <a href="#" class="nav-link active">Ana Sayfa</a>
-            <a href="#products" class="nav-link">İlanlar</a>
-            <a href="#reviews" class="nav-link">Yorumlar</a>
-            <a href="#trust" class="nav-link">Güvence</a>
-        </nav>
-        <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-store">
-            <i class="fa-solid fa-store"></i> İtemSatış Mağazası
-        </a>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Dijital Oyun ve Sosyal Medya <span>Çözüm Merkeziniz</span></h1>
-        <p>En uygun fiyat garantisi, anında otomatik teslimat ve 7/24 kesintisiz canlı destek ile hizmetinizdeyiz.</p>
-    </section>
+    <main class="flex-grow">
+        <!-- Hero Banner Section -->
+        <section class="relative py-12 md:py-20 overflow-hidden">
+            <!-- Ambient Lighting Glows -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-brand-cyan/15 blur-[120px] rounded-full pointer-events-none"></div>
+            <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-brand-blue/10 blur-[100px] rounded-full pointer-events-none"></div>
 
-    <!-- Controls: Search & Category Filter Tabs -->
-    <div class="controls-wrapper" id="products">
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Ürün veya hizmet ara... (örn: Instagram, TikTok, Audi, Forza)">
-        </div>
-        <div class="filter-tabs">
-            <button class="tab-btn active" data-filter="all">Tüm İlanlar</button>
-            <button class="tab-btn" data-filter="instagram">Instagram</button>
-            <button class="tab-btn" data-filter="tiktok">TikTok</button>
-            <button class="tab-btn" data-filter="cpm">Car Parking</button>
-            <button class="tab-btn" data-filter="steam">Steam Oyunları</button>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <!-- Badges Row -->
+                <div class="inline-flex items-center gap-2 bg-brand-dark/80 border border-brand-border px-4 py-1.5 rounded-full text-xs font-medium text-brand-cyan mb-6 shadow-lg">
+                    <i class="fa-solid fa-bolt text-yellow-400"></i>
+                    <span>Anında Otomatik Teslimat Sitemi</span>
+                    <span class="text-gray-500">•</span>
+                    <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                    <span class="text-gray-300">İtemSatış Güvenceli</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+                    Türkiye'nin En Hızlı & Uygun <br class="hidden sm:block">
+                    <span class="bg-gradient-to-r from-brand-cyan via-blue-400 to-brand-blue bg-clip-text text-transparent text-glow">
+                        Sosyal Medya & Dijital Hizmetleri
+                    </span>
+                </h1>
+
+                <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed">
+                    TikTok izlenmeden Discord Boost paketlerine, Instagram etkileşimlerinden dijital ürünlere kadar aradığınız her şey %100 güvenli ve anında teslimat seçeneğiyle ORDUNUZ STORE'da!
+                </p>
+
+                <!-- Action CTA Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+                    <a href="#products" class="btn-glow px-8 py-3.5 rounded-xl font-bold text-black text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-fire text-base"></i>
+                        <span>Popüler Paketleri İncele</span>
+                    </a>
+                    <a href="https://discord.gg" target="_blank" class="glass-panel px-6 py-3.5 rounded-xl font-semibold text-white text-sm hover:border-brand-cyan flex items-center gap-2 transition-all">
+                        <i class="fa-brands fa-discord text-indigo-400 text-lg"></i>
+                        <span>Discord Topluluğuna Katıl</span>
+                    </a>
+                </div>
+
+                <!-- Stats Ticker Bar -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <div class="glass-panel p-4 rounded-2xl text-center">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-cyan text-glow mb-1">14,250+</div>
+                        <div class="text-xs text-gray-400">Tamamlanan Sipariş</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl text-center">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 mb-1">%99.8</div>
+                        <div class="text-xs text-gray-400">Müşteri Memnuniyeti</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl text-center">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-yellow-400 mb-1">7/24</div>
+                        <div class="text-xs text-gray-400">Anında Otomatik Teslimat</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl text-center">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-brand-blue mb-1">5,000+</div>
+                        <div class="text-xs text-gray-400">Mutlu Müşteri</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products & Categories Section -->
+        <section id="products" class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Category Filter Buttons -->
+            <div class="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+                <button onclick="filterCategory('all')" class="cat-btn active glass-panel px-5 py-2.5 rounded-xl text-xs font-bold text-white whitespace-nowrap hover:border-brand-cyan transition-all border-brand-cyan bg-brand-cyan/20">
+                    <i class="fa-solid fa-border-all mr-2"></i>Tüm Ürünler
+                </button>
+                <button onclick="filterCategory('tiktok')" class="cat-btn glass-panel px-5 py-2.5 rounded-xl text-xs font-bold text-gray-300 whitespace-nowrap hover:border-brand-cyan transition-all">
+                    <i class="fa-brands fa-tiktok mr-2 text-pink-500"></i>TikTok
+                </button>
+                <button onclick="filterCategory('instagram')" class="cat-btn glass-panel px-5 py-2.5 rounded-xl text-xs font-bold text-gray-300 whitespace-nowrap hover:border-brand-cyan transition-all">
+                    <i class="fa-brands fa-instagram mr-2 text-purple-400"></i>Instagram
+                </button>
+                <button onclick="filterCategory('discord')" class="cat-btn glass-panel px-5 py-2.5 rounded-xl text-xs font-bold text-gray-300 whitespace-nowrap hover:border-brand-cyan transition-all">
+                    <i class="fa-brands fa-discord mr-2 text-indigo-400"></i>Discord Boost
+                </button>
+                <button onclick="filterCategory('youtube')" class="cat-btn glass-panel px-5 py-2.5 rounded-xl text-xs font-bold text-gray-300 whitespace-nowrap hover:border-brand-cyan transition-all">
+                    <i class="fa-brands fa-youtube mr-2 text-red-500"></i>YouTube
+                </button>
+                <button onclick="filterCategory('itemsatis')" class="cat-btn glass-panel px-5 py-2.5 rounded-xl text-xs font-bold text-gray-300 whitespace-nowrap hover:border-brand-cyan transition-all">
+                    <i class="fa-solid fa-store mr-2 text-emerald-400"></i>İtemSatış Özel
+                </button>
+            </div>
+
+            <!-- Products Grid Container -->
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Product cards dynamically loaded via JS -->
+            </div>
+        </section>
+
+        <!-- Why Choose Us / Guarantees -->
+        <section class="py-12 bg-slate-950/50 border-y border-brand-border/50 my-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="glass-panel p-6 rounded-2xl flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan text-xl flex-shrink-0">
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-base mb-1">Anında Otomatik Teslimat</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">Ödemeniz onaylandığı an sistem otomatik olarak siparişinizi işleme alır ve dakikalar içinde tamamlar.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl flex-shrink-0">
+                            <i class="fa-solid fa-shield-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-base mb-1">%100 Güvenli Ödeme</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">İtemSatış Mağaza Güvencesi, Kredi Kartı, Papara veya Havale/EFT ile tam korumalı alışveriş yapın.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 rounded-2xl flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-xl flex-shrink-0">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-bold text-base mb-1">7/24 Canlı Destek</h3>
+                            <p class="text-gray-400 text-xs leading-relaxed">Aklınıza takılan tüm sorular için Discord sunucumuzdan veya Canlı Destek hattımızdan anında yardım alın.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Reviews Section -->
+        <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Müşteri Yorumları & Değerlendirmeler</h2>
+                <p class="text-gray-400 text-xs sm:text-sm">İtemSatış ve Discord üzerinden %100 gerçek müşteri deneyimleri.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center font-bold text-white text-sm">
+                                E
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Emre K.</h4>
+                                <span class="text-[11px] text-emerald-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-check"></i> Doğrulanmış Alıcı
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs leading-relaxed">"14x Discord Boost aldım, linki yapıştırdıktan 2 dakika sonra sunucu seviye 3 oldu. Gerçekten inanılmaz hızlı ve sorunsuz!"</p>
+                    <span class="block text-[10px] text-gray-500 mt-4">Ürün: Discord 14x Boost (3 Ay)</span>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center font-bold text-white text-sm">
+                                M
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Mert Y.</h4>
+                                <span class="text-[11px] text-emerald-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-check"></i> Doğrulanmış Alıcı
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs leading-relaxed">"TikTok 50.000 İzlenme paketini denedim, anında yüklendi ve keşfete düştüm. İtemSatış mağazalarından da alıyordum burası harika!"</p>
+                    <span class="block text-[10px] text-gray-500 mt-4">Ürün: TikTok Ultra İzlenme Paketi</span>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="glass-panel p-6 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center font-bold text-white text-sm">
+                                B
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Burak T.</h4>
+                                <span class="text-[11px] text-emerald-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-check"></i> Doğrulanmış Alıcı
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex text-yellow-400 text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-xs leading-relaxed">"Instagram Türk Takipçi siparişi verdim. Düşüş neredeyse sıfır, telafi desteği de var. Destek ekibine ayrıca teşekkürler."</p>
+                    <span class="block text-[10px] text-gray-500 mt-4">Ürün: Instagram Premium Takipçi</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Sıkça Sorulan Sorular</h2>
+                <p class="text-gray-400 text-xs sm:text-sm">Aklınıza takılan soruların cevapları burada.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="glass-panel rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-white flex justify-between items-center hover:text-brand-cyan transition-colors">
+                        <span>Siparişlerim ne kadar sürede teslim edilir?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-cyan text-xs transition-transform"></i>
+                    </button>
+                    <div class="hidden p-5 pt-0 text-xs text-gray-400 leading-relaxed border-t border-brand-border/30 mt-2">
+                        Ödemeniz tamamlandıktan hemen sonra otomasyon sistemimiz devreye girer. Siparişlerinizin %95'i 1 ile 15 dakika içerisinde otomatik olarak tamamlanmaktadır.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="glass-panel rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-white flex justify-between items-center hover:text-brand-cyan transition-colors">
+                        <span>Hesabımın şifresini vermem gerekiyor mu?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-cyan text-xs transition-transform"></i>
+                    </button>
+                    <div class="hidden p-5 pt-0 text-xs text-gray-400 leading-relaxed border-t border-brand-border/30 mt-2">
+                        <b>Kesinlikle HAYIR!</b> ORDUNUZ STORE olarak hiçbir hizmetimizde sizden sosyal medya hesabınızın şifresini TALEP ETMEYİZ. Yalnızca kullanıcı adı veya gönderi linki yeterlidir.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="glass-panel rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-white flex justify-between items-center hover:text-brand-cyan transition-colors">
+                        <span>İtemSatış üzerinden satın alabilir miyim?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-cyan text-xs transition-transform"></i>
+                    </button>
+                    <div class="hidden p-5 pt-0 text-xs text-gray-400 leading-relaxed border-t border-brand-border/30 mt-2">
+                        Evet! İtemSatış üzerindeki resmi ilan mağazamız üzerinden de ilanlarımız aracılığıyla alışveriş yapabilir, bakiyenizle güvenle sipariş verebilirsiniz.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-panel rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-white flex justify-between items-center hover:text-brand-cyan transition-colors">
+                        <span>Hangi ödeme yöntemleri geçerlidir?</span>
+                        <i class="fa-solid fa-chevron-down text-brand-cyan text-xs transition-transform"></i>
+                    </button>
+                    <div class="hidden p-5 pt-0 text-xs text-gray-400 leading-relaxed border-t border-brand-border/30 mt-2">
+                        3D Secure Kredi/Banka Kartı, Papara, IBAN/EFT/Havale ve İtemSatış Bakiyesi ile ödemelerinizi anında 7/24 gerçekleştirebilirsiniz.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Purchase / Quick Checkout Modal -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+        <div class="glass-modal w-full max-w-lg rounded-3xl p-6 sm:p-8 relative shadow-2xl border border-brand-cyan/40">
+            <!-- Close Button -->
+            <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-6">
+                <div id="modalProductIcon" class="w-12 h-12 rounded-2xl bg-brand-cyan/20 border border-brand-cyan/40 flex items-center justify-center text-brand-cyan text-2xl">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div>
+                    <h3 id="modalProductTitle" class="text-white font-extrabold text-base sm:text-lg">Ürün Adı</h3>
+                    <p id="modalProductPrice" class="text-brand-cyan font-bold text-sm">0.00 TL</p>
+                </div>
+            </div>
+
+            <!-- Checkout Form -->
+            <form id="checkoutForm" onsubmit="processOrder(event)" class="space-y-4">
+                <!-- User Input Target -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1.5" id="targetInputLabel">Kullanıcı Adı / Link / Sunucu Linki</label>
+                    <input type="text" id="targetInput" required placeholder="@kullaniciadi veya https://..." 
+                        class="w-full bg-slate-900 border border-brand-border rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-brand-cyan">
+                </div>
+
+                <!-- Payment Method Selection -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1.5">Ödeme Yöntemi Seçin</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="cursor-pointer border border-brand-border rounded-xl p-3 flex items-center gap-2 bg-slate-900/60 hover:border-brand-cyan has-[:checked]:border-brand-cyan has-[:checked]:bg-brand-cyan/10">
+                            <input type="radio" name="paymentMethod" value="itemsatis" checked class="accent-brand-cyan">
+                            <span class="text-xs font-bold text-white flex items-center gap-1.5"><i class="fa-solid fa-store text-emerald-400"></i> İtemSatış</span>
+                        </label>
+                        <label class="cursor-pointer border border-brand-border rounded-xl p-3 flex items-center gap-2 bg-slate-900/60 hover:border-brand-cyan has-[:checked]:border-brand-cyan has-[:checked]:bg-brand-cyan/10">
+                            <input type="radio" name="paymentMethod" value="card" class="accent-brand-cyan">
+                            <span class="text-xs font-bold text-white flex items-center gap-1.5"><i class="fa-solid fa-credit-card text-brand-cyan"></i> Kredi Kartı</span>
+                        </label>
+                        <label class="cursor-pointer border border-brand-border rounded-xl p-3 flex items-center gap-2 bg-slate-900/60 hover:border-brand-cyan has-[:checked]:border-brand-cyan has-[:checked]:bg-brand-cyan/10">
+                            <input type="radio" name="paymentMethod" value="papara" class="accent-brand-cyan">
+                            <span class="text-xs font-bold text-white flex items-center gap-1.5"><i class="fa-solid fa-wallet text-black bg-pink-400 px-1 rounded text-[10px]"></i> Papara</span>
+                        </label>
+                        <label class="cursor-pointer border border-brand-border rounded-xl p-3 flex items-center gap-2 bg-slate-900/60 hover:border-brand-cyan has-[:checked]:border-brand-cyan has-[:checked]:bg-brand-cyan/10">
+                            <input type="radio" name="paymentMethod" value="eft" class="accent-brand-cyan">
+                            <span class="text-xs font-bold text-white flex items-center gap-1.5"><i class="fa-solid fa-building-columns text-yellow-400"></i> Havale / EFT</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Coupon Section -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1.5">Kupon Kodu</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="couponInput" placeholder="ORDUNUZ10" class="uppercase flex-1 bg-slate-900 border border-brand-border rounded-xl py-2.5 px-4 text-xs text-white focus:outline-none focus:border-brand-cyan">
+                        <button type="button" onclick="applyCoupon()" class="bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold px-4 rounded-xl border border-brand-border">Uygula</button>
+                    </div>
+                    <span id="couponMsg" class="text-[11px] hidden mt-1 block"></span>
+                </div>
+
+                <!-- Summary -->
+                <div class="border-t border-brand-border/50 pt-3 flex justify-between items-center text-sm">
+                    <span class="text-gray-400">Ödenecek Tutar:</span>
+                    <span id="finalPriceText" class="text-xl font-black text-brand-cyan">0.00 TL</span>
+                </div>
+
+                <button type="submit" class="w-full btn-glow py-3.5 rounded-xl font-extrabold text-black text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock text-xs"></i>
+                    <span>Siparişi Güvenle Tamamla</span>
+                </button>
+            </form>
         </div>
     </div>
 
-    <!-- Products Grid -->
-    <section class="products-section">
-        <div class="grid" id="productGrid">
-            <!-- Tüm İlanlar Script Tarafından Dinamik Olarak Yüklenecektir -->
+    <!-- Live Recent Purchase Toast Floating Popup -->
+    <div id="livePurchaseToast" class="fixed bottom-6 right-6 z-40 max-w-sm glass-panel p-4 rounded-2xl shadow-2xl border border-brand-cyan/40 hidden flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-lg flex-shrink-0">
+            <i class="fa-solid fa-bag-shopping animate-bounce"></i>
         </div>
-    </section>
-
-    <!-- Trust Badges Section -->
-    <section class="trust-section" id="trust">
-        <div class="trust-grid">
-            <div class="trust-card">
-                <div class="trust-icon"><i class="fa-solid fa-bolt"></i></div>
-                <div class="trust-title">Anında Teslimat</div>
-                <div class="trust-desc">Siparişleriniz otomasyon sistemimiz ile dakikalar içinde teslim edilir.</div>
-            </div>
-            <div class="trust-card">
-                <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="trust-title">%100 Güvenli Alışveriş</div>
-                <div class="trust-desc">İtemSatış güvencesi ile tüm işlemleriniz koruma altındadır.</div>
-            </div>
-            <div class="trust-card">
-                <div class="trust-icon"><i class="fa-solid fa-headset"></i></div>
-                <div class="trust-title">7/24 Kesintisiz Destek</div>
-                <div class="trust-desc">Discord ve WhatsApp ekibimiz sorularınız için sürekli aktif.</div>
-            </div>
-            <div class="trust-card">
-                <div class="trust-icon"><i class="fa-solid fa-tag"></i></div>
-                <div class="trust-title">En Uygun Fiyat</div>
-                <div class="trust-desc">Piyasadaki en kaliteli hizmeti en avantajlı fiyatlarla sunuyoruz.</div>
-            </div>
+        <div class="pr-2">
+            <h5 class="text-white font-bold text-xs" id="toastUserName">Ahmet K.</h5>
+            <p class="text-gray-300 text-[11px]" id="toastProductName">10.000 TikTok İzlenme satın aldı</p>
+            <span class="text-[9px] text-brand-cyan font-medium" id="toastTime">Az önce • İtemSatış</span>
         </div>
-    </section>
+    </div>
 
-    <!-- Customer Reviews Section -->
-    <section class="reviews-section" id="reviews">
-        <h2 class="section-title">Müşteri Yorumları</h2>
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="user-info">
-                        <div class="user-avatar">M</div>
-                        <div>
-                            <div class="user-name">Mustafa K.</div>
-                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
+    <!-- Cart Slide Modal (Simple View) -->
+    <div id="cartModal" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm hidden">
+        <div class="w-full max-w-md bg-slate-950 border-l border-brand-border h-full p-6 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-brand-border mb-4">
+                    <h3 class="text-white font-bold text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-shopping-bag text-brand-cyan"></i> Sepetiniz
+                    </h3>
+                    <button onclick="toggleCartModal()" class="text-gray-400 hover:text-white">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
                 </div>
-                <div class="review-text">"CPM2 için Ferdi Tayfur çizimli M5 aldım, anında oyuna aktardılar. Çizim kalitesi muazzam!"</div>
+                <div id="cartItemsList" class="space-y-3">
+                    <!-- Dynamic Cart Items -->
+                    <p class="text-gray-500 text-xs text-center py-8">Sepetinizde henüz ürün bulunmuyor.</p>
+                </div>
             </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="user-info">
-                        <div class="user-avatar">E</div>
-                        <div>
-                            <div class="user-name">Eren T.</div>
-                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
+            <div class="border-t border-brand-border pt-4">
+                <div class="flex justify-between text-sm font-bold text-white mb-4">
+                    <span>Toplam:</span>
+                    <span id="cartTotalText" class="text-brand-cyan">0.00 TL</span>
                 </div>
-                <div class="review-text">"Instagram takipçi ve beğeni siparişlerim saniyeler içinde tamamlandı. İşini son derece kaliteli yapan bir mağaza."</div>
-            </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="user-info">
-                        <div class="user-avatar">B</div>
-                        <div>
-                            <div class="user-name">Burak S.</div>
-                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="review-text">"TikTok videolarım keşfete düştü sayesinde. Fiyatlar aşırı uygun, sürekli alışveriş yaptığım tek adres."</div>
+                <button onclick="checkoutCart()" class="w-full btn-glow py-3 rounded-xl font-bold text-black text-sm">
+                    Sepeti Onayla & Öde
+                </button>
             </div>
         </div>
-    </section>
-
-    <!-- Floating Discord Button -->
-    <a href="https://discord.gg" target="_blank" class="discord-float" title="Discord Sunucumuza Katılın">
-        <i class="fa-brands fa-discord"></i>
-    </a>
+    </div>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 <b>ORDUNUZ STORE</b> - Tüm Hakları Saklıdır. Güvenli Dijital Hizmetler Platformu.</p>
+    <footer class="glass-panel border-t border-brand-border mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-cyan to-brand-blue flex items-center justify-center text-black font-extrabold text-sm">O</div>
+                        <span class="text-lg font-black text-white">ORDUNUZ<span class="text-brand-cyan">.STORE</span></span>
+                    </div>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        Türkiye'nin lider dijital ürün ve sosyal medya hizmetleri tedarikçisi. Güvenli, hızlı ve 7/24 kesintisiz otomatik teslimat.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">Hızlı Bağlantılar</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#products" class="hover:text-brand-cyan transition-colors">Tüm Ürünler</a></li>
+                        <li><a href="#products" onclick="filterCategory('tiktok')" class="hover:text-brand-cyan transition-colors">TikTok Paketleri</a></li>
+                        <li><a href="#products" onclick="filterCategory('discord')" class="hover:text-brand-cyan transition-colors">Discord Boost</a></li>
+                        <li><a href="#products" onclick="filterCategory('itemsatis')" class="hover:text-brand-cyan transition-colors">İtemSatış Mağazamız</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">Destek & İletişim</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><i class="fa-brands fa-discord text-indigo-400 mr-2"></i>Discord Destek Sunucusu</li>
+                        <li><i class="fa-solid fa-clock mr-2 text-brand-cyan"></i>Calışma Saatleri: 7/24 Otomatik</li>
+                        <li><i class="fa-solid fa-shield-halved mr-2 text-emerald-400"></i>İtemSatış Güvenceli Satış</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">Ödeme Yöntemleri</h4>
+                    <div class="flex flex-wrap gap-2 text-gray-400 text-xl">
+                        <i class="fa-brands fa-cc-visa hover:text-white"></i>
+                        <i class="fa-brands fa-cc-mastercard hover:text-white"></i>
+                        <i class="fa-solid fa-wallet hover:text-white"></i>
+                        <i class="fa-solid fa-building-columns hover:text-white"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-brand-border/40 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+                <p>© 2026 ORDUNUZ STORE. Tüm hakları saklıdır.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-gray-300">Gizlilik Sözleşmesi</a>
+                    <a href="#" class="hover:text-gray-300">Kullanım Şartları</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <!-- JavaScript Data and Interactivity -->
+    <!-- Application Logic Script -->
     <script>
-        // TÜM İLAN VERİ TABANI
-        const allProducts = [
-            // INSTAGRAM İLANLARI
+        // Sample Products Data
+        const productsData = [
             {
-                category: "instagram",
-                name: "INSTAGRAM 1000 BEĞENİ",
-                link: "https://www.itemsatis.com/instagram/instagram-1000-begeni-5768175.html",
-                image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80",
-                badge: "HIZLI GÖNDERİM",
-                desc: "Gönderilerinizi ön plana çıkaracak 1.000 adet kaliteli Instagram beğenisi. Düşüşsüz ve anında başlar."
+                id: 'tt-1',
+                category: 'tiktok',
+                title: 'TikTok 10.000 İzlenme Paketi',
+                desc: 'Anında başlar, keşfet etkili ultra hızlı izlenme.',
+                price: 19.90,
+                oldPrice: 35.00,
+                rating: 5,
+                badge: 'Çok Satan',
+                icon: 'fa-tiktok',
+                iconColor: 'from-pink-500 to-rose-600',
+                targetLabel: 'TikTok Video Linki'
             },
             {
-                category: "instagram",
-                name: "INSTAGRAM 25.000 İZLENME",
-                link: "https://www.itemsatis.com/instagram/instagram-25000-izlenme-5768169.html",
-                image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80",
-                badge: "KEŞFET ETKİLİ",
-                desc: "Reels ve videolarınız için 25.000 adet yüksek etkileşimli izlenme paketi. Keşfete düşme oranını artırır."
+                id: 'tt-2',
+                category: 'tiktok',
+                title: 'TikTok 1.000 Gerçek Takipçi',
+                desc: 'Canlı yayın açma şartı için %100 uygun takipçi.',
+                price: 49.90,
+                oldPrice: 75.00,
+                rating: 4.9,
+                badge: 'Anında',
+                icon: 'fa-user-plus',
+                iconColor: 'from-purple-500 to-pink-600',
+                targetLabel: 'TikTok Profil Kullanıcı Adı'
             },
             {
-                category: "instagram",
-                name: "INSTAGRAM 500 TÜRK BEĞENİ",
-                link: "https://www.itemsatis.com/instagram/instagram-500-turk-begeni-5768166.html",
-                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80",
-                badge: "%100 TÜRK",
-                desc: "Gerçek ve aktif Türk kullanıcılar tarafından gönderilen 500 adet organik görünümlü beğeni."
+                id: 'dc-1',
+                category: 'discord',
+                title: 'Discord 14x Boost (3 Aylık)',
+                desc: 'Sunucunuzu anında Seviye 3 yapın. Düşme garantisi telafili.',
+                price: 149.90,
+                oldPrice: 250.00,
+                rating: 5,
+                badge: 'Süper Fırsat',
+                icon: 'fa-rocket',
+                iconColor: 'from-indigo-500 to-blue-600',
+                targetLabel: 'Discord Sunucu Davet Linki'
             },
             {
-                category: "instagram",
-                name: "INSTAGRAM 1000 TAKİPÇİ",
-                link: "https://www.itemsatis.com/instagram/instagram-1000-takipci-5768156.html",
-                image: "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?w=600&q=80",
-                badge: "PRESTİJ PAKETİ",
-                desc: "Hesabınızın güvenilirliğini ve kitlesini büyütecek 1.000 adet yüksek kaliteli Instagram takipçi."
-            },
-
-            // TIKTOK İLANLARI
-            {
-                category: "tiktok",
-                name: "TIKTOK 1000 BEĞENİ",
-                link: "https://www.itemsatis.com/tiktok/tiktok-1000-begeni-5768150.html",
-                image: "https://images.unsplash.com/photo-1596558450255-7c0b7be9d56a?w=600&q=80",
-                badge: "POPÜLER",
-                desc: "TikTok videolarınızı öne çıkaracak 1.000 adet yüksek kaliteli beğeni gönderimi."
+                id: 'dc-2',
+                category: 'discord',
+                title: 'Discord 14x Boost (1 Aylık)',
+                desc: '1 Ay boyunca kesintisiz Level 3 sunucu avantajları.',
+                price: 79.90,
+                oldPrice: 120.00,
+                rating: 4.8,
+                badge: 'Popüler',
+                icon: 'fa-bolt',
+                iconColor: 'from-blue-500 to-cyan-500',
+                targetLabel: 'Discord Sunucu Davet Linki'
             },
             {
-                category: "tiktok",
-                name: "TIKTOK 5000 İZLENME",
-                link: "https://www.itemsatis.com/tiktok/tiktok-5000-izlenme-aninda-teslimat-5768134.html",
-                image: "https://images.unsplash.com/photo-1611605697805-88a46e077e2c?w=600&q=80",
-                badge: "ANINDA TESLİM",
-                desc: "Videolarınız için anında teslimat avantajıyla 5.000 izlenme gönderimi. Keşfet algoritmaları için idealdir."
+                id: 'ig-1',
+                category: 'instagram',
+                title: 'Instagram 5.000 Türk Takipçi',
+                desc: 'Kaliteli profiller, telafili ve organik görünümlü.',
+                price: 69.90,
+                oldPrice: 110.00,
+                rating: 4.9,
+                badge: 'Telafili',
+                icon: 'fa-instagram',
+                iconColor: 'from-amber-500 to-pink-500',
+                targetLabel: 'Instagram Kullanıcı Adı'
             },
             {
-                category: "tiktok",
-                name: "250 TIKTOK TAKİPÇİ",
-                link: "https://www.itemsatis.com/tiktok/250-tiktok-takipci-5768143.html",
-                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80",
-                badge: "GÜVENLİ",
-                desc: "Profilinizi büyütmeye başlamak için 250 adet güvenli ve hızlı teslim edilen TikTok takipçi."
-            },
-
-            // CAR PARKING MULTIPLAYER 2 (CPM2) İLANLARI
-            {
-                category: "cpm",
-                name: "CPM2 AUDİ RS7 AİR+SİREN",
-                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-audi-rs7-air-siren-5847390.html",
-                image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=600&q=80",
-                badge: "AIR & SİREN",
-                desc: "Özel Air Süspansiyon sistemi ve Polis Sireni eklenmiş, ful donanımlı Audi RS7."
+                id: 'ig-2',
+                category: 'instagram',
+                title: 'Instagram 2.500 Beğeni Paketi',
+                desc: 'Gönderilerinizi öne çıkarın, anında yükleme.',
+                price: 29.90,
+                oldPrice: 50.00,
+                rating: 4.7,
+                badge: 'Hızlı',
+                icon: 'fa-heart',
+                iconColor: 'from-red-500 to-pink-500',
+                targetLabel: 'Instagram Gönderi Linki'
             },
             {
-                category: "cpm",
-                name: "CPM2 10K COİNLİ BUGATTİ SİREN BAYRAK",
-                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-10k-coinli-bugatti-siren-bayrak-5847362.html",
-                image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=600&q=80",
-                badge: "10K COIN + BAYRAK",
-                desc: "10.000 Coin hediyeli, sirenli ve özel Türk bayrağı tasarımıyla yüksek hızlı Bugatti."
+                id: 'yt-1',
+                category: 'youtube',
+                title: 'YouTube 1.000 Abone Paketi',
+                desc: 'Kanalınızı büyütün, para kazanma şartlarına destek.',
+                price: 129.90,
+                oldPrice: 200.00,
+                rating: 4.9,
+                badge: 'Organik',
+                icon: 'fa-youtube',
+                iconColor: 'from-red-600 to-rose-700',
+                targetLabel: 'YouTube Kanal Linki'
             },
             {
-                category: "cpm",
-                name: "CPM2 MERCEDES MAYBACH FUL LOGOLU SİRENLİ",
-                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-mercedes-maybach-ful-logolu-sirenli-5847319.html",
-                image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=80",
-                badge: "VIP LÜKS",
-                desc: "Orijinal Maybach logoları, siren sistemi ve Lüks VIP görünümüyle Car Parking 2'de fark yaratın."
-            },
-            {
-                category: "cpm",
-                name: "CPM2 BMW M5 F90 ÖZEL ÇİZİMLİ FERDİ TAYFUR",
-                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-bmw-ozel-tasarim-ferdi-tayfur-5845777.html",
-                image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80",
-                badge: "ÖZEL ÇİZİM",
-                desc: "Efsanevi Ferdi Tayfur portre çizimli, özel süspansiyonlu ve yüksek motor gücüne sahip M5 F90."
-            },
-
-            // STEAM OYUNLARI
-            {
-                category: "steam",
-                name: "The Last of Us Part II Remastered",
-                link: "https://www.itemsatis.com/steam/the-last-of-us-part-2-remastered-5759383.html",
-                image: "https://images.alphacoders.com/135/thumb-1920-1351187.jpeg",
-                badge: "EFSANE OYUN",
-                desc: "Ellie ve Abby'nin unutulmaz hikayesi. Yüksek grafik kalitesi ve Türkçe altyazı desteğiyle Steam garantili erişim."
-            },
-            {
-                category: "steam",
-                name: "Forza Horizon 4",
-                link: "https://www.itemsatis.com/steam/forza-horizon-4-5750195.html",
-                image: "https://images.alphacoders.com/925/thumb-1920-925828.jpg",
-                badge: "ÇOK SATAN",
-                desc: "Büyük Britanya'nın muhteşem açık dünyasında efsanevi yarış deneyimi. Yüzlerce araç seçeneğiyle."
-            },
-            {
-                category: "steam",
-                name: "Forza Horizon 5",
-                link: "https://www.itemsatis.com/steam/forza-horizon-5-5750166.html",
-                image: "https://images.alphacoders.com/115/thumb-1920-1153337.png",
-                badge: "POPÜLER",
-                desc: "Meksika'nın eşsiz coğrafyasında en büyük Forza macerası. Kesintisiz yarış keyfi ve hızlı teslimat."
-            },
-            {
-                category: "steam",
-                name: "Cyberpunk 2077",
-                link: "https://www.itemsatis.com/steam/cyberpunk-2077-5137455.html",
-                image: "https://images.alphacoders.com/111/thumb-1920-1115865.jpg",
-                badge: "GÜNCEL SÜRÜM",
-                desc: "Night City'nin büyüleyici atmosferinde kendi efsaneni yarat. Türkçe dil destekli ve kesintisiz."
-            },
-            {
-                category: "steam",
-                name: "Call of Duty: Modern Warfare (2019)",
-                link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-2019-5137365.html",
-                image: "https://images.alphacoders.com/101/thumb-1920-1018260.jpg",
-                badge: "AKSİYON",
-                desc: "Kaptan Price ile efsanevi hikaye moduna adım atın. En yüksek grafik ve aksiyon dolu operasyonlar."
-            },
-            {
-                category: "steam",
-                name: "Call of Duty: Modern Warfare II",
-                link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-ii-5137068.html",
-                image: "https://images.alphacoders.com/123/thumb-1920-1237937.jpg",
-                badge: "YENİ NESİL",
-                desc: "Task Force 141 geri dönüyor! Yüksek FPS optimizasyonlu, kaliteli hikaye modu Steam erişimi."
+                id: 'its-1',
+                category: 'itemsatis',
+                title: 'İtemSatış Otomatik Teslimat Kodu',
+                desc: 'İtemSatış bakiyenizle anında çekilebilir kod veya doğrudan yükleme.',
+                price: 50.00,
+                oldPrice: 60.00,
+                rating: 5,
+                badge: 'Güvenli',
+                icon: 'fa-shield-halved',
+                iconColor: 'from-emerald-500 to-teal-600',
+                targetLabel: 'İtemSatış Kullanıcı Adı veya Sipariş No'
             }
         ];
 
-        // İLANLARI EKRANA RENDER ETME FONKSİYONU
-        const productGrid = document.getElementById('productGrid');
+        // Global State variables
+        let cart = [];
+        let currentSelectedProduct = null;
+        let appliedDiscount = 0;
 
-        function renderProducts(products) {
-            productGrid.innerHTML = '';
-            products.forEach(item => {
-                const cardHTML = `
-                    <div class="card" data-category="${item.category}">
-                        <span class="card-badge">${item.badge}</span>
-                        <div class="card-img-wrapper">
-                            <img src="${item.image}" alt="${item.name}">
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">${item.name}</div>
-                            <div class="card-desc">${item.desc}</div>
-                            <div class="card-footer">
-                                <a href="${item.link}" target="_blank" class="btn-direct-buy">
-                                    <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
-                                </a>
+        // Render Products Grid
+        function renderProducts(items) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            if(items.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500">Aramanıza uygun ürün bulunamadı.</div>`;
+                return;
+            }
+
+            items.forEach(prod => {
+                const card = document.createElement('div');
+                card.className = 'glass-panel rounded-2xl p-5 flex flex-col justify-between hover:scale-[1.02] transition-all group relative overflow-hidden';
+                card.innerHTML = `
+                    <div>
+                        <!-- Top Header -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br ${prod.iconColor} flex items-center justify-center text-white text-xl shadow-lg">
+                                <i class="fa-solid ${prod.icon}"></i>
                             </div>
+                            <span class="bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan font-bold text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider">
+                                ${prod.badge}
+                            </span>
+                        </div>
+
+                        <!-- Title & Desc -->
+                        <h3 class="text-white font-bold text-base group-hover:text-brand-cyan transition-colors mb-1.5">${prod.title}</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-4">${prod.desc}</p>
+                    </div>
+
+                    <div>
+                        <!-- Rating -->
+                        <div class="flex items-center gap-1 text-yellow-400 text-xs mb-3">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="font-bold text-gray-200 ml-1">${prod.rating}</span>
+                            <span class="text-gray-500 text-[10px]">(50+ Değerlendirme)</span>
+                        </div>
+
+                        <!-- Price & Action -->
+                        <div class="flex items-center justify-between pt-3 border-t border-brand-border/40">
+                            <div>
+                                <span class="text-gray-500 line-through text-xs block">${prod.oldPrice.toFixed(2)} TL</span>
+                                <span class="text-lg font-black text-brand-cyan">${prod.price.toFixed(2)} TL</span>
+                            </div>
+                            <button onclick="openCheckoutModal('${prod.id}')" class="btn-glow px-4 py-2 rounded-xl text-xs font-extrabold text-black flex items-center gap-1.5">
+                                <span>Satın Al</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
                         </div>
                     </div>
                 `;
-                productGrid.insertAdjacentHTML('beforeend', cardHTML);
+                grid.appendChild(card);
             });
         }
 
-        // Sayfa Yüklendiğinde Tüm İlanları Yükle
-        renderProducts(allProducts);
-
-        // CANLI ARAMA FİLTRESİ
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
-            const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-filter');
-
-            const filtered = allProducts.filter(item => {
-                const matchesCategory = (activeTab === 'all' || item.category === activeTab);
-                const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
-                return matchesCategory && matchesQuery;
+        // Category Filter Logic
+        function filterCategory(cat) {
+            // Update Active Tab Button
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('border-brand-cyan', 'bg-brand-cyan/20', 'text-white');
+                btn.classList.add('text-gray-300');
             });
+            event.currentTarget.classList.add('border-brand-cyan', 'bg-brand-cyan/20', 'text-white');
 
-            renderProducts(filtered);
-        });
-
-        // KATEGORİ SEKMELERİ
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filter = btn.getAttribute('data-filter');
-                const query = searchInput.value.toLowerCase().trim();
-
-                const filtered = allProducts.filter(item => {
-                    const matchesCategory = (filter === 'all' || item.category === filter);
-                    const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
-                    return matchesCategory && matchesQuery;
-                });
-
+            if(cat === 'all') {
+                renderProducts(productsData);
+            } else {
+                const filtered = productsData.filter(p => p.category === cat);
                 renderProducts(filtered);
+            }
+        }
+
+        // Search Filter Logic
+        function filterProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = productsData.filter(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.desc.toLowerCase().includes(query) ||
+                p.category.toLowerCase().includes(query)
+            );
+            renderProducts(filtered);
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Modal Controls
+        function openCheckoutModal(productId) {
+            currentSelectedProduct = productsData.find(p => p.id === productId);
+            if(!currentSelectedProduct) return;
+
+            document.getElementById('modalProductTitle').innerText = currentSelectedProduct.title;
+            document.getElementById('modalProductPrice').innerText = `${currentSelectedProduct.price.toFixed(2)} TL`;
+            document.getElementById('finalPriceText').innerText = `${currentSelectedProduct.price.toFixed(2)} TL`;
+            document.getElementById('targetInputLabel').innerText = currentSelectedProduct.targetLabel;
+            document.getElementById('couponMsg').classList.add('hidden');
+            document.getElementById('couponInput').value = '';
+            appliedDiscount = 0;
+
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        // Coupon Application
+        function applyCoupon() {
+            const code = document.getElementById('couponInput').value.trim().toUpperCase();
+            const msg = document.getElementById('couponMsg');
+
+            if(code === 'ORDUNUZ10') {
+                appliedDiscount = 0.10; // 10%
+                const discountedPrice = currentSelectedProduct.price * 0.9;
+                document.getElementById('finalPriceText').innerText = `${discountedPrice.toFixed(2)} TL (%10 İndirim Uygulandı)`;
+                msg.innerText = '✅ ORDUNUZ10 kuponu başarıyla uygulandı (%10 İndirim)!';
+                msg.className = 'text-[11px] mt-1 block text-emerald-400 font-bold';
+            } else {
+                msg.innerText = '❌ Geçersiz veya süresi dolmuş kupon koda.';
+                msg.className = 'text-[11px] mt-1 block text-red-400 font-bold';
+            }
+        }
+
+        // Order Process Simulation
+        function processOrder(e) {
+            e.preventDefault();
+            const target = document.getElementById('targetInput').value;
+            
+            // Add to Cart / Complete
+            cart.push({
+                product: currentSelectedProduct,
+                target: target,
+                finalPrice: currentSelectedProduct.price * (1 - appliedDiscount)
             });
-        });
+
+            updateCartUI();
+            closeCheckoutModal();
+
+            // Success Message
+            showNotification('🚀 Siparişiniz Alındı!', `${currentSelectedProduct.title} siparişiniz otomasyona iletildi. Teşekkür ederiz!`);
+        }
+
+        // Cart UI Functions
+        function toggleCartModal() {
+            document.getElementById('cartModal').classList.toggle('hidden');
+        }
+
+        function updateCartUI() {
+            document.getElementById('cartCount').innerText = cart.length;
+            const cartList = document.getElementById('cartItemsList');
+            
+            if(cart.length === 0) {
+                cartList.innerHTML = `<p class="text-gray-500 text-xs text-center py-8">Sepetinizde henüz ürün bulunmuyor.</p>`;
+                document.getElementById('cartTotalText').innerText = '0.00 TL';
+                return;
+            }
+
+            cartList.innerHTML = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.finalPrice;
+                const div = document.createElement('div');
+                div.className = 'glass-panel p-3 rounded-xl flex items-center justify-between text-xs';
+                div.innerHTML = `
+                    <div>
+                        <h5 class="text-white font-bold">${item.product.title}</h5>
+                        <span class="text-gray-400 text-[10px]">Hedef: ${item.target}</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-brand-cyan font-bold block">${item.finalPrice.toFixed(2)} TL</span>
+                        <button onclick="removeFromCart(${index})" class="text-red-400 text-[10px] hover:underline">Kaldır</button>
+                    </div>
+                `;
+                cartList.appendChild(div);
+            });
+
+            document.getElementById('cartTotalText').innerText = `${total.toFixed(2)} TL`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkoutCart() {
+            if(cart.length === 0) return;
+            alert('Siparişleriniz başarıyla işleme alındı!');
+            cart = [];
+            updateCartUI();
+            toggleCartModal();
+        }
+
+        // Custom Notification Box
+        function showNotification(title, message) {
+            const notif = document.createElement('div');
+            notif.className = 'fixed top-24 right-6 z-50 glass-panel border border-brand-cyan p-4 rounded-2xl shadow-2xl text-xs max-w-sm toast-enter';
+            notif.innerHTML = `
+                <div class="flex items-start gap-3">
+                    <i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+                    <div>
+                        <h4 class="text-white font-bold">${title}</h4>
+                        <p class="text-gray-300 mt-1">${message}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(notif);
+
+            setTimeout(() => {
+                notif.classList.remove('toast-enter');
+                notif.classList.add('toast-exit');
+                setTimeout(() => notif.remove(), 400);
+            }, 4000);
+        }
+
+        // Floating Live Recent Purchase Ticker Generator
+        const fakeUsers = ['Ahmet K.', 'Mert T.', 'Emre Y.', 'Caner S.', 'Burak D.', 'Ege M.', 'Selin A.'];
+        const fakeProducts = [
+            '10.000 TikTok İzlenme',
+            'Discord 14x Boost (3 Ay)',
+            '1.000 TikTok Takipçi',
+            '5.000 Instagram Takipçi',
+            'YouTube 1.000 Abone'
+        ];
+
+        function triggerLiveToast() {
+            const toast = document.getElementById('livePurchaseToast');
+            const randomUser = fakeUsers[Math.floor(Math.random() * fakeUsers.length)];
+            const randomProd = fakeProducts[Math.floor(Math.random() * fakeProducts.length)];
+
+            document.getElementById('toastUserName').innerText = randomUser;
+            document.getElementById('toastProductName').innerText = `${randomProd} satın aldı`;
+
+            toast.classList.remove('hidden');
+            toast.classList.add('toast-enter');
+
+            setTimeout(() => {
+                toast.classList.remove('toast-enter');
+                toast.classList.add('toast-exit');
+                setTimeout(() => toast.classList.add('hidden'), 400);
+            }, 4500);
+        }
+
+        // Initialize Application
+        window.onload = function() {
+            renderProducts(productsData);
+
+            // Interval for dynamic sale toasts
+            setInterval(() => {
+                if(Math.random() > 0.3) {
+                    triggerLiveToast();
+                }
+            }, 8000);
+        };
     </script>
 </body>
 </html>
