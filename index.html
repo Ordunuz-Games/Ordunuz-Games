@@ -306,7 +306,7 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(0, 210, 255, 0.2);
+            background: rgba(0, 210, 255, 0.25);
             border: 1px solid var(--primary-blue);
             color: #fff;
             font-size: 0.7rem;
@@ -319,7 +319,7 @@
         }
 
         .card-img-wrapper {
-            height: 180px;
+            height: 200px;
             width: 100%;
             position: relative;
             overflow: hidden;
@@ -327,18 +327,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
         }
 
         .card-img-wrapper img {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
 
+        .card-img-wrapper.contain-img img {
+            object-fit: contain;
+            padding: 20px;
+        }
+
         .card:hover .card-img-wrapper img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .card-body {
@@ -349,7 +353,7 @@
         }
 
         .card-title {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 8px;
             color: #fff;
@@ -593,12 +597,12 @@
     <div class="controls-wrapper" id="products">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Ürün veya hizmet ara... (örn: Car Parking, Boost, TikTok)">
+            <input type="text" id="searchInput" placeholder="Ürün veya oyun ara... (örn: Forza, Call of Duty, Cyberpunk, TikTok)">
         </div>
         <div class="filter-tabs">
             <button class="tab-btn active" data-filter="all">Tüm Ürünler</button>
+            <button class="tab-btn" data-filter="steam">Steam Oyunları</button>
             <button class="tab-btn" data-filter="cpm">Car Parking</button>
-            <button class="tab-btn" data-filter="steam">Steam Oyun</button>
             <button class="tab-btn" data-filter="discord">Discord</button>
             <button class="tab-btn" data-filter="social">Sosyal Medya</button>
         </div>
@@ -608,11 +612,13 @@
     <section class="products-section">
         <div class="grid" id="productGrid">
 
-            <!-- 1. Car Parking Card (Original Game Graphic) -->
+            <!-- Dinamik Steam Oyun Kartları JavaScript Tarafından Buraya Eklenecek -->
+
+            <!-- Car Parking Card -->
             <div class="card" data-category="cpm">
                 <span class="card-badge">ÖZEL STOK</span>
-                <div class="card-img-wrapper" style="padding: 0;">
-                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=500&q=80" alt="Car Parking Multiplayer" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80" alt="Car Parking Multiplayer">
                 </div>
                 <div class="card-body">
                     <div class="card-title">Car Parking Özel Araçlar</div>
@@ -625,27 +631,10 @@
                 </div>
             </div>
 
-            <!-- 2. Steam Card (Original Steam Logo) -->
-            <div class="card" data-category="steam">
-                <span class="card-badge">ÇOK SATAN</span>
-                <div class="card-img-wrapper">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam Original Logo">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Steam Paylaşımlı Oyun Hesapları</div>
-                    <div class="card-desc">En güncel AAA oyunlara offline modda anında erişin. Kesintisiz ve garantili oyun keyfi!</div>
-                    <div class="card-footer">
-                        <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-direct-buy">
-                            <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Discord Card (Original Discord Logo) -->
+            <!-- Discord Card -->
             <div class="card" data-category="discord">
                 <span class="card-badge">ANINDA TESLİM</span>
-                <div class="card-img-wrapper">
+                <div class="card-img-wrapper contain-img">
                     <img src="https://upload.wikimedia.org/wikipedia/fr/0/07/Discord_logo-2021.svg" alt="Discord Official Logo">
                 </div>
                 <div class="card-body">
@@ -659,10 +648,10 @@
                 </div>
             </div>
 
-            <!-- 4. TikTok Card (Original TikTok Logo) -->
+            <!-- TikTok Card -->
             <div class="card" data-category="social">
                 <span class="card-badge">POPÜLER</span>
-                <div class="card-img-wrapper">
+                <div class="card-img-wrapper contain-img">
                     <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok Official Logo">
                 </div>
                 <div class="card-body">
@@ -676,10 +665,10 @@
                 </div>
             </div>
 
-            <!-- 5. Instagram Card (Original Instagram Logo) -->
+            <!-- Instagram Card -->
             <div class="card" data-category="social">
                 <span class="card-badge">SMM PANEL</span>
-                <div class="card-img-wrapper">
+                <div class="card-img-wrapper contain-img">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram Official Logo">
                 </div>
                 <div class="card-body">
@@ -782,6 +771,76 @@
 
     <!-- JavaScript Interactivity -->
     <script>
+        // STEAM OYUNLARI LİSTESİ (Tüm kapak fotoğrafları ve İtemSatış ilan linkleri eklendi)
+        const steamGames = [
+            {
+                name: "The Last of Us Part II Remastered",
+                link: "https://www.itemsatis.com/steam/the-last-of-us-part-2-remastered-5759383.html",
+                image: "https://images.alphacoders.com/135/thumb-1920-1351187.jpeg",
+                badge: "EFSANE OYUN",
+                desc: "Ellie ve Abby'nin unutulmaz hikayesi. Yüksek grafik kalitesi ve Türkçe altyazı desteğiyle Steam garantili erişim."
+            },
+            {
+                name: "Forza Horizon 4",
+                link: "https://www.itemsatis.com/steam/forza-horizon-4-5750195.html",
+                image: "https://images.alphacoders.com/925/thumb-1920-925828.jpg",
+                badge: "ÇOK SATAN",
+                desc: "Büyük Britanya'nın muhteşem açık dünyasında efsanevi yarış deneyimi. Yüzlerce araç seçeneğiyle."
+            },
+            {
+                name: "Forza Horizon 5",
+                link: "https://www.itemsatis.com/steam/forza-horizon-5-5750166.html",
+                image: "https://images.alphacoders.com/115/thumb-1920-1153337.png",
+                badge: "POPÜLER",
+                desc: "Meksika'nın eşsiz coğrafyasında en büyük Forza macerası. Kesintisiz yarış keyfi ve hızlı teslimat."
+            },
+            {
+                name: "Cyberpunk 2077",
+                link: "https://www.itemsatis.com/steam/cyberpunk-2077-5137455.html",
+                image: "https://images.alphacoders.com/111/thumb-1920-1115865.jpg",
+                badge: "GÜNCEL SÜRÜM",
+                desc: "Night City'nin büyüleyici atmosferinde kendi efsaneni yarat. Türkçe dil destekli ve kesintisiz."
+            },
+            {
+                name: "Call of Duty: Modern Warfare (2019)",
+                link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-2019-5137365.html",
+                image: "https://images.alphacoders.com/101/thumb-1920-1018260.jpg",
+                badge: "AKSİYON",
+                desc: "Kaptan Price ile efsanevi hikaye moduna adım atın. En yüksek grafik ve aksiyon dolu operasyonlar."
+            },
+            {
+                name: "Call of Duty: Modern Warfare II",
+                link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-ii-5137068.html",
+                image: "https://images.alphacoders.com/123/thumb-1920-1237937.jpg",
+                badge: "YENİ NESİL",
+                desc: "Task Force 141 geri dönüyor! Yüksek FPS optimizasyonlu, kaliteli hikaye modu Steam erişimi."
+            }
+        ];
+
+        // Steam Oyun Kartlarını Grid'e Dinamik Ekleme
+        const productGrid = document.getElementById('productGrid');
+
+        steamGames.forEach(game => {
+            const cardHTML = `
+                <div class="card" data-category="steam">
+                    <span class="card-badge">${game.badge || 'STEAM OYUN'}</span>
+                    <div class="card-img-wrapper">
+                        <img src="${game.image}" alt="${game.name}">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title">${game.name}</div>
+                        <div class="card-desc">${game.desc}</div>
+                        <div class="card-footer">
+                            <a href="${game.link}" target="_blank" class="btn-direct-buy">
+                                <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            productGrid.insertAdjacentHTML('afterbegin', cardHTML);
+        });
+
         // Countdown Timer Script
         function startCountdown() {
             let totalSeconds = 15155;
@@ -801,11 +860,12 @@
 
         // Live Search Filter
         const searchInput = document.getElementById('searchInput');
-        const cards = document.querySelectorAll('.card');
 
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
-            cards.forEach(card => {
+            const allCards = document.querySelectorAll('.card');
+            
+            allCards.forEach(card => {
                 const title = card.querySelector('.card-title').innerText.toLowerCase();
                 const desc = card.querySelector('.card-desc').innerText.toLowerCase();
                 if (title.includes(query) || desc.includes(query)) {
@@ -824,7 +884,9 @@
                 btn.classList.add('active');
 
                 const filter = btn.getAttribute('data-filter');
-                cards.forEach(card => {
+                const allCards = document.querySelectorAll('.card');
+
+                allCards.forEach(card => {
                     const category = card.getAttribute('data-category');
                     if (filter === 'all' || category === filter) {
                         card.style.display = 'flex';
