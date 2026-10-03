@@ -9,307 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Discord Yüzen Widget */
-.discord-widget {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #5865F2 0%, #00d2ff 100%);
-  color: #ffffff !important;
-  padding: 12px 20px;
-  border-radius: 50px;
-  text-decoration: none !important;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.discord-widget i {
-  font-size: 22px;
-}
-
-.discord-widget:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 0 30px rgba(0, 210, 255, 0.8);
-  background: linear-gradient(135deg, #00d2ff 0%, #5865F2 100%);
-}
-
-/* Mobilde Sadece İkon Göster */
-@media (max-width: 768px) {
-  .discord-text {
-    display: none;
-  }
-  .discord-widget {
-    padding: 14px;
-    border-radius: 50%;
-    bottom: 15px;
-    right: 15px;
-  }
-}
-        /* Logo Fare Hareket Efekti */
-.hero-image-wrapper img, 
-.hero-avatar img {
-  transition: transform 0.1s ease-out, filter 0.1s ease-out;
-  will-change: transform;
-  transform-style: preserve-3d;
-}
         /* ============================================================
-   ORDUNUZ.GAMES - MAVİ / BEYAZ NEON TEMA OVERRIDE (EKSİKSİZ)
-   ============================================================ */
+           ORDUNUZ.GAMES - MAVİ / BEYAZ NEON TEMA OVERRIDE
+           ============================================================ */
 
-/* 1. Tüm CSS Değişkenlerini Maviya Çevir */
-:root {
-  --primary-color: #00d2ff !important;
-  --primary: #00d2ff !important;
-  --primary-hover: #0088ff !important;
-  --accent-color: #ffffff !important;
-  --bg-dark: #070a12 !important;
-  --card-bg: rgba(15, 23, 42, 0.7) !important;
-  --glow-color: rgba(0, 210, 255, 0.4) !important;
-  --red: #00d2ff !important;
-  --red-glow: rgba(0, 210, 255, 0.4) !important;
-}
-
-/* 2. Arka Plan Kırmızı Işıklarını Mavi Yap */
-body::before, 
-.hero::before, 
-.hero-glow {
-  background: 
-    radial-gradient(circle at 15% 20%, rgba(0, 210, 255, 0.25) 0%, transparent 40%),
-    radial-gradient(circle at 85% 60%, rgba(0, 100, 255, 0.2) 0%, transparent 40%) !important;
-}
-
-/* 3. Logo Yazısındaki (ORDUNUZ) Kırmızı Alanı Mavi Yap */
-.logo, 
-.logo span, 
-.logo-text span, 
-header .logo,
-header .logo span {
-  color: #00d2ff !important;
-  text-shadow: 0 0 15px rgba(0, 210, 255, 0.5) !important;
-}
-
-/* 4. Sağ Üstteki Giriş Yap Butonu ve Tüm Butonlar */
-.btn-primary, 
-.nav-btn, 
-.login-btn, 
-header .btn, 
-header a[href*="login"],
-button, 
-a.btn {
-  background: linear-gradient(135deg, #00d2ff 0%, #0066ff 100%) !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.5) !important;
-  border: none !important;
-}
-
-.btn-primary:hover, 
-.nav-btn:hover, 
-button:hover {
-  background: linear-gradient(135deg, #0066ff 0%, #00d2ff 100%) !important;
-  box-shadow: 0 0 30px rgba(0, 210, 255, 0.8) !important;
-}
-
-/* 5. Kartların İçindeki Kırmızı İkon Kutuları (Nasıl Çalışır / Özellikler) */
-.step-icon, 
-.feature-icon, 
-.icon-box, 
-.card-icon,
-.step-card .icon,
-div[class*="icon"] {
-  background: rgba(0, 210, 255, 0.12) !important;
-  color: #00d2ff !important;
-  border: 1px solid rgba(0, 210, 255, 0.3) !important;
-  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2) !important;
-}
-
-.step-icon i, 
-.feature-icon i, 
-.icon-box i,
-.card-icon i,
-svg {
-  color: #00d2ff !important;
-  fill: #00d2ff !important;
-}
-
-/* 6. Rozetler, İstatistikler ve Kırmızı Metinler */
-.badge, 
-.badge-dot, 
-.stat-number, 
-.section-subtitle, 
-h1 span, h2 span, h3 span {
-  color: #00d2ff !important;
-}
-
-.badge-dot {
-  background-color: #00d2ff !important;
-  box-shadow: 0 0 10px #00d2ff !important;
-}
-
-.badge {
-  background: rgba(0, 210, 255, 0.1) !important;
-  border: 1px solid rgba(0, 210, 255, 0.3) !important;
-}
-
-/* 7. Alt Bilgi (Footer) Kırmızı Link ve Yazıları */
-footer a, 
-.footer-link, 
-footer span,
-footer a[href*="itemsatis"] {
-  color: #00d2ff !important;
-  text-shadow: 0 0 8px rgba(0, 210, 255, 0.4) !important;
-}
-        /* Logo Yazısındaki Kırmızı Alan */
-.logo span, 
-.logo-text span, 
-header .logo {
-  color: #00d2ff !important;
-}
-
-/* Sağ Üstteki Giriş Yap / Nav Butonu */
-.nav-btn, 
-header .btn, 
-header a[href*="login"],
-.login-btn {
-  background: linear-gradient(135deg, #00d2ff 0%, #0066ff 100%) !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 15px rgba(0, 210, 255, 0.5) !important;
-  border: none !important;
-}
-
-/* Kartların İçindeki Kırmızı İkon Kutuları */
-.step-icon, 
-.feature-icon, 
-.icon-box, 
-.card-icon {
-  background: rgba(0, 210, 255, 0.15) !important;
-  color: #00d2ff !important;
-  border: 1px solid rgba(0, 210, 255, 0.3) !important;
-}
-
-.step-icon i, 
-.feature-icon i, 
-.icon-box i {
-  color: #00d2ff !important;
-}
-
-/* Sayfa Altındaki (Footer) Kırmızı Link */
-footer a, 
-.footer-link, 
-footer span {
-  color: #00d2ff !important;
-}
-        /* Mavi-Beyaz Tüm Site Teması */
-:root {
-  --primary-color: #00d2ff !important;
-  --primary-hover: #0099ff !important;
-  --accent-color: #ffffff !important;
-  --bg-dark: #070a12 !important;
-  --glow-color: rgba(0, 210, 255, 0.4) !important;
-}
-
-/* Arka Plan Kırmızı Işıkları Mavi Yap */
-body::before {
-  background: 
-    radial-gradient(circle at 15% 20%, rgba(0, 180, 255, 0.25) 0%, transparent 40%),
-    radial-gradient(circle at 85% 60%, rgba(0, 120, 255, 0.2) 0%, transparent 40%) !important;
-}
-
-/* Sitedeki Tüm Kırmızı Yazıları Mavi-Beyaz Yap */
-.logo-highlight, 
-.badge, 
-.badge-dot, 
-.stat-number, 
-.section-subtitle, 
-.feature-icon,
-h1 span, h2 span, h3 span {
-  color: #00d2ff !important;
-  background-color: transparent;
-}
-
-.badge-dot {
-  background-color: #00d2ff !important;
-  box-shadow: 0 0 10px #00d2ff !important;
-}
-
-.badge {
-  background: rgba(0, 210, 255, 0.1) !important;
-  border: 1px solid rgba(0, 210, 255, 0.3) !important;
-  color: #00d2ff !important;
-}
-
-/* Tüm Butonlar (Giriş Yap, Oyunlara Göz At vs.) */
-.btn-primary, 
-button, 
-.nav-btn, 
-a.btn-primary {
-  background: linear-gradient(135deg, #00d2ff 0%, #0066ff 100%) !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4) !important;
-  border: none !important;
-}
-
-.btn-primary:hover, 
-button:hover {
-  background: linear-gradient(135deg, #0066ff 0%, #00d2ff 100%) !important;
-  box-shadow: 0 6px 25px rgba(0, 210, 255, 0.7) !important;
-}
-
-/* İkincil Butonlar */
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.05) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(0, 210, 255, 0.5) !important;
-}
-
-.btn-secondary:hover {
-  border-color: #ffffff !important;
-  background: rgba(0, 210, 255, 0.2) !important;
-}
-
-/* Kartların Mavi Parıldaması */
-.hero-glow {
-  background: radial-gradient(circle, rgba(0, 210, 255, 0.3) 0%, transparent 70%) !important;
-}
         :root {
-  --primary-color: #00d2ff;
-  --primary-hover: #0099ff;
-  --accent-color: #ffffff;
-  --bg-dark: #0a0e17;
-  --card-bg: rgba(15, 23, 42, 0.7);
-  --text-main: #ffffff;
-  --text-muted: #94a3b8;
-  --glow-color: rgba(0, 210, 255, 0.4);
-}
+            --primary-color: #00d2ff !important;
+            --primary: #00d2ff !important;
+            --primary-hover: #0088ff !important;
+            --accent-color: #ffffff !important;
+            --bg-dark: #070a12 !important;
+            --card-bg: rgba(15, 23, 42, 0.7) !important;
+            --glow-color: rgba(0, 210, 255, 0.4) !important;
+        }
 
-.btn-primary {
-  background: linear-gradient(135deg, #00d2ff 0%, #0072ff 100%) !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4) !important;
-  border: none !important;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #0072ff 0%, #00d2ff 100%) !important;
-  box-shadow: 0 6px 25px rgba(0, 210, 255, 0.6) !important;
-}
-
-.btn-secondary {
-  background: rgba(255, 255, 255, 0.05) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(0, 210, 255, 0.5) !important;
-}
-
-.btn-secondary:hover {
-  border-color: #ffffff !important;
-  background: rgba(0, 210, 255, 0.15) !important;
-}
         * {
             margin: 0;
             padding: 0;
@@ -318,14 +31,14 @@ button:hover {
         }
 
         body {
-            background-color: #0d060a;
+            background-color: #070a12;
             color: #ffffff;
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
         }
 
-        /* Ambient Glow & Star Background */
+        /* Ambient Glow Background */
         body::before {
             content: '';
             position: fixed;
@@ -334,14 +47,12 @@ button:hover {
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 15% 20%, rgba(229, 9, 20, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 85% 60%, rgba(229, 9, 20, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 50% 90%, rgba(180, 0, 15, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 15% 20%, rgba(0, 210, 255, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 85% 60%, rgba(0, 100, 255, 0.2) 0%, transparent 40%);
             z-index: -2;
             pointer-events: none;
         }
 
-        /* Stars Canvas Effect via CSS Pattern */
         .stars-bg {
             position: fixed;
             top: 0;
@@ -350,11 +61,11 @@ button:hover {
             height: 100%;
             background-image: 
                 radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.8), rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.5), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, rgba(0, 210, 255, 0.6), rgba(0,0,0,0)),
                 radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.9), rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 160px 120px, rgba(255, 255, 255, 0.6), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, rgba(0, 210, 255, 0.7), rgba(0,0,0,0)),
                 radial-gradient(1.5px 1.5px at 230px 190px, rgba(255, 255, 255, 0.7), rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 300px 80px, rgba(255, 255, 255, 0.4), rgba(0,0,0,0));
+                radial-gradient(2px 2px at 300px 80px, rgba(0, 180, 255, 0.5), rgba(0,0,0,0));
             background-repeat: repeat;
             background-size: 350px 350px;
             opacity: 0.6;
@@ -362,7 +73,7 @@ button:hover {
             pointer-events: none;
         }
 
-        /* Header / Navbar */
+        /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -384,7 +95,8 @@ button:hover {
         }
 
         .logo span {
-            color: #e50914;
+            color: #00d2ff !important;
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.5) !important;
         }
 
         nav {
@@ -402,28 +114,49 @@ button:hover {
         }
 
         nav a:hover {
-            color: #ffffff;
+            color: #00d2ff;
         }
 
-        .btn-header {
-            background-color: #e50914;
-            color: #ffffff;
-            padding: 10px 24px;
-            border-radius: 8px;
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #00d2ff 0%, #0066ff 100%) !important;
+            color: #ffffff !important;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4) !important;
+            border: none !important;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #0066ff 0%, #00d2ff 100%) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 210, 255, 0.7) !important;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(0, 210, 255, 0.5) !important;
+            color: #ffffff !important;
+            padding: 14px 28px;
+            border-radius: 10px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(229, 9, 20, 0.4);
         }
 
-        .btn-header:hover {
-            background-color: #f40612;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(229, 9, 20, 0.6);
+        .btn-secondary:hover {
+            background: rgba(0, 210, 255, 0.2) !important;
+            border-color: #ffffff !important;
         }
 
-        /* Container */
         .container {
             max-width: 1300px;
             margin: 0 auto;
@@ -448,9 +181,9 @@ button:hover {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(229, 9, 20, 0.12);
-            border: 1px solid rgba(229, 9, 20, 0.3);
-            color: #ff4d4d;
+            background: rgba(0, 210, 255, 0.1) !important;
+            border: 1px solid rgba(0, 210, 255, 0.3) !important;
+            color: #00d2ff !important;
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 13px;
@@ -461,9 +194,9 @@ button:hover {
         .badge-dot {
             width: 8px;
             height: 8px;
-            background-color: #e50914;
+            background-color: #00d2ff !important;
             border-radius: 50%;
-            box-shadow: 0 0 8px #e50914;
+            box-shadow: 0 0 10px #00d2ff !important;
         }
 
         .hero-title {
@@ -489,88 +222,61 @@ button:hover {
             flex-wrap: wrap;
         }
 
-        .btn-primary {
-            background-color: #e50914;
-            color: #ffffff;
-            padding: 14px 32px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 25px rgba(229, 9, 20, 0.45);
-        }
-
-        .btn-primary:hover {
-            background-color: #ff0f1b;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.65);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #ffffff;
-            padding: 14px 28px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 15px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.25);
-        }
-
+        /* 3D Interactive Logo Wrapper */
         .hero-image-wrapper {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
+            perspective: 1000px;
         }
 
         .hero-glow {
             position: absolute;
-            width: 320px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(229, 9, 20, 0.5) 0%, rgba(0, 0, 0, 0) 70%);
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.4) 0%, transparent 70%);
             border-radius: 50%;
             z-index: 1;
-            filter: blur(20px);
+            filter: blur(25px);
+            pointer-events: none;
         }
 
         .hero-avatar {
             width: 360px;
             height: 360px;
             border-radius: 50%;
-            object-fit: cover;
             position: relative;
             z-index: 2;
-            border: 2px solid rgba(229, 9, 20, 0.4);
-            box-shadow: 0 0 50px rgba(229, 9, 20, 0.3);
-            background-color: #1a0b12;
+            border: 2px solid rgba(0, 210, 255, 0.4);
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.3);
+            background: rgba(7, 10, 18, 0.9);
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
 
-        .hero-avatar img {
+        .hero-avatar:hover {
+            box-shadow: 0 0 60px rgba(0, 210, 255, 0.6);
+        }
+
+        .hero-avatar svg {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
+            filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.5));
+            pointer-events: none;
         }
 
         /* Stats Section */
         .stats-bar {
-            background: rgba(20, 12, 16, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(0, 210, 255, 0.2);
             backdrop-filter: blur(12px);
             border-radius: 16px;
             padding: 24px 40px;
@@ -591,8 +297,9 @@ button:hover {
         .stat-number {
             font-size: 28px;
             font-weight: 800;
-            color: #e50914;
+            color: #00d2ff !important;
             margin-bottom: 4px;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
         }
 
         .stat-label {
@@ -601,14 +308,14 @@ button:hover {
             font-weight: 500;
         }
 
-        /* How it works Section */
+        /* How it works */
         .section-title-wrap {
             text-align: center;
             margin-bottom: 50px;
         }
 
         .section-subtitle {
-            color: #e50914;
+            color: #00d2ff !important;
             font-size: 13px;
             font-weight: 700;
             letter-spacing: 2px;
@@ -635,7 +342,7 @@ button:hover {
         }
 
         .feature-card {
-            background: rgba(22, 13, 18, 0.6);
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 16px;
             padding: 32px 28px;
@@ -651,16 +358,16 @@ button:hover {
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.5), transparent);
+            background: linear-gradient(90deg, transparent, #00d2ff, transparent);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(229, 9, 20, 0.3);
-            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.15);
-            background: rgba(28, 16, 23, 0.8);
+            border-color: rgba(0, 210, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
+            background: rgba(15, 23, 42, 0.85);
         }
 
         .feature-card:hover::before {
@@ -670,14 +377,16 @@ button:hover {
         .icon-box {
             width: 48px;
             height: 48px;
-            background: rgba(229, 9, 20, 0.12);
+            background: rgba(0, 210, 255, 0.12) !important;
+            border: 1px solid rgba(0, 210, 255, 0.3) !important;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #e50914;
+            color: #00d2ff !important;
             font-size: 20px;
             margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
         }
 
         .feature-title {
@@ -703,8 +412,40 @@ button:hover {
         }
 
         footer a {
-            color: #e50914;
+            color: #00d2ff !important;
             text-decoration: none;
+            text-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+        }
+
+        /* Discord Floating Widget */
+        .discord-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #5865F2 0%, #00d2ff 100%);
+            color: #ffffff !important;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none !important;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .discord-widget i {
+            font-size: 22px;
+        }
+
+        .discord-widget:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.8);
+            background: linear-gradient(135deg, #00d2ff 0%, #5865F2 100%);
         }
 
         /* Responsive */
@@ -724,6 +465,18 @@ button:hover {
             }
         }
 
+        @media (max-width: 768px) {
+            .discord-text {
+                display: none;
+            }
+            .discord-widget {
+                padding: 14px;
+                border-radius: 50%;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
         @media (max-width: 600px) {
             .hero-title {
                 font-size: 38px;
@@ -733,6 +486,10 @@ button:hover {
             }
             nav {
                 display: none;
+            }
+            .hero-avatar {
+                width: 290px;
+                height: 290px;
             }
         }
     </style>
@@ -751,7 +508,6 @@ button:hover {
             <a href="#nasil-calisir">Nasıl Çalışır?</a>
             <a href="#hakkimizda">Hakkımızda</a>
         </nav>
-        <!-- İtemSatış Mağaza Linkin -->
         <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary">Giriş Yap</a>
     </header>
 
@@ -768,19 +524,57 @@ button:hover {
                     En güncel oyunları cebin yanmadan oyna. Paylaşımlı hesap sistemi ve anında otomatik teslimat ile binlerce oyuna olduğundan çok daha uygun fiyatlarla erişin.
                 </p>
                 <div class="hero-buttons">
-                    <!-- İtemSatış Mağaza Linkin -->
                     <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary">
-                        Oyunlara Göz At <i class="fa-solid fa-chevron-right></i>
+                        Oyunlara Göz At <i class="fa-solid fa-chevron-right"></i>
                     </a>
-                    <a href="#nasil-calisir" class="btn-secondary"> </a>
                 </div>
             </div>
 
             <div class="hero-image-wrapper">
                 <div class="hero-glow"></div>
-                <div class="hero-avatar">
-                    <!-- Görsel: Uzay / Astronot Konsepti -->
-                    <img src="https://i.ibb.co/6c20v09y/abe.jpg" alt="Ordunuz Games Logo" style="max-width: 380px; width: 100%; height: auto; display: block; margin: 0 auto; filter: drop-shadow(0 0 25px rgba(0, 150, 255, 0.4));">
+                <div class="hero-avatar" id="tiltLogo">
+                    <!-- ORDUNUZ HESAP SATIŞ Vektörel Logo -->
+                    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="ringGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00d2ff" />
+                                <stop offset="50%" stop-color="#0066ff" />
+                                <stop offset="100%" stop-color="#002b80" />
+                            </linearGradient>
+                            <linearGradient id="textGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#ffffff" />
+                                <stop offset="40%" stop-color="#80e5ff" />
+                                <stop offset="100%" stop-color="#00a3e6" />
+                            </linearGradient>
+                            <linearGradient id="yellowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#fff159" />
+                                <stop offset="100%" stop-color="#ff9900" />
+                            </linearGradient>
+                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="8" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+                        <!-- Neon Ring Background -->
+                        <circle cx="250" cy="250" r="210" fill="none" stroke="url(#ringGlow)" stroke-width="12" filter="url(#glow)"/>
+                        <circle cx="250" cy="250" r="195" fill="none" stroke="#00d2ff" stroke-width="3" opacity="0.8"/>
+                        <circle cx="250" cy="250" r="180" fill="none" stroke="#0055ff" stroke-width="2" opacity="0.5"/>
+                        
+                        <!-- Stars in background of logo -->
+                        <circle cx="180" cy="120" r="2" fill="#fff" opacity="0.9"/>
+                        <circle cx="320" cy="140" r="3" fill="#00d2ff" opacity="0.8"/>
+                        <circle cx="130" cy="280" r="2" fill="#fff" opacity="0.7"/>
+                        <circle cx="370" cy="260" r="2.5" fill="#00d2ff" opacity="0.9"/>
+                        
+                        <!-- Main ORDUNUZ Text -->
+                        <g filter="url(#glow)">
+                            <text x="250" y="235" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="64" fill="url(#textGrad)" text-anchor="middle" stroke="#002b80" stroke-width="4" letter-spacing="2">ORDUNUZ</text>
+                        </g>
+
+                        <!-- HESAP SATIŞ Banner -->
+                        <path d="M 90 285 L 410 285 L 390 335 L 110 335 Z" fill="#001a4d" stroke="#00d2ff" stroke-width="3"/>
+                        <text x="250" y="322" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="34" fill="url(#yellowGrad)" text-anchor="middle" letter-spacing="3">HESAP SATIŞ.</text>
+                    </svg>
                 </div>
             </div>
         </section>
@@ -816,8 +610,8 @@ button:hover {
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="icon-box"><i class="fa-solid fa-gamepad"></i></div>
-                    <h3 class="feature-title">1. İstediğin oyununu Seç</h3>
-                    <p class="feature-text">Listemizdeki birçok oyun türü arasından istediğini seç .</p>
+                    <h3 class="feature-title">1. İstediğin oyunu Seç</h3>
+                    <p class="feature-text">Listemizdeki birçok oyun türü arasından istediğini seç.</p>
                 </div>
 
                 <div class="feature-card">
@@ -834,14 +628,14 @@ button:hover {
 
                 <div class="feature-card">
                     <div class="icon-box"><i class="fa-solid fa-percent"></i></div>
-                    <h3 class="feature-title">İndirim fırsatları</h3>
+                    <h3 class="feature-title">İndirim Fırsatları</h3>
                     <p class="feature-text">Steam fiyatının çok çok altında oyun sahibi olabilirsiniz. En yeni oyunlar burada son derece uygun fiyatlarla birlikte.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="icon-box"><i class="fa-solid fa-headset"></i></div>
                     <h3 class="feature-title">7/24 Destek</h3>
-                    <p class="feature-text">İtemSatış üzerinden bize ulaşın. Her zaman yardımınıza hazırız .</p>
+                    <p class="feature-text">İtemSatış üzerinden bize ulaşın. Her zaman yardımınıza hazırız.</p>
                 </div>
 
                 <div class="feature-card">
@@ -860,33 +654,39 @@ button:hover {
         </div>
     </footer>
 
-</body>
     <!-- Discord Yüzen Widget -->
-<a href="https://discord.gg/SfY7m6XXyg" target="_blank" class="discord-widget" title="Discord Sunucumuza Katılın">
-  <i class="fa-brands fa-discord"></i>
-  <span class="discord-text">Discord'a Katıl</span>
-</a>
+    <a href="https://discord.gg/SfY7m6XXyg" target="_blank" class="discord-widget" title="Discord Sunucumuza Katılın">
+        <i class="fa-brands fa-discord"></i>
+        <span class="discord-text">Discord'a Katıl</span>
+    </a>
+
+    <!-- 3D Mouse Parallax Script -->
     <script>
-  const logo = document.querySelector('.hero-image-wrapper img') || document.querySelector('.hero-avatar img') || document.querySelector('img[src*="logo"]');
-  
-  if (logo) {
-    document.addEventListener('mousemove', (e) => {
-      const { innerWidth, innerHeight } = window;
-      
-      const x = (e.clientX - innerWidth / 2) / (innerWidth / 2);
-      const y = (e.clientY - innerHeight / 2) / (innerHeight / 2);
-      
-      const tiltX = y * -15; 
-      const tiltY = x * 15;
-      const moveX = x * 20;
-      const moveY = y * 20;
+        const tiltCard = document.getElementById('tiltLogo');
 
-      logo.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translate3d(${moveX}px, ${moveY}px, 0)`;
-    });
+        document.addEventListener('mousemove', (e) => {
+            if (!tiltCard) return;
+            
+            const { innerWidth, innerHeight } = window;
+            
+            // Farenin ekrandaki konumunu -1 ile 1 arasında oranla
+            const x = (e.clientX - innerWidth / 2) / (innerWidth / 2);
+            const y = (e.clientY - innerHeight / 2) / (innerHeight / 2);
+            
+            // Derece cinsinden eğilme miktarı
+            const tiltX = y * -22; 
+            const tiltY = x * 22;
+            const moveX = x * 15;
+            const moveY = y * 15;
 
-    document.addEventListener('mouseleave', () => {
-      logo.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)';
-    });
-  }
-</script>
+            tiltCard.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translate3d(${moveX}px, ${moveY}px, 20px)`;
+        });
+
+        // Fare ekrandan çıktığında orijinal haline dönme
+        document.addEventListener('mouseleave', () => {
+            if (!tiltCard) return;
+            tiltCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)';
+        });
+    </script>
+</body>
 </html>
