@@ -10,12 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* ============================================================
-           ORDUNUZ.GAMES - MAVİ / BEYAZ NEON TEMA OVERRIDE
+           ORDUNUZ.GAMES - MAVİ / BEYAZ NEON TEMA & HOVER EFFECTS
            ============================================================ */
 
         :root {
             --primary-color: #00d2ff !important;
-            --primary: #00d2ff !important;
             --primary-hover: #0088ff !important;
             --accent-color: #ffffff !important;
             --bg-dark: #070a12 !important;
@@ -28,6 +27,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -92,6 +92,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.03);
         }
 
         .logo span {
@@ -110,14 +115,32 @@
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00d2ff;
+            box-shadow: 0 0 8px #00d2ff;
+            transition: width 0.3s ease;
         }
 
         nav a:hover {
             color: #00d2ff;
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
         }
 
-        /* Buttons */
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Buttons & Hover Effects */
         .btn-primary {
             background: linear-gradient(135deg, #00d2ff 0%, #0066ff 100%) !important;
             color: #ffffff !important;
@@ -129,32 +152,24 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4) !important;
             border: none !important;
+            cursor: pointer;
+        }
+
+        .btn-primary i {
+            transition: transform 0.3s ease;
         }
 
         .btn-primary:hover {
             background: linear-gradient(135deg, #0066ff 0%, #00d2ff 100%) !important;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0, 210, 255, 0.7) !important;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 210, 255, 0.8) !important;
         }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05) !important;
-            border: 1px solid rgba(0, 210, 255, 0.5) !important;
-            color: #ffffff !important;
-            padding: 14px 28px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 15px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(0, 210, 255, 0.2) !important;
-            border-color: #ffffff !important;
+        .btn-primary:hover i {
+            transform: translateX(5px);
         }
 
         .container {
@@ -189,6 +204,13 @@
             font-size: 13px;
             font-weight: 600;
             margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(0, 210, 255, 0.2) !important;
+            border-color: #00d2ff !important;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
         }
 
         .badge-dot {
@@ -215,13 +237,6 @@
             margin-bottom: 36px;
         }
 
-        .hero-buttons {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
         /* 3D Interactive Logo Wrapper */
         .hero-image-wrapper {
             flex: 1;
@@ -241,6 +256,7 @@
             z-index: 1;
             filter: blur(25px);
             pointer-events: none;
+            transition: all 0.3s ease;
         }
 
         .hero-avatar {
@@ -257,13 +273,14 @@
             align-items: center;
             padding: 15px;
             cursor: pointer;
-            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
             transform-style: preserve-3d;
             will-change: transform;
         }
 
         .hero-avatar:hover {
-            box-shadow: 0 0 60px rgba(0, 210, 255, 0.6);
+            border-color: #00d2ff;
+            box-shadow: 0 0 70px rgba(0, 210, 255, 0.7);
         }
 
         .hero-avatar svg {
@@ -273,7 +290,7 @@
             pointer-events: none;
         }
 
-        /* Stats Section */
+        /* Stats Bar Hover */
         .stats-bar {
             background: rgba(15, 23, 42, 0.7);
             border: 1px solid rgba(0, 210, 255, 0.2);
@@ -285,6 +302,12 @@
             gap: 20px;
             margin-bottom: 90px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stats-bar:hover {
+            border-color: rgba(0, 210, 255, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 210, 255, 0.2);
         }
 
         .stat-item {
@@ -292,6 +315,11 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
         }
 
         .stat-number {
@@ -308,7 +336,7 @@
             font-weight: 500;
         }
 
-        /* How it works */
+        /* Section Titles */
         .section-title-wrap {
             text-align: center;
             margin-bottom: 50px;
@@ -334,6 +362,111 @@
             font-size: 15px;
         }
 
+        /* ============================================================
+           ÜRÜN & HİZMET VİTRİNİ (PRODUCT CARDS WITH HOVER)
+           ============================================================ */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 100px;
+        }
+
+        .product-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #00d2ff;
+            box-shadow: 0 15px 35px rgba(0, 210, 255, 0.3);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .product-img-box {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .product-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            opacity: 0.85;
+        }
+
+        .product-card:hover .product-img-box img {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(7, 10, 18, 0.85);
+            border: 1px solid #00d2ff;
+            color: #00d2ff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .product-content {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+
+        .product-card:hover .product-title {
+            color: #00d2ff;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: #8f8f9d;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 15px;
+        }
+
+        .product-price {
+            font-size: 13px;
+            color: #00d2ff;
+            font-weight: 700;
+        }
+
+        /* Features Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -364,9 +497,9 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 210, 255, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.15);
+            transform: translateY(-6px);
+            border-color: rgba(0, 210, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
             background: rgba(15, 23, 42, 0.85);
         }
 
@@ -375,18 +508,26 @@
         }
 
         .icon-box {
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
             background: rgba(0, 210, 255, 0.12) !important;
             border: 1px solid rgba(0, 210, 255, 0.3) !important;
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #00d2ff !important;
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 20px;
             box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .icon-box {
+            background: #00d2ff !important;
+            color: #070a12 !important;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.8);
+            transform: rotate(5deg) scale(1.05);
         }
 
         .feature-title {
@@ -402,6 +543,64 @@
             line-height: 1.6;
         }
 
+        /* FAQ Accordion Section */
+        .faq-section {
+            margin-bottom: 100px;
+        }
+
+        .faq-item {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 210, 255, 0.4);
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #00d2ff;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #8f8f9d;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 0 24px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 150px;
+            padding: 0 24px 20px 24px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: #00d2ff;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -415,9 +614,14 @@
             color: #00d2ff !important;
             text-decoration: none;
             text-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+            transition: text-shadow 0.3s ease;
         }
 
-        /* Discord Floating Widget */
+        footer a:hover {
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.9);
+        }
+
+        /* Discord Floating Widget Hover */
         .discord-widget {
             position: fixed;
             bottom: 25px;
@@ -434,18 +638,23 @@
             font-weight: 600;
             font-size: 14px;
             box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .discord-widget i {
             font-size: 22px;
+            transition: transform 0.3s ease;
         }
 
         .discord-widget:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 210, 255, 0.8);
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 0 35px rgba(0, 210, 255, 0.9);
             background: linear-gradient(135deg, #00d2ff 0%, #5865F2 100%);
+        }
+
+        .discord-widget:hover i {
+            transform: rotate(-10deg) scale(1.1);
         }
 
         /* Responsive */
@@ -457,23 +666,8 @@
             .hero-content {
                 max-width: 100%;
             }
-            .hero-buttons {
-                justify-content: center;
-            }
             .features-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .discord-text {
-                display: none;
-            }
-            .discord-widget {
-                padding: 14px;
-                border-radius: 50%;
-                bottom: 15px;
-                right: 15px;
             }
         }
 
@@ -504,11 +698,13 @@
             <span>ORDUNUZ</span>.GAMES
         </a>
         <nav>
-            <a href="#oyunlar">Oyunlar</a>
+            <a href="#vitrin">Hizmetlerimiz</a>
             <a href="#nasil-calisir">Nasıl Çalışır?</a>
-            <a href="#hakkimizda">Hakkımızda</a>
+            <a href="#faq">S.S.S.</a>
         </nav>
-        <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary">Giriş Yap</a>
+        <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary">
+            İtemSatış Mağazası <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
     </header>
 
     <div class="container">
@@ -517,15 +713,15 @@
             <div class="hero-content">
                 <div class="badge">
                     <span class="badge-dot"></span>
-                    Steam Paylaşımlı Oyun & Hesap
+                    Steam Oyunları & Sosyal Medya Hizmetleri
                 </div>
                 <h1 class="hero-title">Yenilikçi Ve Güncel Oyun Sağlayıcısı</h1>
                 <p class="hero-description">
-                    En güncel oyunları cebin yanmadan oyna. Paylaşımlı hesap sistemi ve anında otomatik teslimat ile binlerce oyuna olduğundan çok daha uygun fiyatlarla erişin.
+                    En güncel oyunları cebin yanmadan oyna! Paylaşımlı hesap sistemleri, Sosyal Medya Hizmetleri ve Discord Sunucu Takviyeleri en uygun fiyatlarla ORDUNUZ'da.
                 </p>
-                <div class="hero-buttons">
+                <div>
                     <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary">
-                        Oyunlara Göz At <i class="fa-solid fa-chevron-right"></i>
+                        Tüm İlanları Gör <i class="fa-solid fa-chevron-right"></i>
                     </a>
                 </div>
             </div>
@@ -555,23 +751,19 @@
                                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
                             </filter>
                         </defs>
-                        <!-- Neon Ring Background -->
                         <circle cx="250" cy="250" r="210" fill="none" stroke="url(#ringGlow)" stroke-width="12" filter="url(#glow)"/>
                         <circle cx="250" cy="250" r="195" fill="none" stroke="#00d2ff" stroke-width="3" opacity="0.8"/>
                         <circle cx="250" cy="250" r="180" fill="none" stroke="#0055ff" stroke-width="2" opacity="0.5"/>
                         
-                        <!-- Stars in background of logo -->
                         <circle cx="180" cy="120" r="2" fill="#fff" opacity="0.9"/>
                         <circle cx="320" cy="140" r="3" fill="#00d2ff" opacity="0.8"/>
                         <circle cx="130" cy="280" r="2" fill="#fff" opacity="0.7"/>
                         <circle cx="370" cy="260" r="2.5" fill="#00d2ff" opacity="0.9"/>
                         
-                        <!-- Main ORDUNUZ Text -->
                         <g filter="url(#glow)">
                             <text x="250" y="235" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="64" fill="url(#textGrad)" text-anchor="middle" stroke="#002b80" stroke-width="4" letter-spacing="2">ORDUNUZ</text>
                         </g>
 
-                        <!-- HESAP SATIŞ Banner -->
                         <path d="M 90 285 L 410 285 L 390 335 L 110 335 Z" fill="#001a4d" stroke="#00d2ff" stroke-width="3"/>
                         <text x="250" y="322" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="34" fill="url(#yellowGrad)" text-anchor="middle" letter-spacing="3">HESAP SATIŞ.</text>
                     </svg>
@@ -582,66 +774,161 @@
         <!-- Stats Bar -->
         <div class="stats-bar">
             <div class="stat-item">
-                <div class="stat-number">Birçok</div>
-                <div class="stat-label">Oyun Çeşidi</div>
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Popüler Oyun & Hizmet</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">%99</div>
+                <div class="stat-number">%100</div>
                 <div class="stat-label">Müşteri Memnuniyeti</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">7/24</div>
-                <div class="stat-label">Aktif Destek</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">7/24</div>
                 <div class="stat-label">Otomatik Teslimat</div>
             </div>
+            <div class="stat-item">
+                <div class="stat-number">7/24</div>
+                <div class="stat-label">Canlı Destek</div>
+            </div>
         </div>
 
-        <!-- How it works -->
-        <section id="oyunlar">
+        <!-- Popüler İlanlar Vitrini -->
+        <section id="vitrin">
             <div class="section-title-wrap">
-                <div class="section-subtitle">Nasıl çalışır?</div>
-                <h2 class="section-title">Kolayca Oyununuza Kavuşabilirsiniz</h2>
-                <p class="section-desc">Karmaşık işlemler yok sadece alın ve oynayın.</p>
+                <div class="section-subtitle">Öne Çıkan İlanlarımız</div>
+                <h2 class="section-title">Popüler Ürün ve Hizmetler</h2>
+                <p class="section-desc">En çok tercih edilen Steam hesapları ve sosyal medya çözümleri.</p>
+            </div>
+
+            <div class="products-grid">
+                <!-- Ürün 1 -->
+                <div class="product-card">
+                    <div class="product-img-box">
+                        <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="Steam Oyunları">
+                        <span class="product-tag">ÇOK SATAN</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Steam Paylaşımlı Oyun Hesapları</h3>
+                        <p class="product-desc">En güncel AAA oyunlara offline modda anında erişin. Kesintisiz oyun keyfi!</p>
+                        <div class="product-footer">
+                            <span class="product-price">En Uygun Fiyatlarla</span>
+                            <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">İncele</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ürün 2 -->
+                <div class="product-card">
+                    <div class="product-img-box">
+                        <img src="https://images.unsplash.com/photo-1614680376593-902f749f7fdc?auto=format&fit=crop&w=600&q=80" alt="Discord Boost">
+                        <span class="product-tag">ANINDA TESLİM</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Discord Sunucu Takviyesi (Boost)</h3>
+                        <p class="product-desc">Sunucunuzun seviyesini yükseltin! Özel urller, yüksek ses kalitesi ve rozetler kazanın.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Avantajlı Paketler</span>
+                            <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">İncele</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ürün 3 -->
+                <div class="product-card">
+                    <div class="product-img-box">
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80" alt="TikTok Hizmetleri">
+                        <span class="product-tag">POPÜLER</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">TikTok İzlenme & Etkileşim</h3>
+                        <p class="product-desc">Videolarınızı keşfete düşürün! Güvenli, hızlı ve yüksek kaliteli etkileşim paketleri.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Anında Gönderim</span>
+                            <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">İncele</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ürün 4 -->
+                <div class="product-card">
+                    <div class="product-img-box">
+                        <img src="https://images.unsplash.com/photo-1611262588024-d12430b98920?auto=format&fit=crop&w=600&q=80" alt="Instagram Hizmetleri">
+                        <span class="product-tag">SMM PANEL</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Instagram Takipçi & Beğeni</h3>
+                        <p class="product-desc">Hesabınızın prestijini artırın. Düşüşsüz ve kaliteli hesaplardan gönderim yapılır.</p>
+                        <div class="product-footer">
+                            <span class="product-price">Fırsat Paketler</span>
+                            <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-primary" style="padding: 8px 16px; font-size: 13px;">İncele</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section id="nasil-calisir">
+            <div class="section-title-wrap">
+                <div class="section-subtitle">Neden ORDUNUZ?</div>
+                <h2 class="section-title">Ayrıcalıklı Hizmet Kalitesi</h2>
+                <p class="section-desc">Müşterilerimize sunduğumuz benzersiz avantajlar.</p>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-gamepad"></i></div>
-                    <h3 class="feature-title">1. İstediğin oyunu Seç</h3>
-                    <p class="feature-text">Listemizdeki birçok oyun türü arasından istediğini seç.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-rocket"></i></div>
-                    <h3 class="feature-title">2. Oto teslimat ile hemen Oyna</h3>
-                    <p class="feature-text">Hesap bilgileri anında elinize ulaşır. Steam'e gir ve oynamaya başla!</p>
+                    <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="feature-title">7/24 Otomatik Teslimat</h3>
+                    <p class="feature-text">Sipariş verdiğiniz an sistem otomatik çalışır ve bilgilerinizi teslim eder.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="icon-box"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3 class="feature-title">Güvenli Sistem</h3>
-                    <p class="feature-text">Hesaplar kontrol altındadır. Sorun çıkarsa yenisiyle değişim yapıyoruz.</p>
+                    <h3 class="feature-title">Garantili Satış</h3>
+                    <p class="feature-text">Tüm hesaplarımız garantilidir. Olası sorunlarda birebir değişim imkanı mevcuttur.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-percent"></i></div>
-                    <h3 class="feature-title">İndirim Fırsatları</h3>
-                    <p class="feature-text">Steam fiyatının çok çok altında oyun sahibi olabilirsiniz. En yeni oyunlar burada son derece uygun fiyatlarla birlikte.</p>
+                    <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
+                    <h3 class="feature-title">En Uygun Fiyatlar</h3>
+                    <p class="feature-text">Yüksek fiyatlar ödemeden en yeni oyunları ve sosyal medya paketlerini bütçenize göre alın.</p>
                 </div>
+            </div>
+        </section>
 
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-headset"></i></div>
-                    <h3 class="feature-title">7/24 Destek</h3>
-                    <p class="feature-text">İtemSatış üzerinden bize ulaşın. Her zaman yardımınıza hazırız.</p>
+        <!-- SSS (FAQ) -->
+        <section class="faq-section" id="faq">
+            <div class="section-title-wrap">
+                <div class="section-subtitle">Aklınıza Takılanlar</div>
+                <h2 class="section-title">Sıkça Sorulan Sorular</h2>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Steam paylaşımlı hesap sistemi nasıl çalışır?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
                 </div>
+                <div class="faq-answer">
+                    Satın aldığınız hesaba giriş yapıp oyunu indirdikten sonra Steam'i 'Çevrimdışı (Offline) Mod'a alarak kendi bilgisayarınızda sınırsız ve sorunsuz şekilde oynayabilirsiniz.
+                </div>
+            </div>
 
-                <div class="feature-card">
-                    <div class="icon-box"><i class="fa-solid fa-infinity"></i></div>
-                    <h3 class="feature-title">Sınırsız Oynama</h3>
-                    <p class="feature-text">Süre kısıtlaması yok. İstediğin kadar oyna, ve eğlencenin dibine vur.</p>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Teslimat süresi ne kadar sürüyor?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    İtemSatış üzerindeki otomatik teslimat sistemimiz sayesinde ödemeyi tamamladığınız an hesap bilgileriniz ekrana düşer.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Herhangi bir sorunda nasıl destek alabilirim?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    İtemSatış mağazamız üzerinden mesaj atabilir veya Discord sunucumuza katılarak 7/24 destek ekibimizle iletişime geçebilirsiniz.
                 </div>
             </div>
         </section>
@@ -657,35 +944,37 @@
     <!-- Discord Yüzen Widget -->
     <a href="https://discord.gg/SfY7m6XXyg" target="_blank" class="discord-widget" title="Discord Sunucumuza Katılın">
         <i class="fa-brands fa-discord"></i>
-        <span class="discord-text">Discord'a Katıl</span>
+        <span>Discord'a Katıl</span>
     </a>
 
-    <!-- 3D Mouse Parallax Script -->
+    <!-- Scripts -->
     <script>
+        // 3D Logo Tilt Animation
         const tiltCard = document.getElementById('tiltLogo');
 
         document.addEventListener('mousemove', (e) => {
             if (!tiltCard) return;
-            
             const { innerWidth, innerHeight } = window;
-            
-            // Farenin ekrandaki konumunu -1 ile 1 arasında oranla
             const x = (e.clientX - innerWidth / 2) / (innerWidth / 2);
             const y = (e.clientY - innerHeight / 2) / (innerHeight / 2);
             
-            // Derece cinsinden eğilme miktarı
-            const tiltX = y * -22; 
-            const tiltY = x * 22;
-            const moveX = x * 15;
-            const moveY = y * 15;
+            const tiltX = y * -20; 
+            const tiltY = x * 20;
 
-            tiltCard.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translate3d(${moveX}px, ${moveY}px, 20px)`;
+            tiltCard.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translate3d(${x * 12}px, ${y * 12}px, 15px)`;
         });
 
-        // Fare ekrandan çıktığında orijinal haline dönme
         document.addEventListener('mouseleave', () => {
             if (!tiltCard) return;
             tiltCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0)';
+        });
+
+        // FAQ Accordion Toggle
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
         });
     </script>
 </body>
