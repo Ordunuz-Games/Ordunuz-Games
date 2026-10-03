@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ORDUNUZ | Dijital Hizmetler & Oyun İçi Eşyalar</title>
+    <title>ORDUNUZ STORE | Dijital Hizmetler & Oyun İçi Eşyalar</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,11 +41,11 @@
                 radial-gradient(circle at 85% 80%, rgba(58, 123, 213, 0.08) 0%, transparent 40%);
         }
 
-        /* Flash Sale Bar */
+        /* Top Bar */
         .ticker-bar {
             background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc);
             color: white;
-            padding: 8px 5%;
+            padding: 10px 5%;
             font-size: 0.85rem;
             font-weight: 600;
             display: flex;
@@ -78,13 +78,18 @@
             100% { transform: scale(1); }
         }
 
-        .timer {
-            background: rgba(0,0,0,0.3);
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: #00ffcc;
+        /* White Neon Banner Text */
+        .white-neon-text {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 5px #ffffff,
+                0 0 10px #ffffff,
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 30px rgba(255, 255, 255, 0.6);
         }
 
         /* Header / Navbar */
@@ -336,11 +341,6 @@
             transition: transform 0.5s ease;
         }
 
-        .card-img-wrapper.contain-img img {
-            object-fit: contain;
-            padding: 20px;
-        }
-
         .card:hover .card-img-wrapper img {
             transform: scale(1.08);
         }
@@ -353,7 +353,7 @@
         }
 
         .card-title {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
             margin-bottom: 8px;
             color: #fff;
@@ -552,21 +552,21 @@
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
-            .ticker-bar { flex-direction: column; gap: 5px; text-align: center; }
+            .ticker-bar { flex-direction: column; gap: 8px; text-align: center; }
             .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Flash Sale Ticker Bar -->
+    <!-- Flash Sale Ticker Bar (Beyaz Neon Ordunuz Shop) -->
     <div class="ticker-bar">
         <div class="ticker-left">
             <span class="flash-tag"><i class="fa-solid fa-bolt"></i> FIRSAT</span>
             <span>İtemSatış Mağazamızda Tüm İlanlarda Otomatik Teslimat Aktif!</span>
         </div>
         <div>
-            Kalan Süre: <span class="timer" id="countdown">04 : 12 : 35</span>
+            <span class="white-neon-text">ORDUNUZ SHOP</span>
         </div>
     </div>
 
@@ -597,74 +597,21 @@
     <div class="controls-wrapper" id="products">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Ürün veya araç ara... (örn: Audi, Bugatti, BMW, Forza, TikTok)">
+            <input type="text" id="searchInput" placeholder="Ürün veya hizmet ara... (örn: Instagram, TikTok, Audi, Forza)">
         </div>
         <div class="filter-tabs">
-            <button class="tab-btn active" data-filter="all">Tüm Ürünler</button>
+            <button class="tab-btn active" data-filter="all">Tüm İlanlar</button>
+            <button class="tab-btn" data-filter="instagram">Instagram</button>
+            <button class="tab-btn" data-filter="tiktok">TikTok</button>
             <button class="tab-btn" data-filter="cpm">Car Parking</button>
             <button class="tab-btn" data-filter="steam">Steam Oyunları</button>
-            <button class="tab-btn" data-filter="discord">Discord</button>
-            <button class="tab-btn" data-filter="social">Sosyal Medya</button>
         </div>
     </div>
 
     <!-- Products Grid -->
     <section class="products-section">
         <div class="grid" id="productGrid">
-
-            <!-- Steam ve Car Parking İlanları Dinamik Olarak Buraya Yüklenecek -->
-
-            <!-- Discord Card -->
-            <div class="card" data-category="discord">
-                <span class="card-badge">ANINDA TESLİM</span>
-                <div class="card-img-wrapper contain-img">
-                    <img src="https://upload.wikimedia.org/wikipedia/fr/0/07/Discord_logo-2021.svg" alt="Discord Official Logo">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Discord Sunucu Takviyesi (Boost)</div>
-                    <div class="card-desc">Sunucunuzun seviyesini yükseltin! Özel URL, yüksek ses kalitesi ve rozetler kazanın.</div>
-                    <div class="card-footer">
-                        <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-direct-buy">
-                            <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TikTok Card -->
-            <div class="card" data-category="social">
-                <span class="card-badge">POPÜLER</span>
-                <div class="card-img-wrapper contain-img">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" alt="TikTok Official Logo">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">TikTok İzlenme & Etkileşim</div>
-                    <div class="card-desc">Videolarınızı keşfete düşürün! Güvenli, hızlı ve yüksek kaliteli etkileşim paketleri.</div>
-                    <div class="card-footer">
-                        <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-direct-buy">
-                            <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Instagram Card -->
-            <div class="card" data-category="social">
-                <span class="card-badge">SMM PANEL</span>
-                <div class="card-img-wrapper contain-img">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram Official Logo">
-                </div>
-                <div class="card-body">
-                    <div class="card-title">Instagram Takipçi & Beğeni</div>
-                    <div class="card-desc">Hesabınızın prestijini artırın. Düşüşsüz ve kaliteli hesaplardan anında gönderim yapılır.</div>
-                    <div class="card-footer">
-                        <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-direct-buy">
-                            <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Tüm İlanlar Script Tarafından Dinamik Olarak Yüklenecektir -->
         </div>
     </section>
 
@@ -723,7 +670,7 @@
                     </div>
                     <div class="stars">★★★★★</div>
                 </div>
-                <div class="review-text">"Sunucumuza 14x Discord Boost aldık. Anında seviye 3 olduk, özel URL'mizi aldık. Güvenilir ve çok hızlılar."</div>
+                <div class="review-text">"Instagram takipçi ve beğeni siparişlerim saniyeler içinde tamamlandı. İşini son derece kaliteli yapan bir mağaza."</div>
             </div>
 
             <div class="review-card">
@@ -752,11 +699,73 @@
         <p>&copy; 2026 <b>ORDUNUZ STORE</b> - Tüm Hakları Saklıdır. Güvenli Dijital Hizmetler Platformu.</p>
     </footer>
 
-    <!-- JavaScript Interactivity -->
+    <!-- JavaScript Data and Interactivity -->
     <script>
-        // 1. CAR PARKING MULTIPLAYER (CPM2) İLANLARI DİZİSİ
-        const cpmProducts = [
+        // TÜM İLAN VERİ TABANI
+        const allProducts = [
+            // INSTAGRAM İLANLARI
             {
+                category: "instagram",
+                name: "INSTAGRAM 1000 BEĞENİ",
+                link: "https://www.itemsatis.com/instagram/instagram-1000-begeni-5768175.html",
+                image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80",
+                badge: "HIZLI GÖNDERİM",
+                desc: "Gönderilerinizi ön plana çıkaracak 1.000 adet kaliteli Instagram beğenisi. Düşüşsüz ve anında başlar."
+            },
+            {
+                category: "instagram",
+                name: "INSTAGRAM 25.000 İZLENME",
+                link: "https://www.itemsatis.com/instagram/instagram-25000-izlenme-5768169.html",
+                image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80",
+                badge: "KEŞFET ETKİLİ",
+                desc: "Reels ve videolarınız için 25.000 adet yüksek etkileşimli izlenme paketi. Keşfete düşme oranını artırır."
+            },
+            {
+                category: "instagram",
+                name: "INSTAGRAM 500 TÜRK BEĞENİ",
+                link: "https://www.itemsatis.com/instagram/instagram-500-turk-begeni-5768166.html",
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80",
+                badge: "%100 TÜRK",
+                desc: "Gerçek ve aktif Türk kullanıcılar tarafından gönderilen 500 adet organik görünümlü beğeni."
+            },
+            {
+                category: "instagram",
+                name: "INSTAGRAM 1000 TAKİPÇİ",
+                link: "https://www.itemsatis.com/instagram/instagram-1000-takipci-5768156.html",
+                image: "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?w=600&q=80",
+                badge: "PRESTİJ PAKETİ",
+                desc: "Hesabınızın güvenilirliğini ve kitlesini büyütecek 1.000 adet yüksek kaliteli Instagram takipçi."
+            },
+
+            // TIKTOK İLANLARI
+            {
+                category: "tiktok",
+                name: "TIKTOK 1000 BEĞENİ",
+                link: "https://www.itemsatis.com/tiktok/tiktok-1000-begeni-5768150.html",
+                image: "https://images.unsplash.com/photo-1596558450255-7c0b7be9d56a?w=600&q=80",
+                badge: "POPÜLER",
+                desc: "TikTok videolarınızı öne çıkaracak 1.000 adet yüksek kaliteli beğeni gönderimi."
+            },
+            {
+                category: "tiktok",
+                name: "TIKTOK 5000 İZLENME",
+                link: "https://www.itemsatis.com/tiktok/tiktok-5000-izlenme-aninda-teslimat-5768134.html",
+                image: "https://images.unsplash.com/photo-1611605697805-88a46e077e2c?w=600&q=80",
+                badge: "ANINDA TESLİM",
+                desc: "Videolarınız için anında teslimat avantajıyla 5.000 izlenme gönderimi. Keşfet algoritmaları için idealdir."
+            },
+            {
+                category: "tiktok",
+                name: "250 TIKTOK TAKİPÇİ",
+                link: "https://www.itemsatis.com/tiktok/250-tiktok-takipci-5768143.html",
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80",
+                badge: "GÜVENLİ",
+                desc: "Profilinizi büyütmeye başlamak için 250 adet güvenli ve hızlı teslim edilen TikTok takipçi."
+            },
+
+            // CAR PARKING MULTIPLAYER 2 (CPM2) İLANLARI
+            {
+                category: "cpm",
                 name: "CPM2 AUDİ RS7 AİR+SİREN",
                 link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-audi-rs7-air-siren-5847390.html",
                 image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=600&q=80",
@@ -764,6 +773,7 @@
                 desc: "Özel Air Süspansiyon sistemi ve Polis Sireni eklenmiş, ful donanımlı Audi RS7."
             },
             {
+                category: "cpm",
                 name: "CPM2 10K COİNLİ BUGATTİ SİREN BAYRAK",
                 link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-10k-coinli-bugatti-siren-bayrak-5847362.html",
                 image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=600&q=80",
@@ -771,6 +781,7 @@
                 desc: "10.000 Coin hediyeli, sirenli ve özel Türk bayrağı tasarımıyla yüksek hızlı Bugatti."
             },
             {
+                category: "cpm",
                 name: "CPM2 MERCEDES MAYBACH FUL LOGOLU SİRENLİ",
                 link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-mercedes-maybach-ful-logolu-sirenli-5847319.html",
                 image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=80",
@@ -778,17 +789,17 @@
                 desc: "Orijinal Maybach logoları, siren sistemi ve Lüks VIP görünümüyle Car Parking 2'de fark yaratın."
             },
             {
+                category: "cpm",
                 name: "CPM2 BMW M5 F90 ÖZEL ÇİZİMLİ FERDİ TAYFUR",
                 link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-bmw-ozel-tasarim-ferdi-tayfur-5845777.html",
                 image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80",
                 badge: "ÖZEL ÇİZİM",
                 desc: "Efsanevi Ferdi Tayfur portre çizimli, özel süspansiyonlu ve yüksek motor gücüne sahip M5 F90."
-            }
-        ];
+            },
 
-        // 2. STEAM OYUNLARI DİZİSİ
-        const steamGames = [
+            // STEAM OYUNLARI
             {
+                category: "steam",
                 name: "The Last of Us Part II Remastered",
                 link: "https://www.itemsatis.com/steam/the-last-of-us-part-2-remastered-5759383.html",
                 image: "https://images.alphacoders.com/135/thumb-1920-1351187.jpeg",
@@ -796,6 +807,7 @@
                 desc: "Ellie ve Abby'nin unutulmaz hikayesi. Yüksek grafik kalitesi ve Türkçe altyazı desteğiyle Steam garantili erişim."
             },
             {
+                category: "steam",
                 name: "Forza Horizon 4",
                 link: "https://www.itemsatis.com/steam/forza-horizon-4-5750195.html",
                 image: "https://images.alphacoders.com/925/thumb-1920-925828.jpg",
@@ -803,6 +815,7 @@
                 desc: "Büyük Britanya'nın muhteşem açık dünyasında efsanevi yarış deneyimi. Yüzlerce araç seçeneğiyle."
             },
             {
+                category: "steam",
                 name: "Forza Horizon 5",
                 link: "https://www.itemsatis.com/steam/forza-horizon-5-5750166.html",
                 image: "https://images.alphacoders.com/115/thumb-1920-1153337.png",
@@ -810,6 +823,7 @@
                 desc: "Meksika'nın eşsiz coğrafyasında en büyük Forza macerası. Kesintisiz yarış keyfi ve hızlı teslimat."
             },
             {
+                category: "steam",
                 name: "Cyberpunk 2077",
                 link: "https://www.itemsatis.com/steam/cyberpunk-2077-5137455.html",
                 image: "https://images.alphacoders.com/111/thumb-1920-1115865.jpg",
@@ -817,6 +831,7 @@
                 desc: "Night City'nin büyüleyici atmosferinde kendi efsaneni yarat. Türkçe dil destekli ve kesintisiz."
             },
             {
+                category: "steam",
                 name: "Call of Duty: Modern Warfare (2019)",
                 link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-2019-5137365.html",
                 image: "https://images.alphacoders.com/101/thumb-1920-1018260.jpg",
@@ -824,6 +839,7 @@
                 desc: "Kaptan Price ile efsanevi hikaye moduna adım atın. En yüksek grafik ve aksiyon dolu operasyonlar."
             },
             {
+                category: "steam",
                 name: "Call of Duty: Modern Warfare II",
                 link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-ii-5137068.html",
                 image: "https://images.alphacoders.com/123/thumb-1920-1237937.jpg",
@@ -832,88 +848,52 @@
             }
         ];
 
+        // İLANLARI EKRANA RENDER ETME FONKSİYONU
         const productGrid = document.getElementById('productGrid');
 
-        // Car Parking Kartlarını Dinamik Oluşturma
-        cpmProducts.forEach(item => {
-            const cardHTML = `
-                <div class="card" data-category="cpm">
-                    <span class="card-badge">${item.badge || 'CPM2 İLAN'}</span>
-                    <div class="card-img-wrapper">
-                        <img src="${item.image}" alt="${item.name}">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">${item.name}</div>
-                        <div class="card-desc">${item.desc}</div>
-                        <div class="card-footer">
-                            <a href="${item.link}" target="_blank" class="btn-direct-buy">
-                                <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
-                            </a>
+        function renderProducts(products) {
+            productGrid.innerHTML = '';
+            products.forEach(item => {
+                const cardHTML = `
+                    <div class="card" data-category="${item.category}">
+                        <span class="card-badge">${item.badge}</span>
+                        <div class="card-img-wrapper">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">${item.name}</div>
+                            <div class="card-desc">${item.desc}</div>
+                            <div class="card-footer">
+                                <a href="${item.link}" target="_blank" class="btn-direct-buy">
+                                    <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
-            productGrid.insertAdjacentHTML('afterbegin', cardHTML);
-        });
-
-        // Steam Oyun Kartlarını Dinamik Oluşturma
-        steamGames.forEach(game => {
-            const cardHTML = `
-                <div class="card" data-category="steam">
-                    <span class="card-badge">${game.badge || 'STEAM OYUN'}</span>
-                    <div class="card-img-wrapper">
-                        <img src="${game.image}" alt="${game.name}">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title">${game.name}</div>
-                        <div class="card-desc">${game.desc}</div>
-                        <div class="card-footer">
-                            <a href="${game.link}" target="_blank" class="btn-direct-buy">
-                                <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `;
-            productGrid.insertAdjacentHTML('afterbegin', cardHTML);
-        });
-
-        // Geri Sayım Zamanlayıcısı
-        function startCountdown() {
-            let totalSeconds = 15155;
-            setInterval(() => {
-                if (totalSeconds <= 0) totalSeconds = 15155;
-                totalSeconds--;
-
-                const hours = Math.floor(totalSeconds / 3600);
-                const minutes = Math.floor((totalSeconds % 3600) / 60);
-                const seconds = totalSeconds % 60;
-
-                document.getElementById('countdown').innerText = 
-                    `${String(hours).padStart(2, '0')} : ${String(minutes).padStart(2, '0')} : ${String(seconds).padStart(2, '0')}`;
-            }, 1000);
-        }
-        startCountdown();
-
-        // Canlı Arama Filtresi
-        const searchInput = document.getElementById('searchInput');
-
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            const allCards = document.querySelectorAll('.card');
-            
-            allCards.forEach(card => {
-                const title = card.querySelector('.card-title').innerText.toLowerCase();
-                const desc = card.querySelector('.card-desc').innerText.toLowerCase();
-                if (title.includes(query) || desc.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                `;
+                productGrid.insertAdjacentHTML('beforeend', cardHTML);
             });
+        }
+
+        // Sayfa Yüklendiğinde Tüm İlanları Yükle
+        renderProducts(allProducts);
+
+        // CANLI ARAMA FİLTRESİ
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-filter');
+
+            const filtered = allProducts.filter(item => {
+                const matchesCategory = (activeTab === 'all' || item.category === activeTab);
+                const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+                return matchesCategory && matchesQuery;
+            });
+
+            renderProducts(filtered);
         });
 
-        // Kategori Sekmeleri
+        // KATEGORİ SEKMELERİ
         const tabBtns = document.querySelectorAll('.tab-btn');
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -921,16 +901,15 @@
                 btn.classList.add('active');
 
                 const filter = btn.getAttribute('data-filter');
-                const allCards = document.querySelectorAll('.card');
+                const query = searchInput.value.toLowerCase().trim();
 
-                allCards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    if (filter === 'all' || category === filter) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                const filtered = allProducts.filter(item => {
+                    const matchesCategory = (filter === 'all' || item.category === filter);
+                    const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+                    return matchesCategory && matchesQuery;
                 });
+
+                renderProducts(filtered);
             });
         });
     </script>
