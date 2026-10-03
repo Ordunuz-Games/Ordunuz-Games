@@ -21,6 +21,8 @@
             --neon-glow: 0 0 25px rgba(0, 210, 255, 0.4);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            --instagram-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --tiktok-color: #00f2fe;
         }
 
         * {
@@ -208,7 +210,7 @@
             margin-bottom: 30px;
         }
 
-        /* Search & Filter Controls */
+        /* Controls */
         .controls-wrapper {
             max-width: 1100px;
             margin: 0 auto 40px;
@@ -267,6 +269,9 @@
             font-weight: 600;
             font-size: 0.85rem;
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .tab-btn:hover, .tab-btn.active {
@@ -324,7 +329,7 @@
         }
 
         .card-img-wrapper {
-            height: 220px;
+            height: 200px;
             width: 100%;
             position: relative;
             overflow: hidden;
@@ -345,6 +350,33 @@
             transform: scale(1.08);
         }
 
+        .social-overlay-icon {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            backdrop-filter: blur(6px);
+            z-index: 3;
+        }
+
+        .social-overlay-icon.instagram {
+            background: var(--instagram-gradient);
+        }
+
+        .social-overlay-icon.tiktok {
+            background: #000;
+            border: 1px solid var(--tiktok-color);
+            color: #fff;
+        }
+
         .card-body {
             padding: 20px;
             display: flex;
@@ -357,6 +389,17 @@
             font-weight: 700;
             margin-bottom: 8px;
             color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i.fa-instagram {
+            color: #e1306c;
+        }
+
+        .card-title i.fa-tiktok {
+            color: #00f2fe;
         }
 
         .card-desc {
@@ -394,24 +437,27 @@
             box-shadow: 0 6px 25px rgba(0, 210, 255, 0.6);
         }
 
-        /* Trust Badges */
-        .trust-section {
+        /* Trust & Reviews Sections */
+        .trust-section, .reviews-section {
             max-width: 1100px;
             margin: 40px auto 80px;
             padding: 0 20px;
         }
 
-        .trust-grid {
+        .trust-grid, .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
         }
 
-        .trust-card {
-            background: rgba(15, 23, 42, 0.4);
+        .trust-card, .review-card {
+            background: rgba(15, 23, 42, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 20px;
             border-radius: 12px;
+        }
+
+        .trust-card {
             text-align: center;
             transition: 0.3s;
         }
@@ -427,42 +473,14 @@
             margin-bottom: 12px;
         }
 
-        .trust-title {
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-
-        .trust-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Testimonials Section */
-        .reviews-section {
-            max-width: 1100px;
-            margin: 0 auto 80px;
-            padding: 0 20px;
-        }
+        .trust-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 5px; }
+        .trust-desc { font-size: 0.8rem; color: var(--text-muted); }
 
         .section-title {
             text-align: center;
             font-size: 1.8rem;
             font-weight: 800;
             margin-bottom: 30px;
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .review-card {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 20px;
         }
 
         .review-header {
@@ -472,12 +490,7 @@
             margin-bottom: 12px;
         }
 
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .user-info { display: flex; align-items: center; gap: 10px; }
         .user-avatar {
             width: 38px;
             height: 38px;
@@ -487,32 +500,11 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.9rem;
         }
-
-        .user-name {
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .verified-badge {
-            font-size: 0.7rem;
-            color: #00ffcc;
-            display: flex;
-            align-items: center;
-            gap: 3px;
-        }
-
-        .stars {
-            color: #ffc107;
-            font-size: 0.8rem;
-        }
-
-        .review-text {
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            line-height: 1.5;
-        }
+        .user-name { font-weight: 700; font-size: 0.9rem; }
+        .verified-badge { font-size: 0.7rem; color: #00ffcc; display: flex; align-items: center; gap: 3px; }
+        .stars { color: #ffc107; font-size: 0.8rem; }
+        .review-text { font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; }
 
         /* Floating Discord Button */
         .discord-float {
@@ -540,7 +532,6 @@
             box-shadow: 0 8px 30px rgba(88, 101, 242, 0.8);
         }
 
-        /* Footer */
         footer {
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding: 30px 5%;
@@ -559,7 +550,7 @@
 </head>
 <body>
 
-    <!-- Flash Sale Ticker Bar (Beyaz Neon Ordunuz Shop) -->
+    <!-- Ticker Bar -->
     <div class="ticker-bar">
         <div class="ticker-left">
             <span class="flash-tag"><i class="fa-solid fa-bolt"></i> FIRSAT</span>
@@ -593,29 +584,29 @@
         <p>En uygun fiyat garantisi, anında otomatik teslimat ve 7/24 kesintisiz canlı destek ile hizmetinizdeyiz.</p>
     </section>
 
-    <!-- Controls: Search & Category Filter Tabs -->
+    <!-- Controls -->
     <div class="controls-wrapper" id="products">
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="text" id="searchInput" placeholder="Ürün veya hizmet ara... (örn: Instagram, TikTok, Audi, Forza)">
         </div>
         <div class="filter-tabs">
-            <button class="tab-btn active" data-filter="all">Tüm İlanlar</button>
-            <button class="tab-btn" data-filter="instagram">Instagram</button>
-            <button class="tab-btn" data-filter="tiktok">TikTok</button>
-            <button class="tab-btn" data-filter="cpm">Car Parking</button>
-            <button class="tab-btn" data-filter="steam">Steam Oyunları</button>
+            <button class="tab-btn active" data-filter="all"><i class="fa-solid fa-border-all"></i> Tüm İlanlar</button>
+            <button class="tab-btn" data-filter="instagram"><i class="fa-brands fa-instagram"></i> Instagram</button>
+            <button class="tab-btn" data-filter="tiktok"><i class="fa-brands fa-tiktok"></i> TikTok</button>
+            <button class="tab-btn" data-filter="cpm"><i class="fa-solid fa-car"></i> Car Parking</button>
+            <button class="tab-btn" data-filter="steam"><i class="fa-brands fa-steam"></i> Steam Oyunları</button>
         </div>
     </div>
 
     <!-- Products Grid -->
     <section class="products-section">
         <div class="grid" id="productGrid">
-            <!-- Tüm İlanlar Script Tarafından Dinamik Olarak Yüklenecektir -->
+            <!-- Dynamic Content Load -->
         </div>
     </section>
 
-    <!-- Trust Badges Section -->
+    <!-- Trust Badges -->
     <section class="trust-section" id="trust">
         <div class="trust-grid">
             <div class="trust-card">
@@ -641,7 +632,7 @@
         </div>
     </section>
 
-    <!-- Customer Reviews Section -->
+    <!-- Reviews Section -->
     <section class="reviews-section" id="reviews">
         <h2 class="section-title">Müşteri Yorumları</h2>
         <div class="reviews-grid">
@@ -699,74 +690,80 @@
         <p>&copy; 2026 <b>ORDUNUZ STORE</b> - Tüm Hakları Saklıdır. Güvenli Dijital Hizmetler Platformu.</p>
     </footer>
 
-    <!-- JavaScript Data and Interactivity -->
     <script>
-        // TÜM İLAN VERİ TABANI
+        // DATA WITH LOGOS ADDED TO TITLES AND BRANDING TO IMAGES
         const allProducts = [
-            // INSTAGRAM İLANLARI
+            // INSTAGRAM PRODUCTS
             {
                 category: "instagram",
-                name: "INSTAGRAM 500 TÜRK BEĞENİ",
-                link: "https://www.itemsatis.com/instagram/instagram-500-turk-begeni-5768166.html",
-                image: "img/instagram-500-turk-begeni.jpg", // attığın görselin klasör yolu
-                badge: "%100 TÜRK",
-                desc: "Gerçek ve aktif Türk kullanıcılar tarafından gönderilen 500 adet organik görünümlü beğeni."
-            },
-            {
-                category: "instagram",
-                name: "INSTAGRAM 1000 BEĞENİ",
+                name: '<i class="fa-brands fa-instagram"></i> INSTAGRAM 1000 BEĞENİ',
                 link: "https://www.itemsatis.com/instagram/instagram-1000-begeni-5768175.html",
-                image: "img/instagram-1000-begeni.jpg",
+                image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80",
                 badge: "HIZLI GÖNDERİM",
+                socialType: "instagram",
                 desc: "Gönderilerinizi ön plana çıkaracak 1.000 adet kaliteli Instagram beğenisi. Düşüşsüz ve anında başlar."
             },
             {
                 category: "instagram",
-                name: "INSTAGRAM 25.000 İZLENME",
+                name: '<i class="fa-brands fa-instagram"></i> INSTAGRAM 25.000 İZLENME',
                 link: "https://www.itemsatis.com/instagram/instagram-25000-izlenme-5768169.html",
-                image: "img/instagram-25000-izlenme.jpg",
+                image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80",
                 badge: "KEŞFET ETKİLİ",
+                socialType: "instagram",
                 desc: "Reels ve videolarınız için 25.000 adet yüksek etkileşimli izlenme paketi. Keşfete düşme oranını artırır."
             },
             {
                 category: "instagram",
-                name: "INSTAGRAM 1000 TAKİPÇİ",
+                name: '<i class="fa-brands fa-instagram"></i> INSTAGRAM 500 TÜRK BEĞENİ',
+                link: "https://www.itemsatis.com/instagram/instagram-500-turk-begeni-5768166.html",
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80",
+                badge: "%100 TÜRK",
+                socialType: "instagram",
+                desc: "Gerçek ve aktif Türk kullanıcılar tarafından gönderilen 500 adet organik görünümlü beğeni."
+            },
+            {
+                category: "instagram",
+                name: '<i class="fa-brands fa-instagram"></i> INSTAGRAM 1000 TAKİPÇİ',
                 link: "https://www.itemsatis.com/instagram/instagram-1000-takipci-5768156.html",
-                image: "img/instagram-1000-takipci.jpg",
+                image: "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?w=600&q=80",
                 badge: "PRESTİJ PAKETİ",
+                socialType: "instagram",
                 desc: "Hesabınızın güvenilirliğini ve kitlesini büyütecek 1.000 adet yüksek kaliteli Instagram takipçi."
             },
 
-            // TIKTOK İLANLARI
+            // TIKTOK PRODUCTS
             {
                 category: "tiktok",
-                name: "TIKTOK 1000 BEĞENİ",
+                name: '<i class="fa-brands fa-tiktok"></i> TIKTOK 1000 BEĞENİ',
                 link: "https://www.itemsatis.com/tiktok/tiktok-1000-begeni-5768150.html",
-                image: "img/tiktok-1000-begeni.jpg",
+                image: "https://images.unsplash.com/photo-1596558450255-7c0b7be9d56a?w=600&q=80",
                 badge: "POPÜLER",
+                socialType: "tiktok",
                 desc: "TikTok videolarınızı öne çıkaracak 1.000 adet yüksek kaliteli beğeni gönderimi."
             },
             {
                 category: "tiktok",
-                name: "TIKTOK 5000 İZLENME",
+                name: '<i class="fa-brands fa-tiktok"></i> TIKTOK 5000 İZLENME',
                 link: "https://www.itemsatis.com/tiktok/tiktok-5000-izlenme-aninda-teslimat-5768134.html",
-                image: "img/tiktok-5000-izlenme.jpg",
+                image: "https://images.unsplash.com/photo-1611605697805-88a46e077e2c?w=600&q=80",
                 badge: "ANINDA TESLİM",
+                socialType: "tiktok",
                 desc: "Videolarınız için anında teslimat avantajıyla 5.000 izlenme gönderimi. Keşfet algoritmaları için idealdir."
             },
             {
                 category: "tiktok",
-                name: "250 TIKTOK TAKİPÇİ",
+                name: '<i class="fa-brands fa-tiktok"></i> 250 TIKTOK TAKİPÇİ',
                 link: "https://www.itemsatis.com/tiktok/250-tiktok-takipci-5768143.html",
-                image: "img/tiktok-250-takipci.jpg",
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80",
                 badge: "GÜVENLİ",
+                socialType: "tiktok",
                 desc: "Profilinizi büyütmeye başlamak için 250 adet güvenli ve hızlı teslim edilen TikTok takipçi."
             },
 
-            // CAR PARKING MULTIPLAYER 2 (CPM2) İLANLARI
+            // CAR PARKING MULTIPLAYER 2 (CPM2) PRODUCTS
             {
                 category: "cpm",
-                name: "CPM2 AUDİ RS7 AİR+SİREN",
+                name: '<i class="fa-solid fa-car"></i> CPM2 AUDİ RS7 AİR+SİREN',
                 link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-audi-rs7-air-siren-5847390.html",
                 image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=600&q=80",
                 badge: "AIR & SİREN",
@@ -774,7 +771,7 @@
             },
             {
                 category: "cpm",
-                name: "CPM2 10K COİNLİ BUGATTİ SİREN BAYRAK",
+                name: '<i class="fa-solid fa-car"></i> CPM2 10K COİNLİ BUGATTİ SİREN BAYRAK',
                 link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-10k-coinli-bugatti-siren-bayrak-5847362.html",
                 image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?w=600&q=80",
                 badge: "10K COIN + BAYRAK",
@@ -782,7 +779,7 @@
             },
             {
                 category: "cpm",
-                name: "CPM2 MERCEDES MAYBACH FUL LOGOLU SİRENLİ",
+                name: '<i class="fa-solid fa-car"></i> CPM2 MERCEDES MAYBACH FUL LOGOLU SİRENLİ',
                 link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-mercedes-maybach-ful-logolu-sirenli-5847319.html",
                 image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&q=80",
                 badge: "VIP LÜKS",
@@ -790,17 +787,17 @@
             },
             {
                 category: "cpm",
-                name: "CPM2 BMW M5 F90 ÖZEL ÇİZİMLİ FERDİ TAYFUR",
+                name: '<i class="fa-solid fa-car"></i> CPM2 BMW M5 F90 ÖZEL ÇİZİMLİ FERDİ TAYFUR',
                 link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-bmw-ozel-tasarim-ferdi-tayfur-5845777.html",
                 image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80",
                 badge: "ÖZEL ÇİZİM",
                 desc: "Efsanevi Ferdi Tayfur portre çizimli, özel süspansiyonlu ve yüksek motor gücüne sahip M5 F90."
             },
 
-            // STEAM OYUNLARI
+            // STEAM GAMES
             {
                 category: "steam",
-                name: "The Last of Us Part II Remastered",
+                name: '<i class="fa-brands fa-steam"></i> The Last of Us Part II Remastered',
                 link: "https://www.itemsatis.com/steam/the-last-of-us-part-2-remastered-5759383.html",
                 image: "https://images.alphacoders.com/135/thumb-1920-1351187.jpeg",
                 badge: "EFSANE OYUN",
@@ -808,7 +805,7 @@
             },
             {
                 category: "steam",
-                name: "Forza Horizon 4",
+                name: '<i class="fa-brands fa-steam"></i> Forza Horizon 4',
                 link: "https://www.itemsatis.com/steam/forza-horizon-4-5750195.html",
                 image: "https://images.alphacoders.com/925/thumb-1920-925828.jpg",
                 badge: "ÇOK SATAN",
@@ -816,7 +813,7 @@
             },
             {
                 category: "steam",
-                name: "Forza Horizon 5",
+                name: '<i class="fa-brands fa-steam"></i> Forza Horizon 5',
                 link: "https://www.itemsatis.com/steam/forza-horizon-5-5750166.html",
                 image: "https://images.alphacoders.com/115/thumb-1920-1153337.png",
                 badge: "POPÜLER",
@@ -824,7 +821,7 @@
             },
             {
                 category: "steam",
-                name: "Cyberpunk 2077",
+                name: '<i class="fa-brands fa-steam"></i> Cyberpunk 2077',
                 link: "https://www.itemsatis.com/steam/cyberpunk-2077-5137455.html",
                 image: "https://images.alphacoders.com/111/thumb-1920-1115865.jpg",
                 badge: "GÜNCEL SÜRÜM",
@@ -832,7 +829,7 @@
             },
             {
                 category: "steam",
-                name: "Call of Duty: Modern Warfare (2019)",
+                name: '<i class="fa-brands fa-steam"></i> Call of Duty: Modern Warfare (2019)',
                 link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-2019-5137365.html",
                 image: "https://images.alphacoders.com/101/thumb-1920-1018260.jpg",
                 badge: "AKSİYON",
@@ -840,7 +837,7 @@
             },
             {
                 category: "steam",
-                name: "Call of Duty: Modern Warfare II",
+                name: '<i class="fa-brands fa-steam"></i> Call of Duty: Modern Warfare II',
                 link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-ii-5137068.html",
                 image: "https://images.alphacoders.com/123/thumb-1920-1237937.jpg",
                 badge: "YENİ NESİL",
@@ -848,17 +845,25 @@
             }
         ];
 
-        // İLANLARI EKRANA RENDER ETME FONKSİYONU
+        // RENDER FUNCTION WITH SOCIAL BRANDING BADGES
         const productGrid = document.getElementById('productGrid');
 
         function renderProducts(products) {
             productGrid.innerHTML = '';
             products.forEach(item => {
+                let socialIconHTML = '';
+                if (item.socialType === 'instagram') {
+                    socialIconHTML = `<div class="social-overlay-icon instagram"><i class="fa-brands fa-instagram"></i></div>`;
+                } else if (item.socialType === 'tiktok') {
+                    socialIconHTML = `<div class="social-overlay-icon tiktok"><i class="fa-brands fa-tiktok"></i></div>`;
+                }
+
                 const cardHTML = `
                     <div class="card" data-category="${item.category}">
                         <span class="card-badge">${item.badge}</span>
                         <div class="card-img-wrapper">
-                            <img src="${item.image}" alt="${item.name}">
+                            <img src="${item.image}" alt="İlan Görseli">
+                            ${socialIconHTML}
                         </div>
                         <div class="card-body">
                             <div class="card-title">${item.name}</div>
@@ -875,10 +880,10 @@
             });
         }
 
-        // Sayfa Yüklendiğinde Tüm İlanları Yükle
+        // INITIAL LOAD
         renderProducts(allProducts);
 
-        // CANLI ARAMA FİLTRESİ
+        // LIVE SEARCH
         const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
@@ -893,7 +898,7 @@
             renderProducts(filtered);
         });
 
-        // KATEGORİ SEKMELERİ
+        // FILTER TABS
         const tabBtns = document.querySelectorAll('.tab-btn');
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
