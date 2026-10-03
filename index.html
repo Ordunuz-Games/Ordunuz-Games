@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ORDUNUZ STORE | Dijital Hizmetler & Oyun İçi Eşyalar</title>
+    
+    <!-- Favicon (4. Maddeden eklendi) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +16,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* Smooth Scroll (5. Maddeden eklendi) */
+        html {
+            scroll-behavior: smooth;
+        }
+
         :root {
             --bg-dark: #070913;
             --card-bg: rgba(15, 23, 42, 0.75);
@@ -804,17 +813,20 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 <b>ORDUNUZ STORE</b> - Tüm Hakları Saklıdır. Güvenli Dijital Hizmetler Platformu.</p>
+        <p></p> <!-- JS ile güncellenecek -->
     </footer>
 
     <!-- JavaScript Data and Logic -->
     <script>
+        // Footer Yılını Otomatik Güncelleme (1. Maddeden eklendi)
+        document.querySelector('footer p').innerHTML = `&copy; ${new Date().getFullYear()} <b>ORDUNUZ STORE</b> - Tüm Hakları Saklıdır. Güvenli Dijital Hizmetler Platformu.`;
+
         // MODAL KAPATMA FONKSİYONU
         function closeModal() {
             document.getElementById('announcementModal').classList.add('hidden');
         }
 
-        // GÜVENİLİR HD KAPAK GÖRSELLERİ (DÜZELTİLDİ)
+        // GÜVENİLİR HD KAPAK GÖRSELLERİ
         const IMG_INSTAGRAM = "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80"; 
         const IMG_TIKTOK = "https://images.unsplash.com/photo-1596558450255-7c0b7be9d56a?w=600&q=80";    
         const IMG_CPM2 = "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80";                                   
@@ -989,6 +1001,19 @@
 
         function renderProducts(products) {
             productGrid.innerHTML = '';
+
+            // Sonuç bulunamadı uyarısı (3. Maddeden eklendi)
+            if (products.length === 0) {
+                productGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-muted);">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size: 2.5rem; margin-bottom: 15px; color: var(--primary-blue);"></i>
+                        <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 5px;">Aramanıza Uygun İlan Bulunamadı</h3>
+                        <p style="font-size: 0.9rem;">Lütfen farklı bir arama terimi deneyin veya kategorileri değiştirin.</p>
+                    </div>
+                `;
+                return;
+            }
+
             products.forEach(item => {
                 const cardHTML = `
                     <div class="card" data-category="${item.category}">
