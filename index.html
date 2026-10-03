@@ -78,7 +78,6 @@
             100% { transform: scale(1); }
         }
 
-        /* White Neon Banner Text */
         .white-neon-text {
             color: #ffffff;
             font-weight: 800;
@@ -362,25 +361,11 @@
             gap: 8px;
         }
 
-        .card-title i {
-            font-size: 1.2rem;
-        }
-
-        .card-title .fa-instagram {
-            color: #e1306c;
-        }
-
-        .card-title .fa-tiktok {
-            color: #00f2fe;
-        }
-
-        .card-title .fa-gamepad {
-            color: var(--primary-blue);
-        }
-
-        .card-title .fa-steam {
-            color: #c7d5e0;
-        }
+        .card-title i { font-size: 1.2rem; }
+        .card-title .fa-instagram { color: #e1306c; }
+        .card-title .fa-tiktok { color: #00f2fe; }
+        .card-title .fa-gamepad { color: var(--primary-blue); }
+        .card-title .fa-steam { color: #c7d5e0; }
 
         .card-desc {
             font-size: 0.85rem;
@@ -417,124 +402,170 @@
             box-shadow: 0 6px 25px rgba(0, 210, 255, 0.6);
         }
 
-        /* Trust Badges */
-        .trust-section {
-            max-width: 1100px;
-            margin: 40px auto 80px;
-            padding: 0 20px;
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .trust-card {
-            background: rgba(15, 23, 42, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .trust-card:hover {
-            border-color: var(--primary-blue);
-            transform: translateY(-3px);
-        }
-
-        .trust-icon {
-            font-size: 2rem;
-            color: var(--primary-blue);
-            margin-bottom: 12px;
-        }
-
-        .trust-title {
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-
-        .trust-desc {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Reviews Section */
-        .reviews-section {
-            max-width: 1100px;
+        /* FAQ Section */
+        .faq-section {
+            max-width: 900px;
             margin: 0 auto 80px;
             padding: 0 20px;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .review-card {
-            background: rgba(15, 23, 42, 0.5);
+        .faq-item {
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .faq-question {
             padding: 20px;
-        }
-
-        .review-header {
+            font-weight: 700;
+            font-size: 1rem;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .user-info {
-            display: flex;
             align-items: center;
-            gap: 10px;
+            cursor: pointer;
+            color: #fff;
         }
 
-        .user-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-blue), #3a7bd5);
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--primary-blue);
+        }
+
+        /* Pop-up Modal */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.4s ease;
         }
 
-        .user-name {
-            font-weight: 700;
-            font-size: 0.9rem;
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .verified-badge {
-            font-size: 0.7rem;
-            color: #00ffcc;
+        .popup-card {
+            background: #0f172a;
+            border: 2px solid var(--primary-blue);
+            box-shadow: var(--neon-glow);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.8);
+            transition: 0.4s ease;
+        }
+
+        .popup-overlay.active .popup-card {
+            transform: scale(1);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .popup-close:hover { color: #ff0055; }
+
+        .popup-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .popup-text {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .popup-btn {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+        }
+
+        /* Live Notification Toast */
+        .notification-toast {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--primary-blue);
+            border-radius: 12px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
-            gap: 3px;
+            gap: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            z-index: 98;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .stars {
-            color: #ffc107;
-            font-size: 0.8rem;
+        .notification-toast.show {
+            transform: translateY(0);
+            opacity: 1;
         }
 
-        .review-text {
+        .notification-icon {
+            color: #00ffcc;
+            font-size: 1.2rem;
+        }
+
+        .notification-text {
             font-size: 0.85rem;
-            color: #cbd5e1;
-            line-height: 1.5;
+            color: #f8fafc;
+        }
+
+        .notification-text strong {
+            color: var(--primary-blue);
+        }
+
+        .notification-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
         }
 
         /* Floating Discord Button */
@@ -582,7 +613,29 @@
 </head>
 <body>
 
-    <!-- Header Ticker Bar (White Neon Text) -->
+    <!-- Pop-up Duyuru Penceresi -->
+    <div class="popup-overlay active" id="popupOverlay">
+        <div class="popup-card">
+            <span class="popup-close" id="popupClose">&times;</span>
+            <div class="popup-title">🎉 ORDUNUZ SHOP'a Hoş Geldiniz!</div>
+            <div class="popup-text">
+                Tüm Car Parking / Sosyal Medya Ve Steam kategorilerimiz aktif!<br><br>
+                Toplu alımlarınız için Discord üzerinden bize ulaşmayı unutmayınız!
+            </div>
+            <button class="popup-btn" id="popupBtn">Alışverişe Başla</button>
+        </div>
+    </div>
+
+    <!-- Live Toast Notification -->
+    <div class="notification-toast" id="liveToast">
+        <div class="notification-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div>
+            <div class="notification-text" id="toastMessage">Ahmet K. az önce <strong>1000 TikTok Takipçi</strong> satın aldı!</div>
+            <div class="notification-time" id="toastTime">2 dakika önce</div>
+        </div>
+    </div>
+
+    <!-- Ticker Bar -->
     <div class="ticker-bar">
         <div class="ticker-left">
             <span class="flash-tag"><i class="fa-solid fa-bolt"></i> FIRSAT</span>
@@ -593,7 +646,7 @@
         </div>
     </div>
 
-    <!-- Header / Navbar -->
+    <!-- Header -->
     <header>
         <div class="logo-container">
             <div class="logo-box">O</div>
@@ -602,8 +655,7 @@
         <nav class="nav-links">
             <a href="#" class="nav-link active">Ana Sayfa</a>
             <a href="#products" class="nav-link">İlanlar</a>
-            <a href="#reviews" class="nav-link">Yorumlar</a>
-            <a href="#trust" class="nav-link">Güvence</a>
+            <a href="#faq" class="nav-link">S.S.S.</a>
         </nav>
         <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-store">
             <i class="fa-solid fa-store"></i> İtemSatış Mağazası
@@ -631,83 +683,42 @@
         </div>
     </div>
 
-    <!-- Products Section -->
+    <!-- Products Grid -->
     <section class="products-section">
-        <div class="grid" id="productGrid">
-            <!-- Dynamic Products Loading via JavaScript -->
-        </div>
+        <div class="grid" id="productGrid"></div>
     </section>
 
-    <!-- Trust Badges -->
-    <section class="trust-section" id="trust">
-        <div class="trust-grid">
-            <div class="trust-card">
-                <div class="trust-icon"><i class="fa-solid fa-bolt"></i></div>
-                <div class="trust-title">Anında Teslimat</div>
-                <div class="trust-desc">Siparişleriniz otomasyon sistemimiz ile dakikalar içinde teslim edilir.</div>
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <h2 style="text-align: center; font-size: 1.8rem; font-weight: 800; margin-bottom: 30px;">Sıkça Sorulan Sorular</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                Teslimat süresi ne kadardır?
+                <i class="fa-solid fa-chevron-down"></i>
             </div>
-            <div class="trust-card">
-                <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="trust-title">%100 Güvenli Alışveriş</div>
-                <div class="trust-desc">İtemSatış güvencesi ile tüm işlemleriniz koruma altındadır.</div>
-            </div>
-            <div class="trust-card">
-                <div class="trust-icon"><i class="fa-solid fa-headset"></i></div>
-                <div class="trust-title">7/24 Destek</div>
-                <div class="trust-desc">Discord ve destek ekibimiz sorularınız için her zaman hazır.</div>
-            </div>
-            <div class="trust-card">
-                <div class="trust-icon"><i class="fa-solid fa-tag"></i></div>
-                <div class="trust-title">En Uygun Fiyat</div>
-                <div class="trust-desc">Piyasadaki en kaliteli hizmeti en avantajlı fiyatlarla sunuyoruz.</div>
+            <div class="faq-answer">
+                Tüm siparişleriniz otomasyon sistemimiz sayesinde İtemSatış güvencesiyle 1-5 dakika içerisinde otomatik olarak tamamlanır.
             </div>
         </div>
-    </section>
 
-    <!-- Customer Reviews -->
-    <section class="reviews-section" id="reviews">
-        <h2 class="section-title">Müşteri Yorumları</h2>
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="user-info">
-                        <div class="user-avatar">M</div>
-                        <div>
-                            <div class="user-name">Mustafa K.</div>
-                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="review-text">"CPM2 için Ferdi Tayfur çizimli M5 aldım, anında oyuna aktardılar. Çizim kalitesi muazzam!"</div>
+        <div class="faq-item">
+            <div class="faq-question">
+                Ödemeyi nasıl gerçekleştirebilirim?
+                <div class="faq-answer-icon"><i class="fa-solid fa-chevron-down"></i></div>
             </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="user-info">
-                        <div class="user-avatar">E</div>
-                        <div>
-                            <div class="user-name">Eren T.</div>
-                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="review-text">"Instagram takipçi ve beğeni siparişlerim saniyeler içinde tamamlandı. İşini harika yapan bir mağaza."</div>
+            <div class="faq-answer">
+                Ödemelerinizi İtemSatış platformu üzerinden kredi kartı, banka kartı veya site bakiyeniz ile %100 güvenli bir şekilde yapabilirsiniz.
             </div>
+        </div>
 
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="user-info">
-                        <div class="user-avatar">B</div>
-                        <div>
-                            <div class="user-name">Burak S.</div>
-                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
-                        </div>
-                    </div>
-                    <div class="stars">★★★★★</div>
-                </div>
-                <div class="review-text">"TikTok videolarım keşfete düştü. Fiyatlar aşırı uygun, sürekli alışveriş yaptığım adres."</div>
+        <div class="faq-item">
+            <div class="faq-question">
+                Toplu alımlarda indirim yapıyor musunuz?
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Evet! Toplu alımlarınız ve özel paket talepleriniz için Discord sunucumuz üzerinden bizimle iletişime geçebilirsiniz.
             </div>
         </div>
     </section>
@@ -722,180 +733,40 @@
         <p>&copy; 2026 <b>ORDUNUZ STORE</b> - Tüm Hakları Saklıdır. Güvenli Dijital Hizmetler Platformu.</p>
     </footer>
 
+    <!-- JavaScript Data and Logic -->
     <script>
-        // STABLE HIGH QUALITY COVER IMAGES WITH FALLBACKS
-        const IMG_INSTAGRAM = "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80"; // Premium 3D Instagram Icon
-        const IMG_TIKTOK = "https://images.unsplash.com/photo-1596558450255-7c0b7be9d56a?auto=format&fit=crop&w=800&q=80";    // Premium TikTok Neon/3D Visual
-        const IMG_CPM2 = "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80";      // High Quality Sports Car Showcase (CPM2)
-        const IMG_STEAM = "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?auto=format&fit=crop&w=800&q=80";     // Premium 3D Steam Logo
+        // KAPAK GÖRSELLERİ
+        const IMG_INSTAGRAM = "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80"; 
+        const IMG_TIKTOK = "https://images.unsplash.com/photo-1611605697805-88a46e077e2c?w=600&q=80";    
+        const IMG_CPM2 = "https://i.ibb.co/68vvhgV/cpm2-itemsatis.jpg";                                   
+        const IMG_STEAM = "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=600&q=80";   
 
-        // ALL PRODUCTS DATA
+        // TÜM İLAN VERİSİ
         const allProducts = [
-            // INSTAGRAM
-            {
-                category: "instagram",
-                name: "INSTAGRAM 1000 BEĞENİ",
-                link: "https://www.itemsatis.com/instagram/instagram-1000-begeni-5768175.html",
-                image: IMG_INSTAGRAM,
-                badge: "HIZLI GÖNDERİM",
-                icon: "fa-brands fa-instagram",
-                desc: "Gönderilerinizi ön plana çıkaracak 1.000 adet kaliteli Instagram beğenisi. Düşüşsüz ve anında başlar."
-            },
-            {
-                category: "instagram",
-                name: "INSTAGRAM 25.000 İZLENME",
-                link: "https://www.itemsatis.com/instagram/instagram-25000-izlenme-5768169.html",
-                image: IMG_INSTAGRAM,
-                badge: "KEŞFET ETKİLİ",
-                icon: "fa-brands fa-instagram",
-                desc: "Reels ve videolarınız için 25.000 adet yüksek etkileşimli izlenme paketi. Keşfete düşme oranını artırır."
-            },
-            {
-                category: "instagram",
-                name: "INSTAGRAM 500 TÜRK BEĞENİ",
-                link: "https://www.itemsatis.com/instagram/instagram-500-turk-begeni-5768166.html",
-                image: IMG_INSTAGRAM,
-                badge: "%100 TÜRK",
-                icon: "fa-brands fa-instagram",
-                desc: "Gerçek ve aktif Türk kullanıcılar tarafından gönderilen 500 adet organik görünümlü beğeni."
-            },
-            {
-                category: "instagram",
-                name: "INSTAGRAM 1000 TAKİPÇİ",
-                link: "https://www.itemsatis.com/instagram/instagram-1000-takipci-5768156.html",
-                image: IMG_INSTAGRAM,
-                badge: "PRESTİJ PAKETİ",
-                icon: "fa-brands fa-instagram",
-                desc: "Hesabınızın güvenilirliğini ve kitlesini büyütecek 1.000 adet yüksek kaliteli Instagram takipçi."
-            },
-
-            // TIKTOK
-            {
-                category: "tiktok",
-                name: "TIKTOK 1000 BEĞENİ",
-                link: "https://www.itemsatis.com/tiktok/tiktok-1000-begeni-5768150.html",
-                image: IMG_TIKTOK,
-                badge: "POPÜLER",
-                icon: "fa-brands fa-tiktok",
-                desc: "TikTok videolarınızı öne çıkaracak 1.000 adet yüksek kaliteli beğeni gönderimi."
-            },
-            {
-                category: "tiktok",
-                name: "TIKTOK 5000 İZLENME",
-                link: "https://www.itemsatis.com/tiktok/tiktok-5000-izlenme-aninda-teslimat-5768134.html",
-                image: IMG_TIKTOK,
-                badge: "ANINDA TESLİM",
-                icon: "fa-brands fa-tiktok",
-                desc: "Videolarınız için anında teslimat avantajıyla 5.000 izlenme gönderimi. Keşfet algoritmaları için idealdir."
-            },
-            {
-                category: "tiktok",
-                name: "250 TIKTOK TAKİPÇİ",
-                link: "https://www.itemsatis.com/tiktok/250-tiktok-takipci-5768143.html",
-                image: IMG_TIKTOK,
-                badge: "GÜVENLİ",
-                icon: "fa-brands fa-tiktok",
-                desc: "Profilinizi büyütmeye başlamak için 250 adet güvenli ve hızlı teslim edilen TikTok takipçi."
-            },
-
-            // CAR PARKING MULTIPLAYER 2 (CPM2)
-            {
-                category: "cpm",
-                name: "CPM2 AUDİ RS7 AİR+SİREN",
-                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-audi-rs7-air-siren-5847390.html",
-                image: IMG_CPM2,
-                badge: "AIR & SİREN",
-                icon: "fa-solid fa-gamepad",
-                desc: "Özel Air Süspansiyon sistemi ve Polis Sireni eklenmiş, ful donanımlı Audi RS7."
-            },
-            {
-                category: "cpm",
-                name: "CPM2 10K COİNLİ BUGATTİ SİREN BAYRAK",
-                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-10k-coinli-bugatti-siren-bayrak-5847362.html",
-                image: IMG_CPM2,
-                badge: "10K COIN + BAYRAK",
-                icon: "fa-solid fa-gamepad",
-                desc: "10.000 Coin hediyeli, sirenli ve özel Türk bayrağı tasarımıyla yüksek hızlı Bugatti."
-            },
-            {
-                category: "cpm",
-                name: "CPM2 MERCEDES MAYBACH FUL LOGOLU SİRENLİ",
-                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-mercedes-maybach-ful-logolu-sirenli-5847319.html",
-                image: IMG_CPM2,
-                badge: "VIP LÜKS",
-                icon: "fa-solid fa-gamepad",
-                desc: "Orijinal Maybach logoları, siren sistemi ve Lüks VIP görünümüyle Car Parking 2'de fark yaratın."
-            },
-            {
-                category: "cpm",
-                name: "CPM2 BMW M5 F90 ÖZEL ÇİZİMLİ FERDİ TAYFUR",
-                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-bmw-ozel-tasarim-ferdi-tayfur-5845777.html",
-                image: IMG_CPM2,
-                badge: "ÖZEL ÇİZİM",
-                icon: "fa-solid fa-gamepad",
-                desc: "Efsanevi Ferdi Tayfur portre çizimli, özel süspansiyonlu ve yüksek motor gücüne sahip M5 F90."
-            },
-
-            // STEAM
-            {
-                category: "steam",
-                name: "The Last of Us Part II Remastered",
-                link: "https://www.itemsatis.com/steam/the-last-of-us-part-2-remastered-5759383.html",
-                image: IMG_STEAM,
-                badge: "EFSANE OYUN",
-                icon: "fa-brands fa-steam",
-                desc: "Ellie ve Abby'nin unutulmaz hikayesi. Yüksek grafik kalitesi ve Türkçe altyazı desteğiyle Steam garantili erişim."
-            },
-            {
-                category: "steam",
-                name: "Forza Horizon 4",
-                link: "https://www.itemsatis.com/steam/forza-horizon-4-5750195.html",
-                image: IMG_STEAM,
-                badge: "ÇOK SATAN",
-                icon: "fa-brands fa-steam",
-                desc: "Büyük Britanya'nın muhteşem açık dünyasında efsanevi yarış deneyimi. Yüzlerce araç seçeneğiyle."
-            },
-            {
-                category: "steam",
-                name: "Forza Horizon 5",
-                link: "https://www.itemsatis.com/steam/forza-horizon-5-5750166.html",
-                image: IMG_STEAM,
-                badge: "POPÜLER",
-                icon: "fa-brands fa-steam",
-                desc: "Meksika'nın eşsiz coğrafyasında en büyük Forza macerası. Kesintisiz yarış keyfi ve hızlı teslimat."
-            },
-            {
-                category: "steam",
-                name: "Cyberpunk 2077",
-                link: "https://www.itemsatis.com/steam/cyberpunk-2077-5137455.html",
-                image: IMG_STEAM,
-                badge: "GÜNCEL SÜRÜM",
-                icon: "fa-brands fa-steam",
-                desc: "Night City'nin büyüleyici atmosferinde kendi efsaneni yarat. Türkçe dil destekli ve kesintisiz."
-            },
-            {
-                category: "steam",
-                name: "Call of Duty: Modern Warfare (2019)",
-                link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-2019-5137365.html",
-                image: IMG_STEAM,
-                badge: "AKSİYON",
-                icon: "fa-brands fa-steam",
-                desc: "Kaptan Price ile efsanevi hikaye moduna adım atın. En yüksek grafik ve aksiyon dolu operasyonlar."
-            },
-            {
-                category: "steam",
-                name: "Call of Duty: Modern Warfare II",
-                link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-ii-5137068.html",
-                image: IMG_STEAM,
-                badge: "YENİ NESİL",
-                icon: "fa-brands fa-steam",
-                desc: "Task Force 141 geri dönüyor! Yüksek FPS optimizasyonlu, kaliteli hikaye modu Steam erişimi."
-            }
+            { category: "instagram", name: "INSTAGRAM 1000 BEĞENİ", link: "https://www.itemsatis.com/instagram/instagram-1000-begeni-5768175.html", image: IMG_INSTAGRAM, badge: "HIZLI GÖNDERİM", icon: "fa-brands fa-instagram", desc: "Gönderilerinizi ön plana çıkaracak 1.000 adet kaliteli Instagram beğenisi. Düşüşsüz ve anında başlar." },
+            { category: "instagram", name: "INSTAGRAM 25.000 İZLENME", link: "https://www.itemsatis.com/instagram/instagram-25000-izlenme-5768169.html", image: IMG_INSTAGRAM, badge: "KEŞFET ETKİLİ", icon: "fa-brands fa-instagram", desc: "Reels ve videolarınız için 25.000 adet yüksek etkileşimli izlenme paketi." },
+            { category: "instagram", name: "INSTAGRAM 500 TÜRK BEĞENİ", link: "https://www.itemsatis.com/instagram/instagram-500-turk-begeni-5768166.html", image: IMG_INSTAGRAM, badge: "%100 TÜRK", icon: "fa-brands fa-instagram", desc: "Gerçek ve aktif Türk kullanıcılar tarafından gönderilen 500 adet organik görünümlü beğeni." },
+            { category: "instagram", name: "INSTAGRAM 1000 TAKİPÇİ", link: "https://www.itemsatis.com/instagram/instagram-1000-takipci-5768156.html", image: IMG_INSTAGRAM, badge: "PRESTİJ PAKETİ", icon: "fa-brands fa-instagram", desc: "Hesabınızın güvenilirliğini ve kitlesini büyütecek 1.000 adet takipçi." },
+            
+            { category: "tiktok", name: "TIKTOK 1000 BEĞENİ", link: "https://www.itemsatis.com/tiktok/tiktok-1000-begeni-5768150.html", image: IMG_TIKTOK, badge: "POPÜLER", icon: "fa-brands fa-tiktok", desc: "TikTok videolarınızı öne çıkaracak 1.000 adet yüksek kaliteli beğeni gönderimi." },
+            { category: "tiktok", name: "TIKTOK 5000 İZLENME", link: "https://www.itemsatis.com/tiktok/tiktok-5000-izlenme-aninda-teslimat-5768134.html", image: IMG_TIKTOK, badge: "ANINDA TESLİM", icon: "fa-brands fa-tiktok", desc: "Videolarınız için anında teslimat avantajıyla 5.000 izlenme gönderimi." },
+            { category: "tiktok", name: "250 TIKTOK TAKİPÇİ", link: "https://www.itemsatis.com/tiktok/250-tiktok-takipci-5768143.html", image: IMG_TIKTOK, badge: "GÜVENLİ", icon: "fa-brands fa-tiktok", desc: "Profilinizi büyütmeye başlamak için 250 adet güvenli ve hızlı teslim edilen TikTok takipçi." },
+            
+            { category: "cpm", name: "CPM2 AUDİ RS7 AİR+SİREN", link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-audi-rs7-air-siren-5847390.html", image: IMG_CPM2, badge: "AIR & SİREN", icon: "fa-solid fa-gamepad", desc: "Özel Air Süspansiyon sistemi ve Polis Sireni eklenmiş, ful donanımlı Audi RS7." },
+            { category: "cpm", name: "CPM2 10K COİNLİ BUGATTİ SİREN BAYRAK", link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-10k-coinli-bugatti-siren-bayrak-5847362.html", image: IMG_CPM2, badge: "10K COIN", icon: "fa-solid fa-gamepad", desc: "10.000 Coin hediyeli, sirenli ve özel Türk bayrağı tasarımıyla Bugatti." },
+            { category: "cpm", name: "CPM2 MERCEDES MAYBACH FUL LOGOLU SİRENLİ", link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-mercedes-maybach-ful-logolu-sirenli-5847319.html", image: IMG_CPM2, badge: "VIP LÜKS", icon: "fa-solid fa-gamepad", desc: "Orijinal Maybach logoları, siren sistemi ve Lüks VIP görünümü." },
+            { category: "cpm", name: "CPM2 BMW M5 F90 ÖZEL ÇİZİMLİ FERDİ TAYFUR", link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-bmw-ozel-tasarim-ferdi-tayfur-5845777.html", image: IMG_CPM2, badge: "ÖZEL ÇİZİM", icon: "fa-solid fa-gamepad", desc: "Efsanevi Ferdi Tayfur portre çizimli, özel süspansiyonlu M5 F90." },
+            
+            { category: "steam", name: "The Last of Us Part II Remastered", link: "https://www.itemsatis.com/steam/the-last-of-us-part-2-remastered-5759383.html", image: IMG_STEAM, badge: "EFSANE OYUN", icon: "fa-brands fa-steam", desc: "Ellie ve Abby'nin unutulmaz hikayesi. Yüksek grafik kalitesi ve Türkçe altyazı desteği." },
+            { category: "steam", name: "Forza Horizon 4", link: "https://www.itemsatis.com/steam/forza-horizon-4-5750195.html", image: IMG_STEAM, badge: "ÇOK SATAN", icon: "fa-brands fa-steam", desc: "Büyük Britanya'nın muhteşem açık dünyasında efsanevi yarış deneyimi." },
+            { category: "steam", name: "Forza Horizon 5", link: "https://www.itemsatis.com/steam/forza-horizon-5-5750166.html", image: IMG_STEAM, badge: "POPÜLER", icon: "fa-brands fa-steam", desc: "Meksika'nın eşsiz coğrafyasında en büyük Forza macerası." },
+            { category: "steam", name: "Cyberpunk 2077", link: "https://www.itemsatis.com/steam/cyberpunk-2077-5137455.html", image: IMG_STEAM, badge: "GÜNCEL SÜRÜM", icon: "fa-brands fa-steam", desc: "Night City'nin büyüleyici atmosferinde kendi efsaneni yarat." },
+            { category: "steam", name: "Call of Duty: Modern Warfare (2019)", link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-2019-5137365.html", image: IMG_STEAM, badge: "AKSİYON", icon: "fa-brands fa-steam", desc: "Kaptan Price ile efsanevi hikaye moduna adım atın." },
+            { category: "steam", name: "Call of Duty: Modern Warfare II", link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-ii-5137068.html", image: IMG_STEAM, badge: "YENİ NESİL", icon: "fa-brands fa-steam", desc: "Task Force 141 geri dönüyor! Yüksek FPS optimizasyonlu hikaye modu." }
         ];
 
-        // RENDER PRODUCTS FUNCTION
+        // RENDER PRODUCTS
         const productGrid = document.getElementById('productGrid');
-
         function renderProducts(products) {
             productGrid.innerHTML = '';
             products.forEach(item => {
@@ -903,13 +774,10 @@
                     <div class="card" data-category="${item.category}">
                         <span class="card-badge">${item.badge}</span>
                         <div class="card-img-wrapper">
-                            <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f172a/00d2ff?text=${encodeURIComponent(item.name)}';">
+                            <img src="${item.image}" alt="${item.name}">
                         </div>
                         <div class="card-body">
-                            <div class="card-title">
-                                <i class="${item.icon}"></i>
-                                ${item.name}
-                            </div>
+                            <div class="card-title"><i class="${item.icon}"></i> ${item.name}</div>
                             <div class="card-desc">${item.desc}</div>
                             <div class="card-footer">
                                 <a href="${item.link}" target="_blank" class="btn-direct-buy">
@@ -922,14 +790,14 @@
                 productGrid.insertAdjacentHTML('beforeend', cardHTML);
             });
         }
-
-        // INITIAL RENDER
         renderProducts(allProducts);
 
-        // SEARCH FUNCTIONALITY
+        // SEARCH & FILTERS
         const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase().trim();
+        const tabBtns = document.querySelectorAll('.tab-btn');
+
+        function filterProducts() {
+            const query = searchInput.value.toLowerCase().trim();
             const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-filter');
 
             const filtered = allProducts.filter(item => {
@@ -937,29 +805,60 @@
                 const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
                 return matchesCategory && matchesQuery;
             });
-
             renderProducts(filtered);
-        });
+        }
 
-        // FILTER TABS FUNCTIONALITY
-        const tabBtns = document.querySelectorAll('.tab-btn');
+        searchInput.addEventListener('input', filterProducts);
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 tabBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-
-                const filter = btn.getAttribute('data-filter');
-                const query = searchInput.value.toLowerCase().trim();
-
-                const filtered = allProducts.filter(item => {
-                    const matchesCategory = (filter === 'all' || item.category === filter);
-                    const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
-                    return matchesCategory && matchesQuery;
-                });
-
-                renderProducts(filtered);
+                filterProducts();
             });
         });
+
+        // FAQ ACCORDEON
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // POPUP MODAL
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popupClose = document.getElementById('popupClose');
+        const popupBtn = document.getElementById('popupBtn');
+
+        function closePopup() { popupOverlay.classList.remove('active'); }
+        popupClose.addEventListener('click', closePopup);
+        popupBtn.addEventListener('click', closePopup);
+
+        // CANLI SATIŞ BİLDİRİMLERİ (NOTIFICATIONS)
+        const sampleSales = [
+            "Mehmet A. az önce **CPM2 Ferdi Tayfur M5** satın aldı!",
+            "Eren S. az önce **5000 TikTok İzlenme** satın aldı!",
+            "Caner B. az önce **The Last of Us Part II** satın aldı!",
+            "Yusuf T. az önce **1000 Instagram Takipçi** satın aldı!",
+            "Burak K. az önce **CPM2 Bugatti Sirenli** satın aldı!"
+        ];
+
+        const liveToast = document.getElementById('liveToast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        function showNotification() {
+            const randomSale = sampleSales[Math.floor(Math.random() * sampleSales.length)];
+            toastMessage.innerHTML = randomSale.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            liveToast.classList.add('show');
+
+            setTimeout(() => {
+                liveToast.classList.remove('show');
+            }, 4000);
+        }
+
+        // 8 saniyede bir bildirim göster
+        setInterval(showNotification, 8000);
+        setTimeout(showNotification, 3000);
     </script>
 </body>
 </html>
