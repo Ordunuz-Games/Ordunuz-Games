@@ -3,311 +3,1079 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ordunuz shop</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ORDUNUZ STORE | Dijital Hizmetler & Oyun İçi Eşyalar</title>
+    
+    <!-- Favicon (4. Maddeden eklendi) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Smooth Scroll (5. Maddeden eklendi) */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg-dark: #070913;
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-border: rgba(56, 189, 248, 0.2);
+            --primary-blue: #00d2ff;
+            --accent-cyan: #3a7bd5;
+            --neon-glow: 0 0 25px rgba(0, 210, 255, 0.4);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(0, 210, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(58, 123, 213, 0.08) 0%, transparent 40%);
+        }
+
+        /* Top Bar */
+        .ticker-bar {
+            background: linear-gradient(90deg, #0052d4, #4364f7, #6fb1fc);
+            color: white;
+            padding: 10px 5%;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 15px rgba(0, 210, 255, 0.3);
+            position: relative;
+            z-index: 100;
+        }
+
+        .ticker-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .flash-tag {
+            background: #ff0055;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* White Neon Banner Text */
+        .white-neon-text {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 
+                0 0 5px #ffffff,
+                0 0 10px #ffffff,
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 30px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Header / Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(7, 9, 19, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .logo-box {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            box-shadow: var(--neon-glow);
+            transition: transform 0.5s ease;
+        }
+
+        .logo-container:hover .logo-box {
+            transform: rotateY(180deg);
+        }
+
+        .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #fff, var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-blue);
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        .btn-store {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: var(--neon-glow);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-store:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(0, 210, 255, 0.7);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, var(--primary-blue), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Controls Section */
+        .controls-wrapper {
+            max-width: 1100px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--card-border);
+            border-radius: 30px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: var(--neon-glow);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: rgba(0, 210, 255, 0.15);
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+        }
+
+        /* Product Grid */
+        .products-section {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.25);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 210, 255, 0.25);
+            border: 1px solid var(--primary-blue);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        .card-img-wrapper {
+            height: 200px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #090d16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-direct-buy {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: #fff;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-direct-buy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 210, 255, 0.6);
+        }
+
+        /* Announcement Modal (Pop-Up) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 1;
+            visibility: visible;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .modal-box {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid var(--primary-blue);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.3);
+            transform: scale(1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.hidden .modal-box {
+            transform: scale(0.8);
+        }
+
+        .modal-header-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: #fff;
+            box-shadow: var(--neon-glow);
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .modal-body-text {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .btn-modal-close {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: var(--neon-glow);
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn-modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(0, 210, 255, 0.7);
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            max-width: 1100px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .trust-card {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .trust-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        .trust-icon {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+        }
+
+        .trust-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .trust-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            max-width: 1100px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .review-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), #3a7bd5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .user-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .verified-badge {
+            font-size: 0.7rem;
+            color: #00ffcc;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 0.8rem;
+        }
+
+        .review-text {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        /* Floating Discord Button */
+        .discord-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            background: #5865F2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            box-shadow: 0 5px 20px rgba(88, 101, 242, 0.5);
+            cursor: pointer;
+            z-index: 99;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .discord-float:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 8px 30px rgba(88, 101, 242, 0.8);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 5%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: rgba(7, 9, 19, 0.95);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .ticker-bar { flex-direction: column; gap: 8px; text-align: center; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Header & Nav -->
-    <header class="navbar">
-        <div class="logo">ordunuz<span>shop</span></div>
-        <div class="nav-controls">
-            <!-- Canlı Arama Çubuğu -->
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchInput" placeholder="İlan veya kategori ara..." onkeyup="filterItems()">
+    <!-- Pop-Up Announcement Modal -->
+    <div class="modal-overlay" id="announcementModal">
+        <div class="modal-box">
+            <div class="modal-header-icon">
+                <i class="fa-solid fa-bullhorn"></i>
             </div>
-            <!-- Favorilerim Butonu -->
-            <button class="fav-btn-nav" onclick="filterFavorites()">
-                <i class="fa-solid fa-heart"></i> Favorilerim (<span id="favCount">0</span>)
-            </button>
+            <h2 class="modal-title">🎉 ORDUNUZ SHOP'a Hoş Geldiniz!</h2>
+            <div class="modal-body-text">
+                Tüm TikTok / Instagram / CPM2 / Steam kategorilerimiz aktiftir!<br><br>
+                Toplu alımlarınız için <b>İtemSatış</b> / <b>Discord</b> üzerinden bize ulaşmayı unutmayın.
+            </div>
+            <button class="btn-modal-close" onclick="closeModal()">Anladım / Alışverişe Başla</button>
         </div>
+    </div>
+
+    <!-- Header Ticker Bar (White Neon Text) -->
+    <div class="ticker-bar">
+        <div class="ticker-left">
+            <span class="flash-tag"><i class="fa-solid fa-bolt"></i> FIRSAT</span>
+            <span>İtemSatış Mağazamızda Tüm İlanlarda Otomatik Teslimat Aktif!</span>
+        </div>
+        <div>
+            <span class="white-neon-text">ORDUNUZ SHOP</span>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-box">O</div>
+            <div class="logo-text">ORDUNUZ</div>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="nav-link active">Ana Sayfa</a>
+            <a href="#products" class="nav-link">İlanlar</a>
+            <a href="#reviews" class="nav-link">Yorumlar</a>
+            <a href="#trust" class="nav-link">Güvence</a>
+        </nav>
+        <a href="https://www.itemsatis.com/profil/ordunuz.html" target="_blank" class="btn-store">
+            <i class="fa-solid fa-store"></i> İtemSatış Mağazası
+        </a>
     </header>
 
-    <!-- Kategori Filtre Butonları -->
-    <section class="filter-section">
-        <button class="filter-btn active" onclick="filterCategory('all', this)">Tümü</button>
-        <button class="filter-btn" onclick="filterCategory('cpm2', this)">CPM2 Araçlar</button>
-        <button class="filter-btn" onclick="filterCategory('social', this)">Sosyal Medya</button>
-        <button class="filter-btn" onclick="filterCategory('steam', this)">Steam / Oyun</button>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Dijital Oyun ve Sosyal Medya <span>Çözüm Merkeziniz</span></h1>
+        <p>En uygun fiyat garantisi, anında otomatik teslimat ve 7/24 kesintisiz destek ile hizmetinizdeyiz.</p>
     </section>
 
-    <!-- İlan Kartları Konteyneri -->
-    <main class="container">
-        <div class="grid" id="productGrid">
-
-            <!-- Örnek Kart 1 -->
-            <div class="card" data-id="1" data-category="cpm2" data-title="CPM2 Audi RS7 Özel Çizimli">
-                <button class="fav-icon-btn" onclick="toggleFavorite('1', event)">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <div class="card-img">
-                    <img src="https://via.placeholder.com/300x180" alt="CPM2 Audi RS7">
-                </div>
-                <div class="card-content">
-                    <h3>CPM2 Audi RS7 Özel Çizimli</h3>
-                    <p class="price">150 ₺</p>
-                    <a href="#" class="buy-btn" target="_blank">İtemSatış'tan Al</a>
-                </div>
-            </div>
-
-            <!-- Örnek Kart 2 -->
-            <div class="card" data-id="2" data-category="social" data-title="TikTok 10.000 İzlenme">
-                <button class="fav-icon-btn" onclick="toggleFavorite('2', event)">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <div class="card-img">
-                    <img src="https://via.placeholder.com/300x180" alt="TikTok İzlenme">
-                </div>
-                <div class="card-content">
-                    <h3>TikTok 10.000 İzlenme</h3>
-                    <p class="price">35 ₺</p>
-                    <a href="#" class="buy-btn" target="_blank">İtemSatış'tan Al</a>
-                </div>
-            </div>
-
-            <!-- Örnek Kart 3 -->
-            <div class="card" data-id="3" data-category="steam" data-title="Steam Random Key Premium">
-                <button class="fav-icon-btn" onclick="toggleFavorite('3', event)">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-                <div class="card-img">
-                    <img src="https://via.placeholder.com/300x180" alt="Steam Key">
-                </div>
-                <div class="card-content">
-                    <h3>Steam Random Key Premium</h3>
-                    <p class="price">50 ₺</p>
-                    <a href="#" class="buy-btn" target="_blank">İtemSatış'tan Al</a>
-                </div>
-            </div>
-
+    <!-- Search & Filter Controls -->
+    <div class="controls-wrapper" id="products">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Ürün veya hizmet ara... (örn: Instagram, TikTok, Audi, Forza)">
         </div>
-        <p id="noResults" class="no-results" style="display: none;">Aradığınız kriterlere uygun ilan bulunamadı.</p>
-    </main>
+        <div class="filter-tabs">
+            <button class="tab-btn active" data-filter="all">Tüm İlanlar</button>
+            <button class="tab-btn" data-filter="instagram">Instagram</button>
+            <button class="tab-btn" data-filter="tiktok">TikTok</button>
+            <button class="tab-btn" data-filter="cpm">Car Parking</button>
+            <button class="tab-btn" data-filter="steam">Steam Oyunları</button>
+        </div>
+    </div>
 
-    <script src="script.js"></script>
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="grid" id="productGrid">
+            <!-- Dynamic Products Loading via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section" id="trust">
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-bolt"></i></div>
+                <div class="trust-title">Anında Teslimat</div>
+                <div class="trust-desc">Siparişleriniz otomasyon sistemimiz ile dakikalar içinde teslim edilir.</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="trust-title">%100 Güvenli Alışveriş</div>
+                <div class="trust-desc">İtemSatış güvencesi ile tüm işlemleriniz koruma altındadır.</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-headset"></i></div>
+                <div class="trust-title">7/24 Destek</div>
+                <div class="trust-desc">Discord ve destek ekibimiz sorularınız için her zaman hazır.</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fa-solid fa-tag"></i></div>
+                <div class="trust-title">En Uygun Fiyat</div>
+                <div class="trust-desc">Piyasadaki en kaliteli hizmeti en avantajlı fiyatlarla sunuyoruz.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="reviews-section" id="reviews">
+        <h2 class="section-title">Müşteri Yorumları</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="user-info">
+                        <div class="user-avatar">M</div>
+                        <div>
+                            <div class="user-name">Mustafa K.</div>
+                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <div class="review-text">"CPM2 için Ferdi Tayfur çizimli M5 aldım, anında oyuna aktardılar. Çizim kalitesi muazzam!"</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="user-info">
+                        <div class="user-avatar">E</div>
+                        <div>
+                            <div class="user-name">Eren T.</div>
+                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <div class="review-text">"Instagram takipçi ve beğeni siparişlerim saniyeler içinde tamamlandı. İşini harika yapan bir mağaza."</div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="user-info">
+                        <div class="user-avatar">B</div>
+                        <div>
+                            <div class="user-name">Burak S.</div>
+                            <div class="verified-badge"><i class="fa-solid fa-circle-check"></i> Onaylı Alıcı</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <div class="review-text">"TikTok videolarım keşfete düştü. Fiyatlar aşırı uygun, sürekli alışveriş yaptığım adres."</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Discord Button -->
+    <a href="https://discord.gg" target="_blank" class="discord-float" title="Discord Sunucumuza Katılın">
+        <i class="fa-brands fa-discord"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p></p> <!-- JS ile güncellenecek -->
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        // Footer Yılını Otomatik Güncelleme (1. Maddeden eklendi)
+        document.querySelector('footer p').innerHTML = `&copy; ${new Date().getFullYear()} <b>ORDUNUZ STORE</b> - Tüm Hakları Saklıdır. Güvenli Dijital Hizmetler Platformu.`;
+
+        // MODAL KAPATMA FONKSİYONU
+        function closeModal() {
+            document.getElementById('announcementModal').classList.add('hidden');
+        }
+
+        // GÜVENİLİR HD KAPAK GÖRSELLERİ
+        const IMG_INSTAGRAM = "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80"; 
+        const IMG_TIKTOK = "https://images.unsplash.com/photo-1596558450255-7c0b7be9d56a?w=600&q=80";    
+        const IMG_CPM2 = "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80";                                   
+        const IMG_STEAM = "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=600&q=80";   
+
+        // TÜM İLAN VERİSİ
+        const allProducts = [
+            // INSTAGRAM İLANLARI
+            {
+                category: "instagram",
+                name: "INSTAGRAM 1000 BEĞENİ",
+                link: "https://www.itemsatis.com/instagram/instagram-1000-begeni-5768175.html",
+                image: IMG_INSTAGRAM,
+                badge: "HIZLI GÖNDERİM",
+                icon: "fa-brands fa-instagram",
+                desc: "Gönderilerinizi ön plana çıkaracak 1.000 adet kaliteli Instagram beğenisi. Düşüşsüz ve anında başlar."
+            },
+            {
+                category: "instagram",
+                name: "INSTAGRAM 25.000 İZLENME",
+                link: "https://www.itemsatis.com/instagram/instagram-25000-izlenme-5768169.html",
+                image: IMG_INSTAGRAM,
+                badge: "KEŞFET ETKİLİ",
+                icon: "fa-brands fa-instagram",
+                desc: "Reels ve videolarınız için 25.000 adet yüksek etkileşimli izlenme paketi. Keşfete düşme oranını artırır."
+            },
+            {
+                category: "instagram",
+                name: "INSTAGRAM 500 TÜRK BEĞENİ",
+                link: "https://www.itemsatis.com/instagram/instagram-500-turk-begeni-5768166.html",
+                image: IMG_INSTAGRAM,
+                badge: "%100 TÜRK",
+                icon: "fa-brands fa-instagram",
+                desc: "Gerçek ve aktif Türk kullanıcılar tarafından gönderilen 500 adet organik görünümlü beğeni."
+            },
+            {
+                category: "instagram",
+                name: "INSTAGRAM 1000 TAKİPÇİ",
+                link: "https://www.itemsatis.com/instagram/instagram-1000-takipci-5768156.html",
+                image: IMG_INSTAGRAM,
+                badge: "PRESTİJ PAKETİ",
+                icon: "fa-brands fa-instagram",
+                desc: "Hesabınızın güvenilirliğini ve kitlesini büyütecek 1.000 adet yüksek kaliteli Instagram takipçi."
+            },
+
+            // TIKTOK İLANLARI
+            {
+                category: "tiktok",
+                name: "TIKTOK 1000 BEĞENİ",
+                link: "https://www.itemsatis.com/tiktok/tiktok-1000-begeni-5768150.html",
+                image: IMG_TIKTOK,
+                badge: "POPÜLER",
+                icon: "fa-brands fa-tiktok",
+                desc: "TikTok videolarınızı öne çıkaracak 1.000 adet yüksek kaliteli beğeni gönderimi."
+            },
+            {
+                category: "tiktok",
+                name: "TIKTOK 5000 İZLENME",
+                link: "https://www.itemsatis.com/tiktok/tiktok-5000-izlenme-aninda-teslimat-5768134.html",
+                image: IMG_TIKTOK,
+                badge: "ANINDA TESLİM",
+                icon: "fa-brands fa-tiktok",
+                desc: "Videolarınız için anında teslimat avantajıyla 5.000 izlenme gönderimi. Keşfet algoritmaları için idealdir."
+            },
+            {
+                category: "tiktok",
+                name: "250 TIKTOK TAKİPÇİ",
+                link: "https://www.itemsatis.com/tiktok/250-tiktok-takipci-5768143.html",
+                image: IMG_TIKTOK,
+                badge: "GÜVENLİ",
+                icon: "fa-brands fa-tiktok",
+                desc: "Profilinizi büyütmeye başlamak için 250 adet güvenli ve hızlı teslim edilen TikTok takipçi."
+            },
+
+            // CAR PARKING MULTIPLAYER 2 (CPM2) İLANLARI
+            {
+                category: "cpm",
+                name: "CPM2 AUDİ RS7 AİR+SİREN",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-audi-rs7-air-siren-5847390.html",
+                image: IMG_CPM2,
+                badge: "AIR & SİREN",
+                icon: "fa-solid fa-gamepad",
+                desc: "Özel Air Süspansiyon sistemi ve Polis Sireni eklenmiş, ful donanımlı Audi RS7."
+            },
+            {
+                category: "cpm",
+                name: "CPM2 10K COİNLİ BUGATTİ SİREN BAYRAK",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-10k-coinli-bugatti-siren-bayrak-5847362.html",
+                image: IMG_CPM2,
+                badge: "10K COIN + BAYRAK",
+                icon: "fa-solid fa-gamepad",
+                desc: "10.000 Coin hediyeli, sirenli ve özel Türk bayrağı tasarımıyla yüksek hızlı Bugatti."
+            },
+            {
+                category: "cpm",
+                name: "CPM2 MERCEDES MAYBACH FUL LOGOLU SİRENLİ",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-mercedes-maybach-ful-logolu-sirenli-5847319.html",
+                image: IMG_CPM2,
+                badge: "VIP LÜKS",
+                icon: "fa-solid fa-gamepad",
+                desc: "Orijinal Maybach logoları, siren sistemi ve Lüks VIP görünümüyle Car Parking 2'de fark yaratın."
+            },
+            {
+                category: "cpm",
+                name: "CPM2 BMW M5 F90 ÖZEL ÇİZİMLİ FERDİ TAYFUR",
+                link: "https://www.itemsatis.com/car-parking-multiplayer/cpm2-bmw-ozel-tasarim-ferdi-tayfur-5845777.html",
+                image: IMG_CPM2,
+                badge: "ÖZEL ÇİZİM",
+                icon: "fa-solid fa-gamepad",
+                desc: "Efsanevi Ferdi Tayfur portre çizimli, özel süspansiyonlu ve yüksek motor gücüne sahip M5 F90."
+            },
+
+            // STEAM OYUNLARI
+            {
+                category: "steam",
+                name: "The Last of Us Part II Remastered",
+                link: "https://www.itemsatis.com/steam/the-last-of-us-part-2-remastered-5759383.html",
+                image: IMG_STEAM,
+                badge: "EFSANE OYUN",
+                icon: "fa-brands fa-steam",
+                desc: "Ellie ve Abby'nin unutulmaz hikayesi. Yüksek grafik kalitesi ve Türkçe altyazı desteğiyle Steam garantili erişim."
+            },
+            {
+                category: "steam",
+                name: "Forza Horizon 4",
+                link: "https://www.itemsatis.com/steam/forza-horizon-4-5750195.html",
+                image: IMG_STEAM,
+                badge: "ÇOK SATAN",
+                icon: "fa-brands fa-steam",
+                desc: "Büyük Britanya'nın muhteşem açık dünyasında efsanevi yarış deneyimi. Yüzlerce araç seçeneğiyle."
+            },
+            {
+                category: "steam",
+                name: "Forza Horizon 5",
+                link: "https://www.itemsatis.com/steam/forza-horizon-5-5750166.html",
+                image: IMG_STEAM,
+                badge: "POPÜLER",
+                icon: "fa-brands fa-steam",
+                desc: "Meksika'nın eşsiz coğrafyasında en büyük Forza macerası. Kesintisiz yarış keyfi ve hızlı teslimat."
+            },
+            {
+                category: "steam",
+                name: "Cyberpunk 2077",
+                link: "https://www.itemsatis.com/steam/cyberpunk-2077-5137455.html",
+                image: IMG_STEAM,
+                badge: "GÜNCEL SÜRÜM",
+                icon: "fa-brands fa-steam",
+                desc: "Night City'nin büyüleyici atmosferinde kendi efsaneni yarat. Türkçe dil destekli ve kesintisiz."
+            },
+            {
+                category: "steam",
+                name: "Call of Duty: Modern Warfare (2019)",
+                link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-2019-5137365.html",
+                image: IMG_STEAM,
+                badge: "AKSİYON",
+                icon: "fa-brands fa-steam",
+                desc: "Kaptan Price ile efsanevi hikaye moduna adım atın. En yüksek grafik ve aksiyon dolu operasyonlar."
+            },
+            {
+                category: "steam",
+                name: "Call of Duty: Modern Warfare II",
+                link: "https://www.itemsatis.com/steam/call-of-duty-modern-warfare-ii-5137068.html",
+                image: IMG_STEAM,
+                badge: "YENİ NESİL",
+                icon: "fa-brands fa-steam",
+                desc: "Task Force 141 geri dönüyor! Yüksek FPS optimizasyonlu, kaliteli hikaye modu Steam erişimi."
+            }
+        ];
+
+        // EKRANA RENDER ETME
+        const productGrid = document.getElementById('productGrid');
+
+        function renderProducts(products) {
+            productGrid.innerHTML = '';
+
+            // Sonuç bulunamadı uyarısı (3. Maddeden eklendi)
+            if (products.length === 0) {
+                productGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-muted);">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size: 2.5rem; margin-bottom: 15px; color: var(--primary-blue);"></i>
+                        <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 5px;">Aramanıza Uygun İlan Bulunamadı</h3>
+                        <p style="font-size: 0.9rem;">Lütfen farklı bir arama terimi deneyin veya kategorileri değiştirin.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            products.forEach(item => {
+                const cardHTML = `
+                    <div class="card" data-category="${item.category}">
+                        <span class="card-badge">${item.badge}</span>
+                        <div class="card-img-wrapper">
+                            <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&q=80'">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">
+                                <i class="${item.icon}"></i>
+                                ${item.name}
+                            </div>
+                            <div class="card-desc">${item.desc}</div>
+                            <div class="card-footer">
+                                <a href="${item.link}" target="_blank" class="btn-direct-buy">
+                                    <i class="fa-solid fa-bag-shopping"></i> İtemSatış'ta İncele
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productGrid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        // Sayfa Yüklendiğinde Render Et
+        renderProducts(allProducts);
+
+        // ARAMA SİSTEMİ
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-filter');
+
+            const filtered = allProducts.filter(item => {
+                const matchesCategory = (activeTab === 'all' || item.category === activeTab);
+                const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+                return matchesCategory && matchesQuery;
+            });
+
+            renderProducts(filtered);
+        });
+
+        // FİLTRELEME SEKMELERİ
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                const query = searchInput.value.toLowerCase().trim();
+
+                const filtered = allProducts.filter(item => {
+                    const matchesCategory = (filter === 'all' || item.category === filter);
+                    const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+                    return matchesCategory && matchesQuery;
+                });
+
+                renderProducts(filtered);
+            });
+        });
+    </script>
 </body>
 </html>
-2. style.css (Ek Tasarım Kuralları)
-Mevcut CSS dosyanın en altına bu stilleri eklemen yeterlidir. Neon mavi ve koyu tema bütünlüğüne tam uyum sağlar:
-
-CSS
-/* --- Arama & Nav Kontrolleri --- */
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.search-box {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.search-box i {
-    position: absolute;
-    left: 12px;
-    color: #00f0ff;
-}
-
-.search-box input {
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    border-radius: 8px;
-    padding: 8px 12px 8px 35px;
-    color: #fff;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.search-box input:focus {
-    border-color: #00f0ff;
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
-}
-
-.fav-btn-nav {
-    background: rgba(0, 240, 255, 0.1);
-    border: 1px solid #00f0ff;
-    color: #00f0ff;
-    padding: 8px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.fav-btn-nav:hover, .fav-btn-nav.active {
-    background: #00f0ff;
-    color: #0b0f19;
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
-}
-
-/* --- Filtre Butonları --- */
-.filter-section {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    background: #111827;
-    border: 1px solid #1f2937;
-    color: #9ca3af;
-    padding: 8px 18px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.filter-btn:hover, .filter-btn.active {
-    border-color: #00f0ff;
-    color: #00f0ff;
-    box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
-}
-
-/* --- Favori İkonu Kart Üstü --- */
-.card {
-    position: relative;
-}
-
-.fav-icon-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 5;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.fav-icon-btn.active {
-    color: #ff3b5c;
-    border-color: #ff3b5c;
-    background: rgba(255, 59, 92, 0.1);
-}
-
-.no-results {
-    text-align: center;
-    color: #9ca3af;
-    margin-top: 30px;
-    font-size: 1.1rem;
-}
-3. script.js (İşlevsellik Kodları)
-Favorilerin hafızada kalmasını (LocalStorage) sağlayan, eşzamanlı arama yapan ve filtreleme işlemlerini yürüten JavaScript kodu:
-
-JavaScript
-// LocalStorage üzerinden Favorileri Yönetme
-let favorites = JSON.parse(localStorage.getItem('ordunuz_favs')) || [];
-let activeCategory = 'all';
-let isFavOnly = false;
-
-document.addEventListener('DOMContentLoaded', () => {
-    updateFavUI();
-});
-
-// Favori Ekle / Çıkar
-function toggleFavorite(id, event) {
-    event.stopPropagation();
-    const index = favorites.indexOf(id);
-
-    if (index === -1) {
-        favorites.push(id);
-    } else {
-        favorites.splice(index, 1);
-    }
-
-    localStorage.setItem('ordunuz_favs', JSON.stringify(favorites));
-    updateFavUI();
-
-    if (isFavOnly) {
-        filterFavorites(true);
-    }
-}
-
-// Favori İkonlarının Arayüz Güncellemesi
-function updateFavUI() {
-    document.getElementById('favCount').innerText = favorites.length;
-    const cards = document.querySelectorAll('.card');
-
-    cards.forEach(card => {
-        const id = card.getAttribute('data-id');
-        const btn = card.querySelector('.fav-icon-btn');
-        const icon = btn.querySelector('i');
-
-        if (favorites.includes(id)) {
-            btn.classList.add('active');
-            icon.className = 'fa-solid fa-heart';
-        } else {
-            btn.classList.remove('active');
-            icon.className = 'fa-regular fa-heart';
-        }
-    });
-}
-
-// Canlı İlan Arama (1. Özellik)
-function filterItems() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.card');
-    let visibleCount = 0;
-
-    cards.forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        const category = card.getAttribute('data-category');
-        const id = card.getAttribute('data-id');
-
-        const matchesSearch = title.includes(query);
-        const matchesCategory = (activeCategory === 'all' || category === activeCategory);
-        const matchesFav = !isFavOnly || favorites.includes(id);
-
-        if (matchesSearch && matchesCategory && matchesFav) {
-            card.style.display = 'block';
-            visibleCount++;
-        } else {
-            card.style.display = 'none';
-        }
-    });
-
-    document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
-}
-
-// Kategori Filtreleme (6. Özellik)
-function filterCategory(category, element) {
-    isFavOnly = false;
-    document.querySelector('.fav-btn-nav').classList.remove('active');
-    
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-    element.classList.add('active');
-
-    activeCategory = category;
-    filterItems();
-}
-
-// Sadece Favorileri Filtreleme (5. Özellik)
-function filterFavorites(keepState = false) {
-    if (!keepState) {
-        isFavOnly = !isFavOnly;
-    }
-    
-    const favBtn = document.querySelector('.fav-btn-nav');
-    if (isFavOnly) {
-        favBtn.classList.add('active');
-    } else {
-        favBtn.classList.remove('active');
-    }
-
-    filterItems();
-}
